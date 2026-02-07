@@ -12,7 +12,7 @@ This roadmap delivers a web application for structured collaboration between Elv
 
 Decimal phases appear between their surrounding integers in numeric order.
 
-- [ ] **Phase 1: Foundation & Authentication** - Event-sourced data layer, Google OAuth, team management, i18n framework, local filesystem memory, native deployment
+- [ ] **Phase 1: Foundation & Authentication** - Event-sourced data layer, passkey/password auth, team management, i18n framework, local filesystem memory, native deployment
 - [ ] **Phase 2: Project Lifecycle & Dashboard** - Project CRUD, 8-phase lifecycle, ROI/KPI tracking, global dashboard
 - [ ] **Phase 3: Documentation Engine** - Soul Documents, event-driven appends, Meta Soul Document, GDPR soft-delete
 - [ ] **Phase 4: AI Foundation & Orchestration** - Multi-provider AI team member with cost controls, triggers, and conflict mediation
@@ -28,20 +28,24 @@ Decimal phases appear between their surrounding integers in numeric order.
 **Depends on**: Nothing (first phase)
 **Requirements**: AUTH-01, AUTH-02, AUTH-03, AUTH-04, I18N-01, INFRA-01, INFRA-02, INFRA-03, INFRA-04, INFRA-05, INFRA-06
 **Success Criteria** (what must be TRUE):
-  1. User can sign in with Google OAuth and remain signed in across browser refreshes
+  1. User can sign in with passkey/password and remain signed in across browser refreshes
   2. User can create a team and invite another person by email
   3. All team members can see all projects within their team (open visibility)
   4. User can switch the UI between German and English, and the choice persists
-  5. Every state change in the system is stored as an append-only event with a correlation ID (verifiable in dev tools or database)
+  5. Every state change in the system is stored as an append-only event with a correlation ID (verifiable in dev tools or filesystem)
   6. App runs natively on local hardware via pm2/systemd without Docker, and is portable via system image
-  7. Local filesystem memory system is active with per-project folders, per-member Markdown files, Git-backed versioning, and filesystem blacklist protection
+  7. Local filesystem memory system is active with per-project folders, per-member Markdown files, Git-backed versioning, and filesystem allowlist protection
   8. Per-project GitHub repositories can be auto-created and linked from within the app
-**Plans**: TBD
+**Plans**: 7 plans
 
 Plans:
-- [ ] 01-01: TBD
-- [ ] 01-02: TBD
-- [ ] 01-03: TBD
+- [ ] 01-01-PLAN.md -- Project foundation: monorepo scaffolding + JSONL event store
+- [ ] 01-02-PLAN.md -- Authentication: passkey/password with filesystem credential storage
+- [ ] 01-03-PLAN.md -- i18n (DE/EN) + deployment config (pm2, install scripts)
+- [ ] 01-04-PLAN.md -- Team management + dashboard with activity feed
+- [ ] 01-05-PLAN.md -- Filesystem memory system with Git versioning + path security
+- [ ] 01-06-PLAN.md -- GitHub repo auto-creation + setup wizard with system discovery
+- [ ] 01-07-PLAN.md -- End-to-end verification checkpoint
 
 ### Phase 2: Project Lifecycle & Dashboard
 **Goal**: Users can create and manage projects through the mandatory 8-phase lifecycle with full ROI/KPI visibility
@@ -168,7 +172,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Foundation & Authentication | 0/TBD | Not started | - |
+| 1. Foundation & Authentication | 0/7 | Planning complete | - |
 | 2. Project Lifecycle & Dashboard | 0/TBD | Not started | - |
 | 3. Documentation Engine | 0/TBD | Not started | - |
 | 4. AI Foundation & Orchestration | 0/TBD | Not started | - |
