@@ -91,6 +91,19 @@ No project dies without a documented decision, and every thought trail is fully 
 
 **Documentation Philosophy:** Event-driven, not snapshot-based. Every significant event (decision, assumption, status change, KPI evaluation, AI intervention, override, pattern match) triggers an immediate append. No time-based rhythms, no manual triggers. Everything is historically reconstructable.
 
+**GitHub Structure:** Private GitHub account as base. The app itself lives in one main repository. Each project created in the app can optionally get its own separate GitHub repository, auto-created and linked. The app manages this relationship intelligently.
+
+**Hosting & Hardware:** Self-hosted on local hardware (Mac Mini or Linux box, potentially limited: older processor, 16GB RAM). Docker may not be viable — services run natively (Node.js processes via pm2/systemd, PostgreSQL and Redis installed directly). Architecture must be hardware-agnostic: deployable via system image to new hardware. Designed for 24/7 operation.
+
+**Hybrid Storage / Local Memory System:** The app has autonomous write access to the local filesystem. It creates and maintains its own directory structure as a persistent memory system:
+- Per-project folders with named, versioned Markdown files
+- Per-team-member Soul Documents as Markdown on disk
+- Synthesis documents merging perspectives across team members
+- Git-backed for full version history
+- Protected by a filesystem blacklist (system-critical paths cannot be touched)
+- PostgreSQL handles structured data (events, users, project state); the filesystem handles the Markdown memory layer
+- Zero context loss: everything persists on local disk, independently of database
+
 ## Constraints
 
 - **Append-Only**: All documents are append-only with soft-delete for GDPR. No silent overwrites, no compression of content. Every change is historically reconstructable.
@@ -100,6 +113,9 @@ No project dies without a documented decision, and every thought trail is fully 
 - **50k Token Rule**: When a context area reaches ~50k tokens, structural consolidation happens automatically — but no content is compressed or lost.
 - **Multi-Provider**: AI layer must support multiple providers (Anthropic, OpenAI, etc.) from the start.
 - **i18n**: German and English from day one.
+- **Hardware-Agnostic**: Must run on limited hardware (older Mac Mini or 2016 Linux box with 16GB RAM). No Docker dependency. Native process deployment.
+- **Local Filesystem Access**: App has autonomous write access to local disk. Blacklist protects system-critical paths. Markdown memory system is independent of database.
+- **Portable**: Deployable to new hardware via system image. No hardware-specific configuration.
 
 ## Key Decisions
 
@@ -113,8 +129,11 @@ No project dies without a documented decision, and every thought trail is fully 
 | AI personality configurable per team | Teams choose name, tone, character for their AI team member | — Pending |
 | GitHub integration with fork flow | Dev consultancy needs seamless GitHub workflow. Fork → AI analysis → idea pool → project. | — Pending |
 | AI mediates team conflicts | When team members disagree, AI analyzes both positions and proposes compromise. Documented in project history. | — Pending |
-| Best price-performance hosting | Data location flexible. No Swiss/EU hosting requirement for v1. | — Pending |
+| Self-hosted on local hardware | Mac Mini or Linux box, 24/7. No cloud dependency. Services run natively, not in Docker. Hardware-agnostic via system image. | — Pending |
+| Hybrid storage (DB + filesystem) | PostgreSQL for structured data, local filesystem for Markdown memory. Git-backed versioning. Zero context loss. | — Pending |
+| Private GitHub account | Main repo for app, optional per-project repos auto-created. Scale to org later if needed. | — Pending |
+| Filesystem blacklist | System-critical paths protected. AI has autonomous write access within designated project directories only. | — Pending |
 | GSD as execution engine | Proven workflow methodology runs under the hood, presented through clean UI for non-techies | — Pending |
 
 ---
-*Last updated: 2026-02-07 after initialization*
+*Last updated: 2026-02-07 after roadmap review (added hosting, GitHub, filesystem memory decisions)*

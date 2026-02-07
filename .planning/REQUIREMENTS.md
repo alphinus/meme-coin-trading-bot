@@ -88,6 +88,15 @@ Requirements for initial release. Each maps to roadmap phases.
 
 - [ ] **NOTF-01**: Fully configurable notifications per user, per channel (web, Telegram, email), per priority level
 
+### Infrastructure & Hosting
+
+- [ ] **INFRA-01**: App runs natively on local hardware without Docker (pm2/systemd managed processes)
+- [ ] **INFRA-02**: Hardware-agnostic deployment via system image (portable to new machines)
+- [ ] **INFRA-03**: Local filesystem memory system with per-project folders and per-member named Markdown files
+- [ ] **INFRA-04**: Filesystem blacklist protecting system-critical paths from autonomous AI writes
+- [ ] **INFRA-05**: Git-backed versioning of all Markdown memory files on local disk
+- [ ] **INFRA-06**: Per-project GitHub repositories auto-created and linked from within the app
+
 ### Internationalization
 
 - [ ] **I18N-01**: UI available in German and English
@@ -131,13 +140,71 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| — | — | — |
+| AUTH-01 | Phase 1: Foundation & Authentication | Pending |
+| AUTH-02 | Phase 1: Foundation & Authentication | Pending |
+| AUTH-03 | Phase 1: Foundation & Authentication | Pending |
+| AUTH-04 | Phase 1: Foundation & Authentication | Pending |
+| I18N-01 | Phase 1: Foundation & Authentication | Pending |
+| INFRA-01 | Phase 1: Foundation & Authentication | Pending |
+| INFRA-02 | Phase 1: Foundation & Authentication | Pending |
+| INFRA-03 | Phase 1: Foundation & Authentication | Pending |
+| INFRA-04 | Phase 1: Foundation & Authentication | Pending |
+| INFRA-05 | Phase 1: Foundation & Authentication | Pending |
+| INFRA-06 | Phase 1: Foundation & Authentication | Pending |
+| PROJ-01 | Phase 2: Project Lifecycle & Dashboard | Pending |
+| PROJ-02 | Phase 2: Project Lifecycle & Dashboard | Pending |
+| PROJ-03 | Phase 2: Project Lifecycle & Dashboard | Pending |
+| PROJ-04 | Phase 2: Project Lifecycle & Dashboard | Pending |
+| PROJ-05 | Phase 2: Project Lifecycle & Dashboard | Pending |
+| PROJ-06 | Phase 2: Project Lifecycle & Dashboard | Pending |
+| PROJ-07 | Phase 2: Project Lifecycle & Dashboard | Pending |
+| DOCS-01 | Phase 3: Documentation Engine | Pending |
+| DOCS-02 | Phase 3: Documentation Engine | Pending |
+| DOCS-03 | Phase 3: Documentation Engine | Pending |
+| DOCS-04 | Phase 3: Documentation Engine | Pending |
+| DOCS-05 | Phase 3: Documentation Engine | Pending |
+| DOCS-06 | Phase 3: Documentation Engine | Pending |
+| AI-01 | Phase 4: AI Foundation & Orchestration | Pending |
+| AI-02 | Phase 4: AI Foundation & Orchestration | Pending |
+| AI-03 | Phase 4: AI Foundation & Orchestration | Pending |
+| AI-04 | Phase 4: AI Foundation & Orchestration | Pending |
+| AI-05 | Phase 4: AI Foundation & Orchestration | Pending |
+| AI-06 | Phase 4: AI Foundation & Orchestration | Pending |
+| AI-07 | Phase 4: AI Foundation & Orchestration | Pending |
+| AI-08 | Phase 4: AI Foundation & Orchestration | Pending |
+| AI-09 | Phase 4: AI Foundation & Orchestration | Pending |
+| AI-10 | Phase 4: AI Foundation & Orchestration | Pending |
+| AI-11 | Phase 4: AI Foundation & Orchestration | Pending |
+| I18N-02 | Phase 4: AI Foundation & Orchestration | Pending |
+| GSD-01 | Phase 5: GSD Workflow Engine | Pending |
+| GSD-02 | Phase 5: GSD Workflow Engine | Pending |
+| GSD-03 | Phase 5: GSD Workflow Engine | Pending |
+| GSD-04 | Phase 5: GSD Workflow Engine | Pending |
+| GSD-05 | Phase 5: GSD Workflow Engine | Pending |
+| VOIC-01 | Phase 6: Voice & Idea Pool | Pending |
+| VOIC-02 | Phase 6: Voice & Idea Pool | Pending |
+| VOIC-03 | Phase 6: Voice & Idea Pool | Pending |
+| VOIC-04 | Phase 6: Voice & Idea Pool | Pending |
+| VOIC-05 | Phase 6: Voice & Idea Pool | Pending |
+| TELE-01 | Phase 7: Telegram Bot & Notifications | Pending |
+| TELE-02 | Phase 7: Telegram Bot & Notifications | Pending |
+| TELE-03 | Phase 7: Telegram Bot & Notifications | Pending |
+| TELE-04 | Phase 7: Telegram Bot & Notifications | Pending |
+| TELE-05 | Phase 7: Telegram Bot & Notifications | Pending |
+| TELE-06 | Phase 7: Telegram Bot & Notifications | Pending |
+| NOTF-01 | Phase 7: Telegram Bot & Notifications | Pending |
+| INTG-01 | Phase 8: External Integrations & AI Search | Pending |
+| INTG-02 | Phase 8: External Integrations & AI Search | Pending |
+| INTG-03 | Phase 8: External Integrations & AI Search | Pending |
+| INTG-04 | Phase 8: External Integrations & AI Search | Pending |
+| INTG-05 | Phase 8: External Integrations & AI Search | Pending |
+| SRCH-01 | Phase 8: External Integrations & AI Search | Pending |
 
 **Coverage:**
-- v1 requirements: 43 total
-- Mapped to phases: 0
-- Unmapped: 43
+- v1 requirements: 59 total
+- Mapped to phases: 59
+- Unmapped: 0
 
 ---
 *Requirements defined: 2026-02-07*
-*Last updated: 2026-02-07 after initial definition*
+*Last updated: 2026-02-07 after roadmap review (added INFRA requirements)*
