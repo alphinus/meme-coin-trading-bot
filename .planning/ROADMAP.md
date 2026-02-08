@@ -148,12 +148,14 @@ Plans:
   3. User can send a voice message via Telegram, AI transcribes it, recognizes the project from context (or guides via buttons), and routes it correctly
   4. Offline voice messages are queued by Telegram and processed when connectivity returns
   5. User can configure notifications per user, per channel (web, Telegram, email), and per priority level
-**Plans**: TBD
+**Plans**: 5 plans
 
 Plans:
-- [ ] 07-01: TBD
-- [ ] 07-02: TBD
-- [ ] 07-03: TBD
+- [ ] 07-01-PLAN.md -- Bot foundation: grammY install, shared types (telegram + notification), bot instance, auth linking, webhook route
+- [ ] 07-02-PLAN.md -- Notification system: event-sourced preferences, 3 channel dispatchers (web, telegram, email), central dispatcher, REST API
+- [ ] 07-03-PLAN.md -- Bot commands (/start, /projects, /ideas, /status, /help) + project/idea/settings menus with @grammyjs/menu
+- [ ] 07-04-PLAN.md -- GSD workflow interaction via Telegram menus + voice message download/transcription/routing + text input handler
+- [ ] 07-05-PLAN.md -- App integration: bot handler registration, notification route wiring, event-to-notification bridge, i18n DE/EN, client notification UI, e2e verification
 
 ### Phase 8: External Integrations & AI Search
 **Goal**: The platform connects to Gmail, Google Calendar, and GitHub, and users can navigate all data with natural-language AI queries
@@ -185,5 +187,5 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8
 | 4. AI Foundation & Orchestration | 6/6 | Complete | 2026-02-08 |
 | 5. GSD Workflow Engine | 3/3 | Complete | 2026-02-08 |
 | 6. Voice & Idea Pool | 0/4 | Planned | - |
-| 7. Telegram Bot & Notifications | 0/TBD | Not started | - |
+| 7. Telegram Bot & Notifications | 0/5 | Planned | - |
 | 8. External Integrations & AI Search | 0/TBD | Not started | - |
