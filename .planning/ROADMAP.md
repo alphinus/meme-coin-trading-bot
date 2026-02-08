@@ -113,11 +113,12 @@ Plans:
   2. All GSD terminal prompts appear as clickable UI buttons (Yes/No/Continue/option selections) with no terminal knowledge required
   3. Freeform text input fields appear only when GSD explicitly needs text input, and are hidden otherwise
   4. Context management operations (like /clear) happen invisibly behind the scenes without user intervention
-**Plans**: TBD
+**Plans**: 3 plans
 
 Plans:
-- [ ] 05-01: TBD
-- [ ] 05-02: TBD
+- [ ] 05-01-PLAN.md -- Shared workflow types + server workflow engine (definitions, engine, reducer, routes)
+- [ ] 05-02-PLAN.md -- Client workflow components (StepButton, StepTextInput, StepInfoDisplay, StepAiPrompt, StepProgress) + useWorkflow hook + WorkflowEngine container
+- [ ] 05-03-PLAN.md -- App integration (route registration, ProjectDetail wiring, i18n DE/EN) + e2e verification
 
 ### Phase 6: Voice & Idea Pool
 **Goal**: Users can capture ideas by voice, and raw ideas flow through AI-guided refinement into GSD-ready projects
@@ -181,7 +182,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8
 | 2. Project Lifecycle & Dashboard | 5/5 | Complete | 2026-02-08 |
 | 3. Documentation Engine | 4/4 | Complete | 2026-02-08 |
 | 4. AI Foundation & Orchestration | 6/6 | Complete | 2026-02-08 |
-| 5. GSD Workflow Engine | 0/TBD | Not started | - |
+| 5. GSD Workflow Engine | 0/3 | Not started | - |
 | 6. Voice & Idea Pool | 0/TBD | Not started | - |
 | 7. Telegram Bot & Notifications | 0/TBD | Not started | - |
 | 8. External Integrations & AI Search | 0/TBD | Not started | - |
