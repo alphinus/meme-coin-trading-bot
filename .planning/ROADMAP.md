@@ -12,7 +12,7 @@ This roadmap delivers a web application for structured collaboration between Elv
 
 Decimal phases appear between their surrounding integers in numeric order.
 
-- [ ] **Phase 1: Foundation & Authentication** - Event-sourced data layer, passkey/password auth, team management, i18n framework, local filesystem memory, native deployment
+- [x] **Phase 1: Foundation & Authentication** - Event-sourced data layer, passkey/password auth, team management, i18n framework, local filesystem memory, native deployment *(Completed 2026-02-08)*
 - [ ] **Phase 2: Project Lifecycle & Dashboard** - Project CRUD, 8-phase lifecycle, ROI/KPI tracking, global dashboard
 - [ ] **Phase 3: Documentation Engine** - Soul Documents, event-driven appends, Meta Soul Document, GDPR soft-delete
 - [ ] **Phase 4: AI Foundation & Orchestration** - Multi-provider AI team member with cost controls, triggers, and conflict mediation
@@ -40,12 +40,12 @@ Decimal phases appear between their surrounding integers in numeric order.
 
 Plans:
 - [x] 01-01-PLAN.md -- Project foundation: monorepo scaffolding + JSONL event store
-- [ ] 01-02-PLAN.md -- Authentication: passkey/password with filesystem credential storage
-- [ ] 01-03-PLAN.md -- i18n (DE/EN) + deployment config (pm2, install scripts)
-- [ ] 01-04-PLAN.md -- Team management + dashboard with activity feed
-- [ ] 01-05-PLAN.md -- Filesystem memory system with Git versioning + path security
-- [ ] 01-06-PLAN.md -- GitHub repo auto-creation + setup wizard with system discovery
-- [ ] 01-07-PLAN.md -- End-to-end verification checkpoint
+- [x] 01-02-PLAN.md -- Authentication: passkey/password with filesystem credential storage
+- [x] 01-03-PLAN.md -- i18n (DE/EN) + deployment config (pm2, install scripts)
+- [x] 01-04-PLAN.md -- Team management + dashboard with activity feed
+- [x] 01-05-PLAN.md -- Filesystem memory system with Git versioning + path security
+- [x] 01-06-PLAN.md -- GitHub repo auto-creation + setup wizard with system discovery
+- [x] 01-07-PLAN.md -- End-to-end verification checkpoint
 
 ### Phase 2: Project Lifecycle & Dashboard
 **Goal**: Users can create and manage projects through the mandatory 8-phase lifecycle with full ROI/KPI visibility
@@ -57,12 +57,13 @@ Plans:
   3. User can view ROI/KPI metrics per decision, per phase, and aggregated across all projects
   4. Completed projects (post Phase 8) automatically move to a dedicated archive tab
   5. User can view a global overview dashboard showing status distribution via pie charts and aggregated ROI/KPI across all projects
-**Plans**: TBD
+**Plans**: 4 plans
 
 Plans:
-- [ ] 02-01: TBD
-- [ ] 02-02: TBD
-- [ ] 02-03: TBD
+- [ ] 02-01-PLAN.md -- Backend: shared types, project reducer, and all API routes
+- [ ] 02-02-PLAN.md -- Client hooks, project list page, and browser-tab navigation
+- [ ] 02-03-PLAN.md -- Project detail page with lifecycle phases and ROI/KPI UI
+- [ ] 02-04-PLAN.md -- Dashboard overview with pie chart, archive tab, and e2e verification
 
 ### Phase 3: Documentation Engine
 **Goal**: Every significant event is automatically captured in append-only documents, and each team member has a living Soul Document
@@ -172,8 +173,8 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Foundation & Authentication | 1/7 | In progress | - |
-| 2. Project Lifecycle & Dashboard | 0/TBD | Not started | - |
+| 1. Foundation & Authentication | 7/7 | Complete | 2026-02-08 |
+| 2. Project Lifecycle & Dashboard | 0/4 | Not started | - |
 | 3. Documentation Engine | 0/TBD | Not started | - |
 | 4. AI Foundation & Orchestration | 0/TBD | Not started | - |
 | 5. GSD Workflow Engine | 0/TBD | Not started | - |
