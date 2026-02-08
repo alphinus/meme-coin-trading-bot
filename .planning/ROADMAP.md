@@ -76,12 +76,13 @@ Plans:
   3. A Meta Soul Document is auto-generated at team level, surfacing thinking errors, biases, abort patterns, and over/under-engineering tendencies
   4. User can soft-delete any document entry for GDPR compliance, and the entry is marked as deleted but preserved in the audit log
   5. User can view their Soul Document, the AI perspective on their patterns, and the Meta Soul Document from dedicated views
-**Plans**: TBD
+**Plans**: 4 plans
 
 Plans:
-- [ ] 03-01: TBD
-- [ ] 03-02: TBD
-- [ ] 03-03: TBD
+- [ ] 03-01-PLAN.md -- Backend foundation: Soul Document types, reducer, DocumentWriter, API routes
+- [ ] 03-02-PLAN.md -- Event integration into existing routes + Meta Soul Document generation
+- [ ] 03-03-PLAN.md -- Client: hooks, Soul Document viewer, Soul Document + Meta pages
+- [ ] 03-04-PLAN.md -- App integration: routing, navigation, and end-to-end verification
 
 ### Phase 4: AI Foundation & Orchestration
 **Goal**: A visible, rule-bound AI team member operates across multiple providers with cost transparency, acting only on defined triggers
@@ -176,7 +177,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8
 |-------|----------------|--------|-----------|
 | 1. Foundation & Authentication | 7/7 | Complete | 2026-02-08 |
 | 2. Project Lifecycle & Dashboard | 5/5 | Complete | 2026-02-08 |
-| 3. Documentation Engine | 0/TBD | Not started | - |
+| 3. Documentation Engine | 0/4 | Not started | - |
 | 4. AI Foundation & Orchestration | 0/TBD | Not started | - |
 | 5. GSD Workflow Engine | 0/TBD | Not started | - |
 | 6. Voice & Idea Pool | 0/TBD | Not started | - |
