@@ -64,7 +64,7 @@ Plans:
 - [x] 02-02-PLAN.md -- Client hooks, project list page, and browser-tab navigation
 - [x] 02-03-PLAN.md -- Project detail page with lifecycle phases and ROI/KPI UI
 - [x] 02-04-PLAN.md -- Dashboard overview with pie chart, archive tab, and e2e verification
-- [ ] 02-05-PLAN.md -- Gap closure: ProjectTabs browser-tab navigation + StatusPieChart visualization
+- [x] 02-05-PLAN.md -- Gap closure: ProjectTabs browser-tab navigation + StatusPieChart visualization
 
 ### Phase 3: Documentation Engine
 **Goal**: Every significant event is automatically captured in append-only documents, and each team member has a living Soul Document
@@ -175,7 +175,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Foundation & Authentication | 7/7 | Complete | 2026-02-08 |
-| 2. Project Lifecycle & Dashboard | 4/5 | Gap closure | - |
+| 2. Project Lifecycle & Dashboard | 5/5 | Complete | 2026-02-08 |
 | 3. Documentation Engine | 0/TBD | Not started | - |
 | 4. AI Foundation & Orchestration | 0/TBD | Not started | - |
 | 5. GSD Workflow Engine | 0/TBD | Not started | - |
