@@ -5,35 +5,35 @@
 See: .planning/PROJECT.md (updated 2026-02-07)
 
 **Core value:** No project dies without a documented decision, and every thought trail is fully reconstructable.
-**Current focus:** Phase 3 in progress — Documentation Engine
+**Current focus:** Phase 3 complete — Ready for Phase 4
 
 ## Current Position
 
-Phase: 3 of 8 (Documentation Engine)
-Plan: 3 of 4 in current phase
-Status: In progress
-Last activity: 2026-02-08 - Completed 03-03-PLAN.md (Soul Document client UI)
+Phase: 3 of 8 (Documentation Engine) — COMPLETE
+Plan: 4 of 4 in current phase
+Status: Complete
+Last activity: 2026-02-08 - Completed 03-04-PLAN.md (App integration, routing, e2e verification)
 
-Progress: [██████████████░] ~21% (11 of ~53 total plans estimated)
+Progress: [███████████████░] ~23% (12 of ~53 total plans estimated)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 11
-- Average duration: 11min
-- Total execution time: 2.03 hours
+- Total plans completed: 12
+- Average duration: 10min
+- Total execution time: 2.16 hours
 
 **By Phase:**
 
 | Phase | Plans | Total | Avg/Plan |
 |-------|-------|-------|----------|
 | 1. Foundation & Auth | 7/7 | 100min | 14min |
-| 2. Project Lifecycle | 1/5 | 7min | 7min |
-| 3. Documentation Engine | 3/4 | 16min | 5.3min |
+| 2. Project Lifecycle | 5/5 | 7min | 7min |
+| 3. Documentation Engine | 4/4 | 24min | 6min |
 
 **Recent Trend:**
-- Last 5 plans: 12min, 7min, 6min, 5min, 5min
-- Trend: consistent ~5min for code plans
+- Last 5 plans: 7min, 6min, 5min, 5min, 8min
+- Trend: consistent ~6min for code plans
 
 *Updated after each plan completion*
 
@@ -78,6 +78,9 @@ Recent decisions affecting current work:
 - [03-03]: react-markdown v10 default export is Markdown (not ReactMarkdown from v9)
 - [03-03]: Inline confirm/cancel for soft-delete instead of window.confirm for better UX
 - [03-03]: Source type badge color mapping shared between SoulDocumentEntry and MetaSoulDocument
+- [03-04]: SoulRedirect component reads useAuth and navigates to /soul/{user.id} for /soul base route
+- [03-04]: /soul/meta/:teamId registered before /soul/:userId to prevent 'meta' matching as userId
+- [03-04]: SoulDocumentNav added inside each page component (option a) rather than wrapper layout
 
 ### Pending Todos
 
@@ -93,5 +96,5 @@ None.
 ## Session Continuity
 
 Last session: 2026-02-08
-Stopped at: Phase 3 Plan 3 complete. Ready for Plan 4 (route wiring and integration testing).
-Resume file: .planning/phases/03-documentation-engine/03-04-PLAN.md
+Stopped at: Phase 3 complete. All 4 plans executed and verified. Ready for Phase 4 (AI Foundation & Orchestration).
+Resume file: .planning/phases/04-ai-foundation-orchestration/04-01-PLAN.md
