@@ -39,7 +39,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 **Plans**: 7 plans
 
 Plans:
-- [ ] 01-01-PLAN.md -- Project foundation: monorepo scaffolding + JSONL event store
+- [x] 01-01-PLAN.md -- Project foundation: monorepo scaffolding + JSONL event store
 - [ ] 01-02-PLAN.md -- Authentication: passkey/password with filesystem credential storage
 - [ ] 01-03-PLAN.md -- i18n (DE/EN) + deployment config (pm2, install scripts)
 - [ ] 01-04-PLAN.md -- Team management + dashboard with activity feed
@@ -172,7 +172,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Foundation & Authentication | 0/7 | Planning complete | - |
+| 1. Foundation & Authentication | 1/7 | In progress | - |
 | 2. Project Lifecycle & Dashboard | 0/TBD | Not started | - |
 | 3. Documentation Engine | 0/TBD | Not started | - |
 | 4. AI Foundation & Orchestration | 0/TBD | Not started | - |
