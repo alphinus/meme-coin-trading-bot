@@ -10,18 +10,18 @@ See: .planning/PROJECT.md (updated 2026-02-07)
 ## Current Position
 
 Phase: 6 of 8 (Voice & Idea Pool)
-Plan: 2 of 4 in current phase
+Plan: 3 of 4 in current phase
 Status: In progress
-Last activity: 2026-02-08 - Completed 06-02-PLAN.md
+Last activity: 2026-02-08 - Completed 06-03-PLAN.md
 
-Progress: [████████████████████████████░░] ~40% (21 of ~53 total plans estimated)
+Progress: [█████████████████████████████░] ~42% (22 of ~53 total plans estimated)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 21
+- Total plans completed: 22
 - Average duration: 8min
-- Total execution time: 2.8 hours
+- Total execution time: 2.9 hours
 
 **By Phase:**
 
@@ -32,10 +32,10 @@ Progress: [███████████████████████
 | 3. Documentation Engine | 4/4 | 24min | 6min |
 | 4. AI Foundation | 6/6 | ~20min | ~3min |
 | 5. GSD Workflow Engine | 1/3 | 6min | 6min |
-| 6. Voice & Idea Pool | 2/4 | 10min | 5min |
+| 6. Voice & Idea Pool | 3/4 | 17min | 6min |
 
 **Recent Trend:**
-- Last 5 plans: 5min, 6min, 5min, 7min, 5min
+- Last 5 plans: 6min, 5min, 7min, 5min, 7min
 - Trend: consistent execution times
 
 *Updated after each plan completion*
@@ -117,6 +117,9 @@ Recent decisions affecting current work:
 - [06-02]: Readiness scoring uses 4 GSD dimensions at 25 points each (problem/audience/feasibility/effort)
 - [06-02]: AI role members excluded from graduation voting requirements (only human members vote)
 - [06-02]: Auto-graduation executes immediately when final vote creates unanimous approval
+- [06-03]: apiUpload omits Content-Type header so browser auto-sets multipart boundary
+- [06-03]: useVoiceRecorder detects best MIME type from webm/opus, webm, mp4 candidates
+- [06-03]: IdeaPool page uses two-column layout with sticky detail panel
 
 ### Pending Todos
 
@@ -132,5 +135,5 @@ None.
 ## Session Continuity
 
 Last session: 2026-02-08
-Stopped at: Phase 6, Plan 2 complete. Voice routing, AI refinement loop, readiness scoring, and graduation workflow built. Ready for Plan 06-03.
-Resume file: .planning/phases/06-voice-idea-pool/06-03-PLAN.md
+Stopped at: Phase 6, Plan 3 complete. All client components built: VoiceRecorder, IdeaCard, IdeaRefinement, IdeaGraduation, IdeaPool page. Ready for Plan 06-04 (integration).
+Resume file: .planning/phases/06-voice-idea-pool/06-04-PLAN.md
