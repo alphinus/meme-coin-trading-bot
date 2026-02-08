@@ -5,23 +5,23 @@
 See: .planning/PROJECT.md (updated 2026-02-07)
 
 **Core value:** No project dies without a documented decision, and every thought trail is fully reconstructable.
-**Current focus:** Phase 6 in progress — Voice & Idea Pool
+**Current focus:** Phase 7 in progress — Telegram Bot & Notifications
 
 ## Current Position
 
-Phase: 6 of 8 (Voice & Idea Pool)
-Plan: 3 of 4 in current phase
+Phase: 7 of 8 (Telegram Bot & Notifications)
+Plan: 2 of 5 in current phase
 Status: In progress
-Last activity: 2026-02-08 - Completed 06-03-PLAN.md
+Last activity: 2026-02-08 - Completed 07-02-PLAN.md
 
-Progress: [█████████████████████████████░] ~42% (22 of ~53 total plans estimated)
+Progress: [████████████████████████████████░░] ~45% (24 of ~53 total plans estimated)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 22
+- Total plans completed: 24
 - Average duration: 8min
-- Total execution time: 2.9 hours
+- Total execution time: ~3.1 hours
 
 **By Phase:**
 
@@ -33,9 +33,10 @@ Progress: [███████████████████████
 | 4. AI Foundation | 6/6 | ~20min | ~3min |
 | 5. GSD Workflow Engine | 1/3 | 6min | 6min |
 | 6. Voice & Idea Pool | 3/4 | 17min | 6min |
+| 7. Telegram Bot & Notifications | 2/5 | ~12min | ~6min |
 
 **Recent Trend:**
-- Last 5 plans: 6min, 5min, 7min, 5min, 7min
+- Last 5 plans: 5min, 7min, 5min, 7min, 6min
 - Trend: consistent execution times
 
 *Updated after each plan completion*
@@ -120,6 +121,10 @@ Recent decisions affecting current work:
 - [06-03]: apiUpload omits Content-Type header so browser auto-sets multipart boundary
 - [06-03]: useVoiceRecorder detects best MIME type from webm/opus, webm, mp4 candidates
 - [06-03]: IdeaPool page uses two-column layout with sticky detail panel
+- [07-02]: Telegram channel uses getTelegramLinkByElumaUser (lookup by Eluma user ID) since dispatcher has userId not telegramUserId
+- [07-02]: Email transporter created at module load time (null if no SMTP_HOST), disabled warning logged once
+- [07-02]: Web notification read tracking uses separate notification.read events cross-referenced during reads
+- [07-02]: Multi-channel dispatcher: try/catch each channel independently for fault isolation
 
 ### Pending Todos
 
@@ -135,5 +140,5 @@ None.
 ## Session Continuity
 
 Last session: 2026-02-08
-Stopped at: Phase 6, Plan 3 complete. All client components built: VoiceRecorder, IdeaCard, IdeaRefinement, IdeaGraduation, IdeaPool page. Ready for Plan 06-04 (integration).
-Resume file: .planning/phases/06-voice-idea-pool/06-04-PLAN.md
+Stopped at: Phase 7, Plan 2 complete. Multi-channel notification system built: preference aggregate, 3 channel dispatchers (web/telegram/email), central dispatcher, REST API. Ready for Plan 07-03.
+Resume file: .planning/phases/07-telegram-bot-notifications/07-03-PLAN.md
