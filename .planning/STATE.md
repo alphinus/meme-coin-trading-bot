@@ -5,23 +5,23 @@
 See: .planning/PROJECT.md (updated 2026-02-07)
 
 **Core value:** No project dies without a documented decision, and every thought trail is fully reconstructable.
-**Current focus:** Phase 4 in progress — AI Foundation & Orchestration
+**Current focus:** Phase 4 complete — Ready for Phase 5
 
 ## Current Position
 
-Phase: 4 of 8 (AI Foundation & Orchestration)
-Plan: 2 of 6 in current phase
-Status: In progress
-Last activity: 2026-02-08 - Completed 04-02-PLAN.md (AI entity, events, and API routes)
+Phase: 4 of 8 (AI Foundation & Orchestration) — COMPLETE
+Plan: 6 of 6 in current phase
+Status: Complete (human-verified)
+Last activity: 2026-02-08 - Phase 4 checkpoint approved
 
-Progress: [██████████████████░░] ~26% (14 of ~53 total plans estimated)
+Progress: [████████████████████████] ~34% (18 of ~53 total plans estimated)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 14
+- Total plans completed: 18
 - Average duration: 9min
-- Total execution time: 2.2 hours
+- Total execution time: 2.5 hours
 
 **By Phase:**
 
@@ -30,10 +30,10 @@ Progress: [██████████████████░░] ~26% (1
 | 1. Foundation & Auth | 7/7 | 100min | 14min |
 | 2. Project Lifecycle | 5/5 | 7min | 7min |
 | 3. Documentation Engine | 4/4 | 24min | 6min |
-| 4. AI Foundation | 2/6 | ~4min | ~2min |
+| 4. AI Foundation | 6/6 | ~20min | ~3min |
 
 **Recent Trend:**
-- Last 5 plans: 5min, 5min, 8min, 2min, 2min
+- Last 5 plans: 2min, 2min, 6min, 5min, 7min
 - Trend: parallel execution reducing per-plan time
 
 *Updated after each plan completion*
@@ -90,6 +90,18 @@ Recent decisions affecting current work:
 - [04-02]: Default AI config returned when no ai.member_configured event exists (graceful first-use)
 - [04-02]: Face emoji tracks AI state: idle, thinking, suggestion, warning, mediation
 - [04-02]: correlationId set to teamId for AI member events (one AI member per team)
+- [04-03]: CorrelationId + ruleId dedup key prevents duplicate triggers from correlated events (5-second TTL)
+- [04-03]: Fire-and-forget evaluateTriggersForEvent matches processEventForDocumentation pattern
+- [04-03]: Notification maps rule type to face emoji category (milestone/pattern/catch -> suggestion, conflict -> warning)
+- [04-04]: Override events use ai_member aggregate type with nodeId/aiEventId as aggregateId for traceability
+- [04-04]: Mediate endpoint creates ai.mediation_requested event then delegates to mediateConflict(DomainEvent)
+- [04-05]: Face emoji uses Unicode characters directly (no emoji library): idle->neutral, thinking->thinking face, suggestion->lightbulb, warning->warning, mediation->handshake
+- [04-05]: AiOverrideMenu slides from right (CSS translateX) with semi-transparent backdrop
+- [04-05]: useTextToSpeech uses EasySpeech.detect() guard before init for graceful non-TTS browser handling
+- [04-05]: AiCostDashboard formats costs in EUR with 4 decimal places via Intl.NumberFormat
+- [04-05]: AiModelOverride uses hardcoded TASK_TYPES with provider:tier aliases for model selection
+- [04-06]: Extended "ai" role across all TeamMember type definitions (shared, client hook, server reducer, server routes) for consistency
+- [04-06]: AiTeamMember widget placed between welcome header and project overview as a max-400px card on Dashboard
 
 ### Pending Todos
 
@@ -105,5 +117,5 @@ None.
 ## Session Continuity
 
 Last session: 2026-02-08
-Stopped at: Phase 4 in progress. Plans 04-01 and 04-02 complete (parallel wave 1). Continue with 04-03.
-Resume file: .planning/phases/04-ai-foundation-orchestration/04-03-PLAN.md
+Stopped at: Phase 4 complete. All 6 plans executed and human-verified. Ready for Phase 5 (GSD Workflow Engine).
+Resume file: None (Phase 5 needs planning first)
