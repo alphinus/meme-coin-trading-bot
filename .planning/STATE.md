@@ -5,23 +5,23 @@
 See: .planning/PROJECT.md (updated 2026-02-07)
 
 **Core value:** No project dies without a documented decision, and every thought trail is fully reconstructable.
-**Current focus:** Phase 4 complete — Ready for Phase 5
+**Current focus:** Phase 5 in progress — GSD Workflow Engine
 
 ## Current Position
 
-Phase: 4 of 8 (AI Foundation & Orchestration) — COMPLETE
-Plan: 6 of 6 in current phase
-Status: Complete (human-verified)
-Last activity: 2026-02-08 - Phase 4 checkpoint approved
+Phase: 5 of 8 (GSD Workflow Engine)
+Plan: 1 of 3 in current phase
+Status: In progress
+Last activity: 2026-02-08 - Completed 05-01-PLAN.md
 
-Progress: [████████████████████████] ~34% (18 of ~53 total plans estimated)
+Progress: [██████████████████████████░░░░] ~36% (19 of ~53 total plans estimated)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 18
+- Total plans completed: 19
 - Average duration: 9min
-- Total execution time: 2.5 hours
+- Total execution time: 2.6 hours
 
 **By Phase:**
 
@@ -31,10 +31,11 @@ Progress: [███████████████████████
 | 2. Project Lifecycle | 5/5 | 7min | 7min |
 | 3. Documentation Engine | 4/4 | 24min | 6min |
 | 4. AI Foundation | 6/6 | ~20min | ~3min |
+| 5. GSD Workflow Engine | 1/3 | 6min | 6min |
 
 **Recent Trend:**
-- Last 5 plans: 2min, 2min, 6min, 5min, 7min
-- Trend: parallel execution reducing per-plan time
+- Last 5 plans: 2min, 6min, 5min, 7min, 6min
+- Trend: consistent execution times
 
 *Updated after each plan completion*
 
@@ -102,6 +103,10 @@ Recent decisions affecting current work:
 - [04-05]: AiModelOverride uses hardcoded TASK_TYPES with provider:tier aliases for model selection
 - [04-06]: Extended "ai" role across all TeamMember type definitions (shared, client hook, server reducer, server routes) for consistency
 - [04-06]: AiTeamMember widget placed between welcome header and project overview as a max-400px card on Dashboard
+- [05-01]: Workflow events use "workflow" aggregate type with projectId as aggregateId (separate from project events)
+- [05-01]: Legacy projects get default initial state at first step of current phase (no migration needed)
+- [05-01]: Decision point Go enters pipeline, No-Go archives with rationale, Defer leaves at decision_point
+- [05-01]: Step completion is idempotent (duplicate completions skip event emission)
 
 ### Pending Todos
 
@@ -117,5 +122,5 @@ None.
 ## Session Continuity
 
 Last session: 2026-02-08
-Stopped at: Phase 4 complete. All 6 plans executed and human-verified. Ready for Phase 5 (GSD Workflow Engine).
-Resume file: None (Phase 5 needs planning first)
+Stopped at: Phase 5, Plan 1 complete. Server-side workflow engine built. Ready for Plan 05-02 (client workflow components).
+Resume file: .planning/phases/05-gsd-workflow-engine/05-02-PLAN.md
