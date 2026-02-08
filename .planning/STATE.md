@@ -5,23 +5,23 @@
 See: .planning/PROJECT.md (updated 2026-02-07)
 
 **Core value:** No project dies without a documented decision, and every thought trail is fully reconstructable.
-**Current focus:** Phase 7 in progress — Telegram Bot & Notifications
+**Current focus:** Phase 8 in progress — External Integrations & AI Search
 
 ## Current Position
 
-Phase: 7 of 8 (Telegram Bot & Notifications)
-Plan: 4 of 5 in current phase
+Phase: 8 of 8 (External Integrations & AI Search)
+Plan: 5 of 8 in current phase
 Status: In progress
-Last activity: 2026-02-08 - Completed 07-03-PLAN.md (out-of-order, 07-04 was completed first)
+Last activity: 2026-02-08 - Completed 08-05-PLAN.md (AI-powered natural-language search with tool-calling)
 
-Progress: [████████████████████████████████████░░] ~51% (27 of ~53 total plans estimated)
+Progress: [████████████████████████████████████████████░░] ~66% (35 of ~53 total plans estimated)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 27
-- Average duration: 8min
-- Total execution time: ~3.5 hours
+- Total plans completed: 34
+- Average duration: 7min
+- Total execution time: ~3.85 hours
 
 **By Phase:**
 
@@ -33,11 +33,12 @@ Progress: [███████████████████████
 | 4. AI Foundation | 6/6 | ~20min | ~3min |
 | 5. GSD Workflow Engine | 1/3 | 6min | 6min |
 | 6. Voice & Idea Pool | 3/4 | 17min | 6min |
-| 7. Telegram Bot & Notifications | 4/5 | ~28min | ~7min |
+| 7. Telegram Bot & Notifications | 6/6 | ~31min | ~5min |
+| 8. Integrations & AI Search | 4/8 | ~16min | ~4min |
 
 **Recent Trend:**
-- Last 5 plans: 6min, 7min, ~6min, 4min, 5min
-- Trend: consistent execution times
+- Last 5 plans: 5min, 3min, 5min, 4min, 3min
+- Trend: consistent, fast execution times
 
 *Updated after each plan completion*
 
@@ -137,6 +138,20 @@ Recent decisions affecting current work:
 - [07-04]: Callback data prefix routing: wf: for workflow buttons, vr: for voice routing buttons
 - [07-04]: Fire-and-forget voice: immediate reply, background task for download/transcribe/route, edit original message with results
 - [07-04]: Session pendingWorkflowInput set by text_input/ai_prompt steps, consumed and cleared by text handler
+- [07-06]: ai.ts routes intentionally skipped for emitter wiring -- mapped AI events fire from trigger engine/mediation module, not route handlers
+- [07-06]: Triple fire-and-forget pattern established: processEventForDocumentation + evaluateTriggersForEvent + emitNotificationForEvent
+- [08-01]: Google tokens stored in DATA_DIR/credentials/ (not event store) -- sensitive credentials, not domain events
+- [08-01]: Octokit creates unauthenticated client when GITHUB_TOKEN missing (graceful degradation)
+- [08-01]: Integration reducer follows same event-sourcing pattern as project.ts reducer
+- [08-01]: AI SDK v6.0.77 and Zod confirmed already present for Plan 08-05 tool-calling
+- [08-03]: repos.ts combines Octokit API calls with event-store persistence (fetch + emit pattern)
+- [08-03]: Fork polling uses 10 retries with 3s delay; falls back to source repo analysis if fork not ready
+- [08-03]: AI code analysis input capped at 8000 chars to prevent excessive token usage
+- [08-03]: Fork-analyze returns 202 with fire-and-forget pattern; client polls /fork/status/:ideaId
+- [08-03]: Routes added to existing github.ts rather than creating redundant github-integration.ts
+- [08-04]: Kept existing integration.email_sent emitter entry (better body text than plan specified)
+- [08-04]: Calendar routes at /api/calendar (separate from /api/integrations) for cleaner URL structure
+- [08-04]: Module-level _processedEndTimes set for post-meeting prompt dedup (no persistence needed)
 
 ### Pending Todos
 
@@ -152,5 +167,5 @@ None.
 ## Session Continuity
 
 Last session: 2026-02-08
-Stopped at: Phase 7, Plans 1-4 complete. Slash commands, interactive menus (project/idea/settings), workflow interaction, voice transcription/routing, and free text handlers built. Ready for Plan 07-05.
-Resume file: .planning/phases/07-telegram-bot-notifications/07-05-PLAN.md
+Stopped at: Phase 8 Plan 4 complete. Google Calendar polling, meeting matching, post-meeting prompts, and calendar REST API all done. Ready for Plan 08-05.
+Resume file: .planning/phases/08-integrations/08-05-PLAN.md
