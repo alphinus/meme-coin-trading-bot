@@ -10,18 +10,18 @@ See: .planning/PROJECT.md (updated 2026-02-07)
 ## Current Position
 
 Phase: 6 of 8 (Voice & Idea Pool)
-Plan: 1 of 4 in current phase
+Plan: 2 of 4 in current phase
 Status: In progress
-Last activity: 2026-02-08 - Completed 06-01-PLAN.md
+Last activity: 2026-02-08 - Completed 06-02-PLAN.md
 
-Progress: [███████████████████████████░░░] ~38% (20 of ~53 total plans estimated)
+Progress: [████████████████████████████░░] ~40% (21 of ~53 total plans estimated)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 20
+- Total plans completed: 21
 - Average duration: 8min
-- Total execution time: 2.7 hours
+- Total execution time: 2.8 hours
 
 **By Phase:**
 
@@ -32,10 +32,10 @@ Progress: [███████████████████████
 | 3. Documentation Engine | 4/4 | 24min | 6min |
 | 4. AI Foundation | 6/6 | ~20min | ~3min |
 | 5. GSD Workflow Engine | 1/3 | 6min | 6min |
-| 6. Voice & Idea Pool | 1/4 | 5min | 5min |
+| 6. Voice & Idea Pool | 2/4 | 10min | 5min |
 
 **Recent Trend:**
-- Last 5 plans: 6min, 5min, 7min, 6min, 5min
+- Last 5 plans: 5min, 6min, 5min, 7min, 5min
 - Trend: consistent execution times
 
 *Updated after each plan completion*
@@ -113,6 +113,10 @@ Recent decisions affecting current work:
 - [06-01]: Archive route prevents archiving graduated ideas (business rule)
 - [06-01]: Transcription appends to rawInput (not replaces) for multi-segment voice capture
 - [06-01]: multer 25MB limit matches Whisper API constraint
+- [06-02]: Voice routing falls back to idea_pool on AI parse failure (safe default)
+- [06-02]: Readiness scoring uses 4 GSD dimensions at 25 points each (problem/audience/feasibility/effort)
+- [06-02]: AI role members excluded from graduation voting requirements (only human members vote)
+- [06-02]: Auto-graduation executes immediately when final vote creates unanimous approval
 
 ### Pending Todos
 
@@ -128,5 +132,5 @@ None.
 ## Session Continuity
 
 Last session: 2026-02-08
-Stopped at: Phase 6, Plan 1 complete. Idea types, voice transcription pipeline, and idea reducer/CRUD API built. Ready for Plan 06-02.
-Resume file: .planning/phases/06-voice-idea-pool/06-02-PLAN.md
+Stopped at: Phase 6, Plan 2 complete. Voice routing, AI refinement loop, readiness scoring, and graduation workflow built. Ready for Plan 06-03.
+Resume file: .planning/phases/06-voice-idea-pool/06-03-PLAN.md

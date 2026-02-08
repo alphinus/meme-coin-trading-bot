@@ -130,12 +130,13 @@ Plans:
   3. Idea Pool serves as a visible pre-project staging area where voice-first input is the primary capture method
   4. AI deep-questions each idea's initial input iteratively until the markdown quality meets GSD-readiness standards before allowing project creation
   5. Ideas graduate to full projects when team members explicitly agree
-**Plans**: TBD
+**Plans**: 4 plans
 
 Plans:
-- [ ] 06-01: TBD
-- [ ] 06-02: TBD
-- [ ] 06-03: TBD
+- [x] 06-01-PLAN.md -- Shared types (IdeaState, events, AI task types) + voice transcription pipeline (multer, whisper-1) + idea event-sourced reducer + CRUD API
+- [x] 06-02-PLAN.md -- AI voice routing analysis + idea refinement loop (readiness scoring 0-100) + graduation voting and idea-to-project promotion
+- [ ] 06-03-PLAN.md -- Client: apiUpload helper, useVoiceRecorder hook, useIdeaPool hook, VoiceRecorder, IdeaCard, IdeaRefinement, IdeaGraduation components, IdeaPool page
+- [ ] 06-04-PLAN.md -- App integration: route registration, /ideas route, nav link, i18n DE/EN, e2e verification
 
 ### Phase 7: Telegram Bot & Notifications
 **Goal**: Users can perform all core workflows from Telegram with voice support, and receive configurable notifications across all channels
@@ -183,6 +184,6 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8
 | 3. Documentation Engine | 4/4 | Complete | 2026-02-08 |
 | 4. AI Foundation & Orchestration | 6/6 | Complete | 2026-02-08 |
 | 5. GSD Workflow Engine | 3/3 | Complete | 2026-02-08 |
-| 6. Voice & Idea Pool | 0/TBD | Not started | - |
+| 6. Voice & Idea Pool | 0/4 | Planned | - |
 | 7. Telegram Bot & Notifications | 0/TBD | Not started | - |
 | 8. External Integrations & AI Search | 0/TBD | Not started | - |
