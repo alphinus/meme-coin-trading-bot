@@ -16,7 +16,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [x] **Phase 2: Project Lifecycle & Dashboard** - Project CRUD, 8-phase lifecycle, ROI/KPI tracking, global dashboard *(Completed 2026-02-08)*
 - [x] **Phase 3: Documentation Engine** - Soul Documents, event-driven appends, Meta Soul Document, GDPR soft-delete *(Completed 2026-02-08)*
 - [x] **Phase 4: AI Foundation & Orchestration** - Multi-provider AI team member with cost controls, triggers, and conflict mediation *(Completed 2026-02-08)*
-- [ ] **Phase 5: GSD Workflow Engine** - Button-driven GSD pipeline integrated into project lifecycle
+- [x] **Phase 5: GSD Workflow Engine** - Button-driven GSD pipeline integrated into project lifecycle *(Completed 2026-02-08)*
 - [ ] **Phase 6: Voice & Idea Pool** - In-app audio recording, AI transcription, idea staging area, graduation flow
 - [ ] **Phase 7: Telegram Bot & Notifications** - Full-mirror Telegram bot with voice support and configurable multi-channel notifications
 - [ ] **Phase 8: External Integrations & AI Search** - Gmail, Google Calendar, GitHub integrations, and AI-steered navigation
@@ -117,8 +117,8 @@ Plans:
 
 Plans:
 - [x] 05-01-PLAN.md -- Shared workflow types + server workflow engine (definitions, engine, reducer, routes)
-- [ ] 05-02-PLAN.md -- Client workflow components (StepButton, StepTextInput, StepInfoDisplay, StepAiPrompt, StepProgress) + useWorkflow hook + WorkflowEngine container
-- [ ] 05-03-PLAN.md -- App integration (route registration, ProjectDetail wiring, i18n DE/EN) + e2e verification
+- [x] 05-02-PLAN.md -- Client workflow components (StepButton, StepTextInput, StepInfoDisplay, StepAiPrompt, StepProgress) + useWorkflow hook + WorkflowEngine container
+- [x] 05-03-PLAN.md -- App integration (route registration, ProjectDetail wiring, i18n DE/EN) + e2e verification
 
 ### Phase 6: Voice & Idea Pool
 **Goal**: Users can capture ideas by voice, and raw ideas flow through AI-guided refinement into GSD-ready projects
@@ -182,7 +182,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8
 | 2. Project Lifecycle & Dashboard | 5/5 | Complete | 2026-02-08 |
 | 3. Documentation Engine | 4/4 | Complete | 2026-02-08 |
 | 4. AI Foundation & Orchestration | 6/6 | Complete | 2026-02-08 |
-| 5. GSD Workflow Engine | 1/3 | In progress | - |
+| 5. GSD Workflow Engine | 3/3 | Complete | 2026-02-08 |
 | 6. Voice & Idea Pool | 0/TBD | Not started | - |
 | 7. Telegram Bot & Notifications | 0/TBD | Not started | - |
 | 8. External Integrations & AI Search | 0/TBD | Not started | - |
