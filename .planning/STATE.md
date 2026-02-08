@@ -82,6 +82,10 @@ Recent decisions affecting current work:
 - [03-04]: SoulRedirect component reads useAuth and navigates to /soul/{user.id} for /soul base route
 - [03-04]: /soul/meta/:teamId registered before /soul/:userId to prevent 'meta' matching as userId
 - [03-04]: SoulDocumentNav added inside each page component (option a) rather than wrapper layout
+- [04-01]: Lazy provider registry initialization to allow server startup without API keys
+- [04-01]: Provider:tier alias pattern (anthropic:fast, openai:balanced) for model addressing
+- [04-01]: AI SDK v4 uses inputTokens/outputTokens (not promptTokens/completionTokens) and maxOutputTokens
+- [04-01]: Preset resolution chain: explicit override > task-type preset > hardcoded default
 - [04-02]: AI member entity uses same event-sourced reducer pattern as teams and projects
 - [04-02]: Default AI config returned when no ai.member_configured event exists (graceful first-use)
 - [04-02]: Face emoji tracks AI state: idle, thinking, suggestion, warning, mediation
