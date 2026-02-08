@@ -10,18 +10,18 @@ See: .planning/PROJECT.md (updated 2026-02-07)
 ## Current Position
 
 Phase: 7 of 8 (Telegram Bot & Notifications)
-Plan: 2 of 5 in current phase
+Plan: 4 of 5 in current phase
 Status: In progress
-Last activity: 2026-02-08 - Completed 07-01-PLAN.md (out-of-order, 07-02 was completed first)
+Last activity: 2026-02-08 - Completed 07-03-PLAN.md (out-of-order, 07-04 was completed first)
 
-Progress: [██████████████████████████████████░░] ~47% (25 of ~53 total plans estimated)
+Progress: [████████████████████████████████████░░] ~51% (27 of ~53 total plans estimated)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 25
+- Total plans completed: 27
 - Average duration: 8min
-- Total execution time: ~3.2 hours
+- Total execution time: ~3.5 hours
 
 **By Phase:**
 
@@ -33,10 +33,10 @@ Progress: [███████████████████████
 | 4. AI Foundation | 6/6 | ~20min | ~3min |
 | 5. GSD Workflow Engine | 1/3 | 6min | 6min |
 | 6. Voice & Idea Pool | 3/4 | 17min | 6min |
-| 7. Telegram Bot & Notifications | 2/5 | ~19min | ~6min |
+| 7. Telegram Bot & Notifications | 4/5 | ~28min | ~7min |
 
 **Recent Trend:**
-- Last 5 plans: 7min, 5min, 7min, 6min, 7min
+- Last 5 plans: 6min, 7min, ~6min, 4min, 5min
 - Trend: consistent execution times
 
 *Updated after each plan completion*
@@ -129,6 +129,14 @@ Recent decisions affecting current work:
 - [07-01]: Webhook route registered BEFORE express.json() in app.ts for grammY raw body access
 - [07-01]: Linking codes use separate telegram_linking aggregate with subType for code_generated/code_consumed
 - [07-01]: setupBot() runs in async IIFE at app.ts bottom with try/catch for non-blocking initialization
+- [07-03]: Menus registered as middleware in bot.ts (b.use(menu)) before registerCommands for proper callback handling
+- [07-03]: currentIdeaId added to SessionData for idea menu navigation state
+- [07-03]: Idea refinement in Telegram menu emits idea.refinement_question event directly (same pattern as HTTP route)
+- [07-03]: Settings menu uses ctx.menu.update() for inline refresh after toggling a preference
+- [07-04]: Workflow steps use i18n titleKey as readable fallback text (strip prefix, replace underscores) since locale files not yet configured
+- [07-04]: Callback data prefix routing: wf: for workflow buttons, vr: for voice routing buttons
+- [07-04]: Fire-and-forget voice: immediate reply, background task for download/transcribe/route, edit original message with results
+- [07-04]: Session pendingWorkflowInput set by text_input/ai_prompt steps, consumed and cleared by text handler
 
 ### Pending Todos
 
@@ -144,5 +152,5 @@ None.
 ## Session Continuity
 
 Last session: 2026-02-08
-Stopped at: Phase 7, Plans 1+2 complete. grammY bot infrastructure with typed BotContext, user linking via one-time codes, webhook route. Multi-channel notification system built. Ready for Plan 07-03.
-Resume file: .planning/phases/07-telegram-bot-notifications/07-03-PLAN.md
+Stopped at: Phase 7, Plans 1-4 complete. Slash commands, interactive menus (project/idea/settings), workflow interaction, voice transcription/routing, and free text handlers built. Ready for Plan 07-05.
+Resume file: .planning/phases/07-telegram-bot-notifications/07-05-PLAN.md
