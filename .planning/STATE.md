@@ -5,23 +5,23 @@
 See: .planning/PROJECT.md (updated 2026-02-07)
 
 **Core value:** No project dies without a documented decision, and every thought trail is fully reconstructable.
-**Current focus:** Phase 5 in progress — GSD Workflow Engine
+**Current focus:** Phase 6 in progress — Voice & Idea Pool
 
 ## Current Position
 
-Phase: 5 of 8 (GSD Workflow Engine)
-Plan: 1 of 3 in current phase
+Phase: 6 of 8 (Voice & Idea Pool)
+Plan: 1 of 4 in current phase
 Status: In progress
-Last activity: 2026-02-08 - Completed 05-01-PLAN.md
+Last activity: 2026-02-08 - Completed 06-01-PLAN.md
 
-Progress: [██████████████████████████░░░░] ~36% (19 of ~53 total plans estimated)
+Progress: [███████████████████████████░░░] ~38% (20 of ~53 total plans estimated)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 19
-- Average duration: 9min
-- Total execution time: 2.6 hours
+- Total plans completed: 20
+- Average duration: 8min
+- Total execution time: 2.7 hours
 
 **By Phase:**
 
@@ -32,9 +32,10 @@ Progress: [███████████████████████
 | 3. Documentation Engine | 4/4 | 24min | 6min |
 | 4. AI Foundation | 6/6 | ~20min | ~3min |
 | 5. GSD Workflow Engine | 1/3 | 6min | 6min |
+| 6. Voice & Idea Pool | 1/4 | 5min | 5min |
 
 **Recent Trend:**
-- Last 5 plans: 2min, 6min, 5min, 7min, 6min
+- Last 5 plans: 6min, 5min, 7min, 6min, 5min
 - Trend: consistent execution times
 
 *Updated after each plan completion*
@@ -107,6 +108,11 @@ Recent decisions affecting current work:
 - [05-01]: Legacy projects get default initial state at first step of current phase (no migration needed)
 - [05-01]: Decision point Go enters pipeline, No-Go archives with rationale, Defer leaves at decision_point
 - [05-01]: Step completion is idempotent (duplicate completions skip event emission)
+- [06-01]: Idea aggregate uses "idea" aggregateType with per-idea aggregateId (same pattern as project)
+- [06-01]: TranscriptionResult wraps AI SDK with nullable-to-undefined conversion for clean API
+- [06-01]: Archive route prevents archiving graduated ideas (business rule)
+- [06-01]: Transcription appends to rawInput (not replaces) for multi-segment voice capture
+- [06-01]: multer 25MB limit matches Whisper API constraint
 
 ### Pending Todos
 
@@ -122,5 +128,5 @@ None.
 ## Session Continuity
 
 Last session: 2026-02-08
-Stopped at: Phase 5, Plan 1 complete. Server-side workflow engine built. Ready for Plan 05-02 (client workflow components).
-Resume file: .planning/phases/05-gsd-workflow-engine/05-02-PLAN.md
+Stopped at: Phase 6, Plan 1 complete. Idea types, voice transcription pipeline, and idea reducer/CRUD API built. Ready for Plan 06-02.
+Resume file: .planning/phases/06-voice-idea-pool/06-02-PLAN.md
