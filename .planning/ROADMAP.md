@@ -148,14 +148,15 @@ Plans:
   3. User can send a voice message via Telegram, AI transcribes it, recognizes the project from context (or guides via buttons), and routes it correctly
   4. Offline voice messages are queued by Telegram and processed when connectivity returns
   5. User can configure notifications per user, per channel (web, Telegram, email), and per priority level
-**Plans**: 5 plans
+**Plans**: 6 plans
 
 Plans:
-- [ ] 07-01-PLAN.md -- Bot foundation: grammY install, shared types (telegram + notification), bot instance, auth linking, webhook route
-- [ ] 07-02-PLAN.md -- Notification system: event-sourced preferences, 3 channel dispatchers (web, telegram, email), central dispatcher, REST API
-- [ ] 07-03-PLAN.md -- Bot commands (/start, /projects, /ideas, /status, /help) + project/idea/settings menus with @grammyjs/menu
-- [ ] 07-04-PLAN.md -- GSD workflow interaction via Telegram menus + voice message download/transcription/routing + text input handler
-- [ ] 07-05-PLAN.md -- App integration: bot handler registration, notification route wiring, event-to-notification bridge, i18n DE/EN, client notification UI, e2e verification
+- [x] 07-01-PLAN.md -- Bot foundation: grammY install, shared types (telegram + notification), bot instance, auth linking, webhook route
+- [x] 07-02-PLAN.md -- Notification system: event-sourced preferences, 3 channel dispatchers (web, telegram, email), central dispatcher, REST API
+- [x] 07-03-PLAN.md -- Bot commands (/start, /projects, /ideas, /status, /help) + project/idea/settings menus with @grammyjs/menu
+- [x] 07-04-PLAN.md -- GSD workflow interaction via Telegram menus + voice message download/transcription/routing + text input handler
+- [x] 07-05-PLAN.md -- App integration: bot handler registration, notification route wiring, event-to-notification bridge, i18n DE/EN, client notification UI, e2e verification
+- [ ] 07-06-PLAN.md -- Gap closure: wire workflow menu to project detail button + wire notification emitter into route handlers
 
 ### Phase 8: External Integrations & AI Search
 **Goal**: The platform connects to Gmail, Google Calendar, and GitHub, and users can navigate all data with natural-language AI queries
