@@ -19,9 +19,9 @@ Progress: [███████████████████████
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 34
+- Total plans completed: 35
 - Average duration: 7min
-- Total execution time: ~3.85 hours
+- Total execution time: ~3.9 hours
 
 **By Phase:**
 
@@ -34,10 +34,10 @@ Progress: [███████████████████████
 | 5. GSD Workflow Engine | 1/3 | 6min | 6min |
 | 6. Voice & Idea Pool | 3/4 | 17min | 6min |
 | 7. Telegram Bot & Notifications | 6/6 | ~31min | ~5min |
-| 8. Integrations & AI Search | 4/8 | ~16min | ~4min |
+| 8. Integrations & AI Search | 5/8 | ~19min | ~4min |
 
 **Recent Trend:**
-- Last 5 plans: 5min, 3min, 5min, 4min, 3min
+- Last 5 plans: 3min, 5min, 4min, 3min, 3min
 - Trend: consistent, fast execution times
 
 *Updated after each plan completion*
@@ -152,6 +152,10 @@ Recent decisions affecting current work:
 - [08-04]: Kept existing integration.email_sent emitter entry (better body text than plan specified)
 - [08-04]: Calendar routes at /api/calendar (separate from /api/integrations) for cleaner URL structure
 - [08-04]: Module-level _processedEndTimes set for post-meeting prompt dedup (no persistence needed)
+- [08-05]: AI SDK v6.0.77 uses inputSchema (not parameters) for tool() and stopWhen: stepCountIs(N) for multi-step
+- [08-05]: Search engine uses 5-step limit for tool-calling depth
+- [08-05]: Search queries logged to 'search' aggregateType with search.query_executed events
+- [08-05]: Route resolves teamId from session via getTeamForUser (no client-side teamId needed)
 
 ### Pending Todos
 
@@ -167,5 +171,5 @@ None.
 ## Session Continuity
 
 Last session: 2026-02-08
-Stopped at: Phase 8 Plan 4 complete. Google Calendar polling, meeting matching, post-meeting prompts, and calendar REST API all done. Ready for Plan 08-05.
-Resume file: .planning/phases/08-integrations/08-05-PLAN.md
+Stopped at: Phase 8 Plan 5 complete. AI-powered natural-language search with 4 tool definitions and search engine using tool-calling. SRCH-01 complete. Ready for Plan 08-06.
+Resume file: .planning/phases/08-integrations/08-06-PLAN.md
