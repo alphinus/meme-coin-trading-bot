@@ -5,32 +5,33 @@
 See: .planning/PROJECT.md (updated 2026-02-07)
 
 **Core value:** No project dies without a documented decision, and every thought trail is fully reconstructable.
-**Current focus:** Phase 1 Complete — ready for Phase 2
+**Current focus:** Phase 2 in progress — Project Lifecycle Dashboard
 
 ## Current Position
 
-Phase: 1 of 8 (Foundation & Authentication) — COMPLETE
-Plan: 7 of 7 in current phase
-Status: Phase complete
-Last activity: 2026-02-08 - Completed 01-07-PLAN.md (End-to-end verification, human-approved)
+Phase: 2 of 8 (Project Lifecycle Dashboard)
+Plan: 1 of 5 in current phase
+Status: In progress
+Last activity: 2026-02-08 - Completed 02-01-PLAN.md (Backend API types, reducer, routes)
 
-Progress: [█████████░] ~13% (7 of ~53 total plans estimated)
+Progress: [██████████░░░░░] ~15% (8 of ~53 total plans estimated)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 7
-- Average duration: 14min
-- Total execution time: 1.65 hours
+- Total plans completed: 8
+- Average duration: 13min
+- Total execution time: 1.77 hours
 
 **By Phase:**
 
 | Phase | Plans | Total | Avg/Plan |
 |-------|-------|-------|----------|
 | 1. Foundation & Auth | 7/7 | 100min | 14min |
+| 2. Project Lifecycle | 1/5 | 7min | 7min |
 
 **Recent Trend:**
-- Last 5 plans: 10min, 5min, 6min, 6min, 12min
+- Last 5 plans: 5min, 6min, 6min, 12min, 7min
 - Trend: consistent ~7min for code plans, verification takes longer
 
 *Updated after each plan completion*
@@ -61,6 +62,10 @@ Recent decisions affecting current work:
 - [01-06]: macOS GUI app detection uses open -Ra for .app bundles (Chrome, Firefox)
 - [01-06]: Dashboard route moved from / to /home; / is RootRedirect checking system status
 - [01-07]: process.cwd() for ViteExpress static path (consistent dev/prod)
+- [02-01]: Two events per phase transition (phase_completed + phase_advanced) with same correlationId
+- [02-01]: Server auto-populates KPI phase from project currentPhase (client cannot specify)
+- [02-01]: Auto-archive on review_extraction completion via project.archived event
+- [02-01]: Dashboard overview route registered before /:id to avoid Express route conflict
 
 ### Pending Todos
 
@@ -76,5 +81,5 @@ None.
 ## Session Continuity
 
 Last session: 2026-02-08
-Stopped at: Phase 1 complete. Ready for Phase 2 planning.
-Resume file: None
+Stopped at: Phase 2 Plan 1 complete. Ready for Plan 2 (client hooks and project list).
+Resume file: .planning/phases/02-project-lifecycle-dashboard/02-02-PLAN.md
