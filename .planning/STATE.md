@@ -12,16 +12,16 @@ See: .planning/PROJECT.md (updated 2026-02-07)
 Phase: 7 of 8 (Telegram Bot & Notifications)
 Plan: 2 of 5 in current phase
 Status: In progress
-Last activity: 2026-02-08 - Completed 07-02-PLAN.md
+Last activity: 2026-02-08 - Completed 07-01-PLAN.md (out-of-order, 07-02 was completed first)
 
-Progress: [████████████████████████████████░░] ~45% (24 of ~53 total plans estimated)
+Progress: [██████████████████████████████████░░] ~47% (25 of ~53 total plans estimated)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 24
+- Total plans completed: 25
 - Average duration: 8min
-- Total execution time: ~3.1 hours
+- Total execution time: ~3.2 hours
 
 **By Phase:**
 
@@ -33,10 +33,10 @@ Progress: [███████████████████████
 | 4. AI Foundation | 6/6 | ~20min | ~3min |
 | 5. GSD Workflow Engine | 1/3 | 6min | 6min |
 | 6. Voice & Idea Pool | 3/4 | 17min | 6min |
-| 7. Telegram Bot & Notifications | 2/5 | ~12min | ~6min |
+| 7. Telegram Bot & Notifications | 2/5 | ~19min | ~6min |
 
 **Recent Trend:**
-- Last 5 plans: 5min, 7min, 5min, 7min, 6min
+- Last 5 plans: 7min, 5min, 7min, 6min, 7min
 - Trend: consistent execution times
 
 *Updated after each plan completion*
@@ -125,6 +125,10 @@ Recent decisions affecting current work:
 - [07-02]: Email transporter created at module load time (null if no SMTP_HOST), disabled warning logged once
 - [07-02]: Web notification read tracking uses separate notification.read events cross-referenced during reads
 - [07-02]: Multi-channel dispatcher: try/catch each channel independently for fault isolation
+- [07-01]: Null-guard bot pattern: bot exports null when TELEGRAM_BOT_TOKEN not set, all consumers check before use
+- [07-01]: Webhook route registered BEFORE express.json() in app.ts for grammY raw body access
+- [07-01]: Linking codes use separate telegram_linking aggregate with subType for code_generated/code_consumed
+- [07-01]: setupBot() runs in async IIFE at app.ts bottom with try/catch for non-blocking initialization
 
 ### Pending Todos
 
@@ -140,5 +144,5 @@ None.
 ## Session Continuity
 
 Last session: 2026-02-08
-Stopped at: Phase 7, Plan 2 complete. Multi-channel notification system built: preference aggregate, 3 channel dispatchers (web/telegram/email), central dispatcher, REST API. Ready for Plan 07-03.
+Stopped at: Phase 7, Plans 1+2 complete. grammY bot infrastructure with typed BotContext, user linking via one-time codes, webhook route. Multi-channel notification system built. Ready for Plan 07-03.
 Resume file: .planning/phases/07-telegram-bot-notifications/07-03-PLAN.md
