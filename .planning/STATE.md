@@ -156,6 +156,11 @@ Recent decisions affecting current work:
 - [08-05]: Search engine uses 5-step limit for tool-calling depth
 - [08-05]: Search queries logged to 'search' aggregateType with search.query_executed events
 - [08-05]: Route resolves teamId from session via getTeamForUser (no client-side teamId needed)
+- [08-02]: Email router uses per-field args (subject, body, sender) not EmailMessage object -- matches voice routing pattern more closely
+- [08-02]: Gmail polling uses fire-and-forget AI routing per message (not awaited) to avoid blocking the poll loop
+- [08-02]: OAuth callback redirects to /integrations page rather than returning JSON
+- [08-02]: Disconnect route deletes stored tokens file for clean disconnection
+- [08-02]: Draft lifecycle uses event-sourced state: created -> updated -> sent/rejected
 
 ### Pending Todos
 
