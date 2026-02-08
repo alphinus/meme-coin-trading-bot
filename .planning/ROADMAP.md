@@ -94,13 +94,15 @@ Plans:
   3. AI responses are delivered via text and optionally via text-to-speech, in the project's configured language (German or English)
   4. User can view an AI cost dashboard widget showing costs per project, per model, and per month, and can manually override the model for any AI node
   5. When team members disagree, AI can mediate by analyzing both positions and proposing a documented compromise
-**Plans**: TBD
+**Plans**: 6 plans
 
 Plans:
-- [ ] 04-01: TBD
-- [ ] 04-02: TBD
-- [ ] 04-03: TBD
-- [ ] 04-04: TBD
+- [ ] 04-01-PLAN.md -- AI infrastructure: shared types, provider registry, generate wrapper, cost tracker
+- [ ] 04-02-PLAN.md -- AI member entity: event types, reducer, configuration API routes
+- [ ] 04-03-PLAN.md -- Trigger engine, AI actions (reflection, notification, mediation), route wiring
+- [ ] 04-04-PLAN.md -- Cost dashboard API, model override, decision override endpoints
+- [ ] 04-05-PLAN.md -- Client UI: hooks, AI components, TTS, AiDashboard page
+- [ ] 04-06-PLAN.md -- App integration: routing, navigation, dashboard widget, e2e verification
 
 ### Phase 5: GSD Workflow Engine
 **Goal**: Every approved project runs the full GSD pipeline through a button-driven interface that non-techies can navigate
@@ -178,7 +180,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8
 | 1. Foundation & Authentication | 7/7 | Complete | 2026-02-08 |
 | 2. Project Lifecycle & Dashboard | 5/5 | Complete | 2026-02-08 |
 | 3. Documentation Engine | 0/4 | Not started | - |
-| 4. AI Foundation & Orchestration | 0/TBD | Not started | - |
+| 4. AI Foundation & Orchestration | 0/6 | Not started | - |
 | 5. GSD Workflow Engine | 0/TBD | Not started | - |
 | 6. Voice & Idea Pool | 0/TBD | Not started | - |
 | 7. Telegram Bot & Notifications | 0/TBD | Not started | - |
