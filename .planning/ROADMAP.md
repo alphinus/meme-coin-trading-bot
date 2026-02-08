@@ -168,15 +168,17 @@ Plans:
   3. GitHub commits and PRs are linked to projects, and a user can input a GitHub URL to fork a repo with AI code analysis feeding into the idea pool
   4. AI prepares email drafts that team members review, confirm, and send from within the app
   5. User can ask natural-language questions like "show me all open decisions in Project X" and receive accurate, AI-powered results
-**Plans**: 6 plans
+**Plans**: 8 plans
 
 Plans:
 - [ ] 08-01-PLAN.md -- Foundation: npm install, shared integration types, Google OAuth module, Octokit client, integration reducer, AI task types
 - [ ] 08-02-PLAN.md -- Gmail: polling with historyId, email parser, AI email routing, AI draft generation, email sending via Gmail API
 - [ ] 08-03-PLAN.md -- GitHub: repo linking, commits/PRs listing, webhook handler, fork + AI code analysis -> idea pool
-- [ ] 08-04-PLAN.md -- Google Calendar: polling with syncToken, meeting-project linking, post-meeting prompt notifications
+- [ ] 08-04-PLAN.md -- Google Calendar: polling with syncToken, meeting-project linking, post-meeting prompt notifications + emitter wiring
 - [ ] 08-05-PLAN.md -- AI Search: tool definitions (projects, decisions, events, ideas), search engine with tool-calling, search route
-- [ ] 08-06-PLAN.md -- Client UI + app integration: hooks, SearchBar, EmailDraftReview, GitHubFork, CalendarWidget, Integrations page, route registration
+- [ ] 08-06-PLAN.md -- Client: Gmail/Calendar hooks + EmailDraftReview + CalendarWidget components
+- [ ] 08-07-PLAN.md -- Client: GitHub fork + AI search hooks + SearchBar + GitHubFork components
+- [ ] 08-08-PLAN.md -- Integrations page assembly, server route registration, client routing + e2e verification
 
 ## Progress
 
@@ -192,4 +194,4 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8
 | 5. GSD Workflow Engine | 3/3 | Complete | 2026-02-08 |
 | 6. Voice & Idea Pool | 4/4 | Complete | 2026-02-08 |
 | 7. Telegram Bot & Notifications | 6/6 | Complete | 2026-02-08 |
-| 8. External Integrations & AI Search | 0/6 | Not started | - |
+| 8. External Integrations & AI Search | 0/8 | Not started | - |
