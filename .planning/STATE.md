@@ -5,23 +5,23 @@
 See: .planning/PROJECT.md (updated 2026-02-07)
 
 **Core value:** No project dies without a documented decision, and every thought trail is fully reconstructable.
-**Current focus:** Phase 3 complete — Ready for Phase 4
+**Current focus:** Phase 4 in progress — AI Foundation & Orchestration
 
 ## Current Position
 
-Phase: 3 of 8 (Documentation Engine) — COMPLETE
-Plan: 4 of 4 in current phase
-Status: Complete
-Last activity: 2026-02-08 - Completed 03-04-PLAN.md (App integration, routing, e2e verification)
+Phase: 4 of 8 (AI Foundation & Orchestration)
+Plan: 2 of 6 in current phase
+Status: In progress
+Last activity: 2026-02-08 - Completed 04-02-PLAN.md (AI entity, events, and API routes)
 
-Progress: [███████████████░] ~23% (12 of ~53 total plans estimated)
+Progress: [██████████████████░░] ~26% (14 of ~53 total plans estimated)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 12
-- Average duration: 10min
-- Total execution time: 2.16 hours
+- Total plans completed: 14
+- Average duration: 9min
+- Total execution time: 2.2 hours
 
 **By Phase:**
 
@@ -30,10 +30,11 @@ Progress: [███████████████░] ~23% (12 of ~53 tot
 | 1. Foundation & Auth | 7/7 | 100min | 14min |
 | 2. Project Lifecycle | 5/5 | 7min | 7min |
 | 3. Documentation Engine | 4/4 | 24min | 6min |
+| 4. AI Foundation | 2/6 | ~4min | ~2min |
 
 **Recent Trend:**
-- Last 5 plans: 7min, 6min, 5min, 5min, 8min
-- Trend: consistent ~6min for code plans
+- Last 5 plans: 5min, 5min, 8min, 2min, 2min
+- Trend: parallel execution reducing per-plan time
 
 *Updated after each plan completion*
 
@@ -81,6 +82,10 @@ Recent decisions affecting current work:
 - [03-04]: SoulRedirect component reads useAuth and navigates to /soul/{user.id} for /soul base route
 - [03-04]: /soul/meta/:teamId registered before /soul/:userId to prevent 'meta' matching as userId
 - [03-04]: SoulDocumentNav added inside each page component (option a) rather than wrapper layout
+- [04-02]: AI member entity uses same event-sourced reducer pattern as teams and projects
+- [04-02]: Default AI config returned when no ai.member_configured event exists (graceful first-use)
+- [04-02]: Face emoji tracks AI state: idle, thinking, suggestion, warning, mediation
+- [04-02]: correlationId set to teamId for AI member events (one AI member per team)
 
 ### Pending Todos
 
@@ -96,5 +101,5 @@ None.
 ## Session Continuity
 
 Last session: 2026-02-08
-Stopped at: Phase 3 complete. All 4 plans executed and verified. Ready for Phase 4 (AI Foundation & Orchestration).
-Resume file: .planning/phases/04-ai-foundation-orchestration/04-01-PLAN.md
+Stopped at: Phase 4 in progress. Plans 04-01 and 04-02 complete (parallel wave 1). Continue with 04-03.
+Resume file: .planning/phases/04-ai-foundation-orchestration/04-03-PLAN.md
