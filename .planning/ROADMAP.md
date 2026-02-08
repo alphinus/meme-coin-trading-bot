@@ -18,7 +18,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [x] **Phase 4: AI Foundation & Orchestration** - Multi-provider AI team member with cost controls, triggers, and conflict mediation *(Completed 2026-02-08)*
 - [x] **Phase 5: GSD Workflow Engine** - Button-driven GSD pipeline integrated into project lifecycle *(Completed 2026-02-08)*
 - [ ] **Phase 6: Voice & Idea Pool** - In-app audio recording, AI transcription, idea staging area, graduation flow
-- [ ] **Phase 7: Telegram Bot & Notifications** - Full-mirror Telegram bot with voice support and configurable multi-channel notifications
+- [x] **Phase 7: Telegram Bot & Notifications** - Full-mirror Telegram bot with voice support and configurable multi-channel notifications *(Completed 2026-02-08)*
 - [ ] **Phase 8: External Integrations & AI Search** - Gmail, Google Calendar, GitHub integrations, and AI-steered navigation
 
 ## Phase Details
@@ -156,7 +156,7 @@ Plans:
 - [x] 07-03-PLAN.md -- Bot commands (/start, /projects, /ideas, /status, /help) + project/idea/settings menus with @grammyjs/menu
 - [x] 07-04-PLAN.md -- GSD workflow interaction via Telegram menus + voice message download/transcription/routing + text input handler
 - [x] 07-05-PLAN.md -- App integration: bot handler registration, notification route wiring, event-to-notification bridge, i18n DE/EN, client notification UI, e2e verification
-- [ ] 07-06-PLAN.md -- Gap closure: wire workflow menu to project detail button + wire notification emitter into route handlers
+- [x] 07-06-PLAN.md -- Gap closure: wire workflow menu to project detail button + wire notification emitter into route handlers
 
 ### Phase 8: External Integrations & AI Search
 **Goal**: The platform connects to Gmail, Google Calendar, and GitHub, and users can navigate all data with natural-language AI queries
@@ -168,12 +168,15 @@ Plans:
   3. GitHub commits and PRs are linked to projects, and a user can input a GitHub URL to fork a repo with AI code analysis feeding into the idea pool
   4. AI prepares email drafts that team members review, confirm, and send from within the app
   5. User can ask natural-language questions like "show me all open decisions in Project X" and receive accurate, AI-powered results
-**Plans**: TBD
+**Plans**: 6 plans
 
 Plans:
-- [ ] 08-01: TBD
-- [ ] 08-02: TBD
-- [ ] 08-03: TBD
+- [ ] 08-01-PLAN.md -- Foundation: npm install, shared integration types, Google OAuth module, Octokit client, integration reducer, AI task types
+- [ ] 08-02-PLAN.md -- Gmail: polling with historyId, email parser, AI email routing, AI draft generation, email sending via Gmail API
+- [ ] 08-03-PLAN.md -- GitHub: repo linking, commits/PRs listing, webhook handler, fork + AI code analysis -> idea pool
+- [ ] 08-04-PLAN.md -- Google Calendar: polling with syncToken, meeting-project linking, post-meeting prompt notifications
+- [ ] 08-05-PLAN.md -- AI Search: tool definitions (projects, decisions, events, ideas), search engine with tool-calling, search route
+- [ ] 08-06-PLAN.md -- Client UI + app integration: hooks, SearchBar, EmailDraftReview, GitHubFork, CalendarWidget, Integrations page, route registration
 
 ## Progress
 
@@ -187,6 +190,6 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8
 | 3. Documentation Engine | 4/4 | Complete | 2026-02-08 |
 | 4. AI Foundation & Orchestration | 6/6 | Complete | 2026-02-08 |
 | 5. GSD Workflow Engine | 3/3 | Complete | 2026-02-08 |
-| 6. Voice & Idea Pool | 0/4 | Planned | - |
-| 7. Telegram Bot & Notifications | 0/5 | Planned | - |
-| 8. External Integrations & AI Search | 0/TBD | Not started | - |
+| 6. Voice & Idea Pool | 4/4 | Complete | 2026-02-08 |
+| 7. Telegram Bot & Notifications | 6/6 | Complete | 2026-02-08 |
+| 8. External Integrations & AI Search | 0/6 | Not started | - |
