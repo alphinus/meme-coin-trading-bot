@@ -85,10 +85,13 @@ Plans:
 3. User switches language in web UI and subsequent Telegram messages reflect new preference
 4. Telegram bot buttons, menus, and status messages all respect user's chosen language
 
-**Plans:** TBD
+**Plans:** 4 plans
 
 Plans:
-- [ ] 11-01: TBD
+- [ ] 11-01-PLAN.md -- i18n foundation: I18n instance, Fluent translation files (de.ftl + en.ftl), bot middleware wiring
+- [ ] 11-02-PLAN.md -- i18n for commands.ts and formatters.ts (core bot output)
+- [ ] 11-03-PLAN.md -- i18n for all 4 menu files (project, idea, settings, workflow)
+- [ ] 11-04-PLAN.md -- i18n for handler files (text, voice, callback) and notification emitter
 
 ## Progress
 
