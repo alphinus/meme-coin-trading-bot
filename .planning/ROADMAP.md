@@ -63,10 +63,13 @@ Plans:
 6. User switches to German and sees VoiceRecorder and IdeaRefinement components fully in German
 7. User switches language and no hardcoded English strings remain visible in UI
 
-**Plans:** TBD
+**Plans:** 4 plans
 
 Plans:
-- [ ] 10-01: TBD
+- [ ] 10-01-PLAN.md — i18n for SearchBar, EmailDraftReview, GitHubFork (I18N-03, I18N-04, I18N-05)
+- [ ] 10-02-PLAN.md — i18n for AI components, PasskeyPrompt, VoiceRecorder, Login (I18N-07, I18N-08)
+- [ ] 10-03-PLAN.md — i18n for Soul Document feature (5 files) (I18N-01)
+- [ ] 10-04-PLAN.md — i18n for Integrations page, CalendarWidget, IdeaRefinement (I18N-02, I18N-06)
 
 #### Phase 11: Telegram Bot i18n
 
@@ -100,5 +103,5 @@ Plans:
 | 7. Telegram Bot & Notifications | v1.0 | 6/6 | Complete | 2026-02-08 |
 | 8. External Integrations & AI Search | v1.0 | 8/8 | Complete | 2026-02-09 |
 | 9. Fix Umlauts | v1.1 | 1/1 | Complete | 2026-02-09 |
-| 10. Client i18n Coverage | v1.1 | 0/0 | Not started | - |
+| 10. Client i18n Coverage | v1.1 | 0/4 | Planned | - |
 | 11. Telegram Bot i18n | v1.1 | 0/0 | Not started | - |
