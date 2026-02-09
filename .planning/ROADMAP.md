@@ -3,7 +3,7 @@
 ## Milestones
 
 - ✅ **v1.0 MVP** — Phases 1-8 (shipped 2026-02-09)
-- 🚧 **v1.1 i18n Quality** — Phases 9-11 (in progress)
+- ✅ **v1.1 i18n Quality** — Phases 9-11 (shipped 2026-02-09)
 
 ## Phases
 
@@ -23,7 +23,7 @@ Full details: `.planning/milestones/v1.0-ROADMAP.md`
 
 </details>
 
-### 🚧 v1.1 i18n Quality (In Progress)
+### ✅ v1.1 i18n Quality (Shipped 2026-02-09)
 
 **Milestone Goal:** Ensure 100% correct German/English i18n coverage with proper Unicode characters — no ASCII approximations, no hardcoded strings, no mixed languages.
 
@@ -88,10 +88,10 @@ Plans:
 **Plans:** 4 plans
 
 Plans:
-- [ ] 11-01-PLAN.md -- i18n foundation: I18n instance, Fluent translation files (de.ftl + en.ftl), bot middleware wiring
-- [ ] 11-02-PLAN.md -- i18n for commands.ts and formatters.ts (core bot output)
-- [ ] 11-03-PLAN.md -- i18n for all 4 menu files (project, idea, settings, workflow)
-- [ ] 11-04-PLAN.md -- i18n for handler files (text, voice, callback) and notification emitter
+- [x] 11-01-PLAN.md -- i18n foundation: I18n instance, Fluent translation files (de.ftl + en.ftl), bot middleware wiring
+- [x] 11-02-PLAN.md -- i18n for commands.ts and formatters.ts (core bot output)
+- [x] 11-03-PLAN.md -- i18n for all 4 menu files (project, idea, settings, workflow)
+- [x] 11-04-PLAN.md -- i18n for handler files (text, voice, callback) and notification emitter
 
 ## Progress
 
@@ -107,4 +107,4 @@ Plans:
 | 8. External Integrations & AI Search | v1.0 | 8/8 | Complete | 2026-02-09 |
 | 9. Fix Umlauts | v1.1 | 1/1 | Complete | 2026-02-09 |
 | 10. Client i18n Coverage | v1.1 | 4/4 | Complete | 2026-02-09 |
-| 11. Telegram Bot i18n | v1.1 | 0/0 | Not started | - |
+| 11. Telegram Bot i18n | v1.1 | 4/4 | Complete | 2026-02-09 |
