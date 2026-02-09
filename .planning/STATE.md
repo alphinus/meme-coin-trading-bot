@@ -11,11 +11,11 @@ See: .planning/PROJECT.md (updated 2026-02-09)
 
 Milestone: v1.2 Guided UX
 Phase: 12 of 17 (Infrastructure & Safety)
-Plan: 0 of TBD in current phase
-Status: Ready to plan
-Last activity: 2026-02-09 — Roadmap created for v1.2 (6 phases, 31 requirements)
+Plan: 1 of 2 in current phase
+Status: Executing
+Last activity: 2026-02-09 — Completed 12-01 (Agent SDK foundation, types, tool permissions, PM2 tuning)
 
-Progress: [░░░░░░░░░░] 0%
+Progress: [█████░░░░░] 50%
 
 ## Performance Metrics
 
@@ -46,6 +46,9 @@ Recent decisions affecting current work:
 - [v1.2]: SSE (not WebSocket) for streaming -- unidirectional sufficient, no new dependency
 - [v1.2]: canUseTool permission handler (not bypassPermissions) -- explicit tool allowlist for safety
 - [v1.2]: Reuse existing Setup.tsx wizard pattern (not react-use-wizard) -- no new dependency
+- [12-01]: Used --legacy-peer-deps for Agent SDK install (zod ^4.0.0 peer dep vs project zod 3.25.76)
+- [12-01]: PM2 memory 1536MB + kill_timeout 15s + V8 heap 2048MB for agent sessions
+- [12-01]: Static hardcoded allowlist for canUseTool (not config file) -- security boundary needs deploy ceremony
 
 ### Pending Todos
 
@@ -53,12 +56,12 @@ None.
 
 ### Blockers/Concerns
 
-- PM2 memory limit (500MB) must be raised before agent features -- Phase 12 prerequisite
+- ~~PM2 memory limit (500MB) must be raised before agent features~~ -- RESOLVED in 12-01 (raised to 1536MB)
 - Agent SDK is pre-1.0 (v0.2.37) -- pin exact version, monitor for breaking changes
-- Compression middleware silently buffers SSE -- must fix in Phase 12 before streaming works
+- Compression middleware silently buffers SSE -- must fix in Phase 12 Plan 02 before streaming works
 
 ## Session Continuity
 
 Last session: 2026-02-09
-Stopped at: Roadmap created for v1.2 Guided UX (6 phases, 31 requirements mapped)
-Next step: /gsd:plan-phase 12
+Stopped at: Completed 12-01-PLAN.md (Agent SDK foundation)
+Next step: /gsd:execute-phase 12 (plan 02 remaining)
