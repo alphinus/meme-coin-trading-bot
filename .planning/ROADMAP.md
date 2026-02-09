@@ -23,75 +23,16 @@ Full details: `.planning/milestones/v1.0-ROADMAP.md`
 
 </details>
 
-### ✅ v1.1 i18n Quality (Shipped 2026-02-09)
+<details>
+<summary>✅ v1.1 i18n Quality (Phases 9-11) — SHIPPED 2026-02-09</summary>
 
-**Milestone Goal:** Ensure 100% correct German/English i18n coverage with proper Unicode characters — no ASCII approximations, no hardcoded strings, no mixed languages.
+- [x] Phase 9: Fix Umlauts (1/1 plan) — completed 2026-02-09
+- [x] Phase 10: Client i18n Coverage (4/4 plans) — completed 2026-02-09
+- [x] Phase 11: Telegram Bot i18n (4/4 plans) — completed 2026-02-09
 
-#### Phase 9: Fix Umlauts
+Full details: `.planning/milestones/v1.1-ROADMAP.md`
 
-**Goal:** All German text uses correct Unicode umlauts (ä, ö, ü, Ä, Ö, Ü, ß) instead of ASCII approximations.
-
-**Depends on:** Nothing (quality fix)
-
-**Requirements:** UMLAUT-01, UMLAUT-02
-
-**Success Criteria** (what must be TRUE):
-1. User sees "Geschäftsvorfälle" not "Geschaeftsvorfaelle" in German UI
-2. User sees "Ändern" not "Aendern" for all edit buttons in German UI
-3. User sees "Für" not "Fuer" in all German navigation and labels
-4. Server-side i18n messages (errors, logs, Telegram) display correct umlauts in German
-
-**Plans:** 1 plan
-
-Plans:
-- [x] 09-01-PLAN.md — Fix all ASCII umlaut approximations in de.json and server.ts
-
-#### Phase 10: Client i18n Coverage
-
-**Goal:** Every user-facing string in the web UI is translatable — language switcher covers 100% of interface in both DE and EN.
-
-**Depends on:** Phase 9
-
-**Requirements:** I18N-01, I18N-02, I18N-03, I18N-04, I18N-05, I18N-06, I18N-07, I18N-08
-
-**Success Criteria** (what must be TRUE):
-1. User switches to German and sees Soul Document page fully in German (title, descriptions, buttons, placeholders)
-2. User switches to German and sees Integrations page fully in German (Gmail, Calendar, GitHub status and labels)
-3. User switches to German and sees SearchBar, EmailDraftReview, GitHubFork components fully in German
-4. User switches to German and sees AI components (AiTeamMember, override menus) fully in German
-5. User switches to German and sees authentication components (PasskeyPrompt, Login) fully in German
-6. User switches to German and sees VoiceRecorder and IdeaRefinement components fully in German
-7. User switches language and no hardcoded English strings remain visible in UI
-
-**Plans:** 4 plans
-
-Plans:
-- [x] 10-01-PLAN.md — i18n for SearchBar, EmailDraftReview, GitHubFork (I18N-03, I18N-04, I18N-05)
-- [x] 10-02-PLAN.md — i18n for AI components, PasskeyPrompt, VoiceRecorder, Login (I18N-07, I18N-08)
-- [x] 10-03-PLAN.md — i18n for Soul Document feature (5 files) (I18N-01)
-- [x] 10-04-PLAN.md — i18n for Integrations page, CalendarWidget, IdeaRefinement (I18N-02, I18N-06)
-
-#### Phase 11: Telegram Bot i18n
-
-**Goal:** Telegram bot messages respect user language preference — all bot output available in both German and English.
-
-**Depends on:** Phase 10
-
-**Requirements:** I18N-09
-
-**Success Criteria** (what must be TRUE):
-1. User with German preference receives all Telegram bot messages in German
-2. User with English preference receives all Telegram bot messages in English
-3. User switches language in web UI and subsequent Telegram messages reflect new preference
-4. Telegram bot buttons, menus, and status messages all respect user's chosen language
-
-**Plans:** 4 plans
-
-Plans:
-- [x] 11-01-PLAN.md -- i18n foundation: I18n instance, Fluent translation files (de.ftl + en.ftl), bot middleware wiring
-- [x] 11-02-PLAN.md -- i18n for commands.ts and formatters.ts (core bot output)
-- [x] 11-03-PLAN.md -- i18n for all 4 menu files (project, idea, settings, workflow)
-- [x] 11-04-PLAN.md -- i18n for handler files (text, voice, callback) and notification emitter
+</details>
 
 ## Progress
 
