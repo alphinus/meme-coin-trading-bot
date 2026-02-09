@@ -58,11 +58,11 @@ Full details: `.planning/milestones/v1.1-ROADMAP.md`
   3. SSE responses stream to the browser incrementally without compression middleware buffering (flush-on-write verified)
   4. Agent sessions only have access to explicitly allowlisted tools (canUseTool handler rejects unlisted tools)
   5. Stopping the server with SIGTERM cleans up any active agent sessions before exit
-**Plans**: TBD
+**Plans**: 2 plans
 
 Plans:
-- [ ] 12-01: TBD
-- [ ] 12-02: TBD
+- [ ] 12-01-PLAN.md — Agent SDK install, types, tool permissions, PM2 config
+- [ ] 12-02-PLAN.md — SSE writer, session manager, graceful shutdown, test endpoint
 
 ### Phase 13: Agent Session Manager & SSE Streaming
 **Goal**: Users see real-time Claude Code output streaming in their browser and can control (abort) running sessions
@@ -167,7 +167,7 @@ Note: Phase 14 and Phase 15 have no mutual dependency and could be parallelized.
 | 9. Fix Umlauts | v1.1 | 1/1 | Complete | 2026-02-09 |
 | 10. Client i18n Coverage | v1.1 | 4/4 | Complete | 2026-02-09 |
 | 11. Telegram Bot i18n | v1.1 | 4/4 | Complete | 2026-02-09 |
-| 12. Infrastructure & Safety | v1.2 | 0/TBD | Not started | - |
+| 12. Infrastructure & Safety | v1.2 | 0/2 | Planning complete | - |
 | 13. Agent Session Manager & SSE Streaming | v1.2 | 0/TBD | Not started | - |
 | 14. GitHub Analysis | v1.2 | 0/TBD | Not started | - |
 | 15. Simple/Expert Mode | v1.2 | 0/TBD | Not started | - |
