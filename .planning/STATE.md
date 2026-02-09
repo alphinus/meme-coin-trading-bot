@@ -11,11 +11,11 @@ See: .planning/PROJECT.md (updated 2026-02-09)
 
 Milestone: v1.1 i18n Quality
 Phase: 11 of 11 (Telegram Bot i18n)
-Plan: 1 of 4
+Plan: 2 of 4
 Status: Executing
-Last activity: 2026-02-09 — Plan 11-01 complete (i18n infrastructure)
+Last activity: 2026-02-09 — Plan 11-02 complete (command/formatter i18n)
 
-Progress: [████████░░] 85% (v1.0: 43/43 plans, v1.1: 6/9 plans — Phase 11: 1/4 complete)
+Progress: [█████████░] 88% (v1.0: 43/43 plans, v1.1: 7/9 plans — Phase 11: 2/4 complete)
 
 ## Performance Metrics
 
@@ -33,6 +33,7 @@ Progress: [████████░░] 85% (v1.0: 43/43 plans, v1.1: 6/9 pla
 | 10    | 02   | 7min     | 2     | 8     |
 | 10    | 04   | 5min     | 2     | 5     |
 | 11    | 01   | 5min     | 2     | 5     |
+| 11    | 02   | 5min     | 2     | 7     |
 
 *Updated after each plan completion*
 
@@ -66,6 +67,11 @@ Phase 11-01 decisions:
 - 140 translation keys per locale covering all bot subsystems including notifications
 - Per-language setMyCommands moved from commands.ts to bot.ts setupBot()
 
+Phase 11-02 decisions:
+- Fluent strings kept as plain text, markdown formatting applied in TypeScript code (Option A)
+- escapeMd applied to all t() output in MarkdownV2 messages
+- TranslateFunc type exported from formatters.ts for reuse across modules
+
 ### Pending Todos
 
 None.
@@ -77,5 +83,5 @@ None identified during roadmap creation.
 ## Session Continuity
 
 Last session: 2026-02-09
-Stopped at: Completed 11-01-PLAN.md (i18n infrastructure)
-Next step: Execute 11-02-PLAN.md (command/formatter i18n)
+Stopped at: Completed 11-02-PLAN.md (command/formatter i18n)
+Next step: Execute 11-03-PLAN.md (menu i18n)
