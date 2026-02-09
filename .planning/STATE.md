@@ -12,10 +12,10 @@ See: .planning/PROJECT.md (updated 2026-02-09)
 Milestone: v1.1 i18n Quality
 Phase: 11 of 11 (Telegram Bot i18n)
 Plan: 4 of 4
-Status: Executing
-Last activity: 2026-02-09 — Plan 11-04 complete (handler & emitter i18n)
+Status: Phase Complete
+Last activity: 2026-02-09 — Plan 11-03 complete (menu i18n)
 
-Progress: [█████████░] 96% (v1.0: 43/43 plans, v1.1: 9/9 plans — Phase 11: 4/4 complete)
+Progress: [██████████] 100% (v1.0: 43/43 plans, v1.1: 10/10 plans — Phase 11: 4/4 complete)
 
 ## Performance Metrics
 
@@ -34,6 +34,7 @@ Progress: [█████████░] 96% (v1.0: 43/43 plans, v1.1: 9/9 pla
 | 10    | 04   | 5min     | 2     | 5     |
 | 11    | 01   | 5min     | 2     | 5     |
 | 11    | 02   | 5min     | 2     | 7     |
+| 11    | 03   | 4min     | 2     | 6     |
 | 11    | 04   | 6min     | 2     | 6     |
 
 *Updated after each plan completion*
@@ -73,6 +74,11 @@ Phase 11-02 decisions:
 - escapeMd applied to all t() output in MarkdownV2 messages
 - TranslateFunc type exported from formatters.ts for reuse across modules
 
+Phase 11-03 decisions:
+- Settings channel/priority labels use key map pattern resolved dynamically via ctx.t()
+- buildStepMessage accepts TranslateFunc parameter for better separation from BotContext
+- Added menu-error-generating and settings-toggled/priority keys to both .ftl files
+
 Phase 11-04 decisions:
 - Separate -label suffixed keys for inline keyboard button labels to avoid key conflicts
 - Voice handler captures userLang before background task spawn for i18n.t() in catch
@@ -89,5 +95,5 @@ None identified during roadmap creation.
 ## Session Continuity
 
 Last session: 2026-02-09
-Stopped at: Completed 11-04-PLAN.md (handler & emitter i18n)
-Next step: Phase 11 complete -- all 4 plans executed
+Stopped at: Completed 11-03-PLAN.md (menu i18n)
+Next step: Phase 11 complete -- all 4 plans executed, v1.1 milestone complete
