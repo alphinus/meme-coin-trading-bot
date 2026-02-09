@@ -11,11 +11,11 @@ See: .planning/PROJECT.md (updated 2026-02-09)
 
 Milestone: v1.2 Guided UX
 Phase: 12 of 17 (Infrastructure & Safety)
-Plan: 1 of 2 in current phase
-Status: Executing
-Last activity: 2026-02-09 — Completed 12-01 (Agent SDK foundation, types, tool permissions, PM2 tuning)
+Plan: 3 of 3 in current phase
+Status: Phase Complete
+Last activity: 2026-02-09 — Completed 12-03 (Graceful shutdown SSE notification, INFRA-05 gap closed)
 
-Progress: [█████░░░░░] 50%
+Progress: [██████████] 100%
 
 ## Performance Metrics
 
@@ -31,8 +31,12 @@ Progress: [█████░░░░░] 50%
 - Total execution time: ~45 minutes
 - Average per phase: 3 plans
 
+**Velocity (v1.2 so far):**
+- Total plans completed: 3
+- Phases completed: 1 (Phase 12)
+
 **Combined:**
-- Total plans: 52 across 11 phases
+- Total plans: 55 across 12 phases
 - Total milestones shipped: 2 (v1.0, v1.1)
 
 ## Accumulated Context
@@ -49,6 +53,7 @@ Recent decisions affecting current work:
 - [12-01]: Used --legacy-peer-deps for Agent SDK install (zod ^4.0.0 peer dep vs project zod 3.25.76)
 - [12-01]: PM2 memory 1536MB + kill_timeout 15s + V8 heap 2048MB for agent sessions
 - [12-01]: Static hardcoded allowlist for canUseTool (not config file) -- security boundary needs deploy ceremony
+- [12-03]: Matched abort() SSE event pattern for cleanup() shutdown notification -- consistency over custom approach
 
 ### Pending Todos
 
@@ -58,10 +63,10 @@ None.
 
 - ~~PM2 memory limit (500MB) must be raised before agent features~~ -- RESOLVED in 12-01 (raised to 1536MB)
 - Agent SDK is pre-1.0 (v0.2.37) -- pin exact version, monitor for breaking changes
-- Compression middleware silently buffers SSE -- must fix in Phase 12 Plan 02 before streaming works
+- ~~Compression middleware silently buffers SSE~~ -- RESOLVED in 12-02 (SSE routes bypass compression)
 
 ## Session Continuity
 
 Last session: 2026-02-09
-Stopped at: Completed 12-01-PLAN.md (Agent SDK foundation)
-Next step: /gsd:execute-phase 12 (plan 02 remaining)
+Stopped at: Completed 12-03-PLAN.md (Graceful shutdown SSE notification)
+Next step: /gsd:execute-phase 13 (Phase 12 fully complete, all INFRA requirements satisfied)
