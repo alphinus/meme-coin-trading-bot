@@ -39,7 +39,7 @@ Full details: `.planning/milestones/v1.1-ROADMAP.md`
 
 **Milestone Goal:** Transform Eluma from an expert-only tool into a guided platform with Simple/Expert toggle, wizard-driven flows, GitHub URL auto-analysis, and Claude Code as backend execution engine with dynamic GSD buttons.
 
-- [ ] **Phase 12: Infrastructure & Safety** — Agent SDK installation, PM2 tuning, SSE compression fix, graceful shutdown
+- [x] **Phase 12: Infrastructure & Safety** — Agent SDK installation, PM2 tuning, SSE compression fix, graceful shutdown (completed 2026-02-10)
 - [ ] **Phase 13: Agent Session Manager & SSE Streaming** — Server-side session lifecycle and real-time browser output
 - [ ] **Phase 14: GitHub Analysis** — Read-only repo analysis via Octokit with auto-idea creation
 - [ ] **Phase 15: Simple/Expert Mode** — Mode toggle, persistence, and conditional UI rendering
@@ -63,7 +63,7 @@ Full details: `.planning/milestones/v1.1-ROADMAP.md`
 Plans:
 - [x] 12-01-PLAN.md — Agent SDK install, types, tool permissions, PM2 config
 - [x] 12-02-PLAN.md — SSE writer, session manager, graceful shutdown, test endpoint
-- [ ] 12-03-PLAN.md — Gap closure: emit SSE 'status' event during graceful shutdown cleanup
+- [x] 12-03-PLAN.md — Gap closure: emit SSE 'status' event during graceful shutdown cleanup
 
 ### Phase 13: Agent Session Manager & SSE Streaming
 **Goal**: Users see real-time Claude Code output streaming in their browser and can control (abort) running sessions
@@ -168,7 +168,7 @@ Note: Phase 14 and Phase 15 have no mutual dependency and could be parallelized.
 | 9. Fix Umlauts | v1.1 | 1/1 | Complete | 2026-02-09 |
 | 10. Client i18n Coverage | v1.1 | 4/4 | Complete | 2026-02-09 |
 | 11. Telegram Bot i18n | v1.1 | 4/4 | Complete | 2026-02-09 |
-| 12. Infrastructure & Safety | v1.2 | 2/3 | Gap closure needed | - |
+| 12. Infrastructure & Safety | v1.2 | 3/3 | Complete | 2026-02-10 |
 | 13. Agent Session Manager & SSE Streaming | v1.2 | 0/TBD | Not started | - |
 | 14. GitHub Analysis | v1.2 | 0/TBD | Not started | - |
 | 15. Simple/Expert Mode | v1.2 | 0/TBD | Not started | - |
