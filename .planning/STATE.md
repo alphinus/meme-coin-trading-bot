@@ -11,11 +11,11 @@ See: .planning/PROJECT.md (updated 2026-02-09)
 
 Milestone: v1.1 i18n Quality
 Phase: 11 of 11 (Telegram Bot i18n)
-Plan: Not yet planned
-Status: Ready to plan
-Last activity: 2026-02-09 — Phase 10 (Client i18n Coverage) complete, verified
+Plan: 1 of 4
+Status: Executing
+Last activity: 2026-02-09 — Plan 11-01 complete (i18n infrastructure)
 
-Progress: [████████░░] 82% (v1.0: 43/43 plans, v1.1: 5/5 plans — Phase 10 complete, Phase 11 remaining)
+Progress: [████████░░] 85% (v1.0: 43/43 plans, v1.1: 6/9 plans — Phase 11: 1/4 complete)
 
 ## Performance Metrics
 
@@ -32,6 +32,7 @@ Progress: [████████░░] 82% (v1.0: 43/43 plans, v1.1: 5/5 pla
 | 10    | 01   | 4min     | 2     | 5     |
 | 10    | 02   | 7min     | 2     | 8     |
 | 10    | 04   | 5min     | 2     | 5     |
+| 11    | 01   | 5min     | 2     | 5     |
 
 *Updated after each plan completion*
 
@@ -60,6 +61,11 @@ Phase 10-04 decisions:
 - Used useTranslation from react-i18next directly per CLAUDE.md convention
 - Simplified connected_detail strings to use t() interpolation with email/since params
 
+Phase 11-01 decisions:
+- defaultLocale set to "de" matching client-side fallback
+- 140 translation keys per locale covering all bot subsystems including notifications
+- Per-language setMyCommands moved from commands.ts to bot.ts setupBot()
+
 ### Pending Todos
 
 None.
@@ -71,5 +77,5 @@ None identified during roadmap creation.
 ## Session Continuity
 
 Last session: 2026-02-09
-Stopped at: Phase 10 complete and verified (7/7 success criteria passed)
-Next step: `/gsd:plan-phase 11`
+Stopped at: Completed 11-01-PLAN.md (i18n infrastructure)
+Next step: Execute 11-02-PLAN.md (command/formatter i18n)
