@@ -41,10 +41,10 @@ Full details: `.planning/milestones/v1.0-ROADMAP.md`
 3. User sees "Für" not "Fuer" in all German navigation and labels
 4. Server-side i18n messages (errors, logs, Telegram) display correct umlauts in German
 
-**Plans:** TBD
+**Plans:** 1 plan
 
 Plans:
-- [ ] 09-01: TBD
+- [ ] 09-01-PLAN.md — Fix all ASCII umlaut approximations in de.json and server.ts
 
 #### Phase 10: Client i18n Coverage
 
@@ -99,6 +99,6 @@ Plans:
 | 6. Voice & Idea Pool | v1.0 | 4/4 | Complete | 2026-02-08 |
 | 7. Telegram Bot & Notifications | v1.0 | 6/6 | Complete | 2026-02-08 |
 | 8. External Integrations & AI Search | v1.0 | 8/8 | Complete | 2026-02-09 |
-| 9. Fix Umlauts | v1.1 | 0/0 | Not started | - |
+| 9. Fix Umlauts | v1.1 | 0/1 | Planning | - |
 | 10. Client i18n Coverage | v1.1 | 0/0 | Not started | - |
 | 11. Telegram Bot i18n | v1.1 | 0/0 | Not started | - |
