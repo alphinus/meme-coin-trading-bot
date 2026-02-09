@@ -81,7 +81,7 @@ Each task was committed atomically:
 1. **Task 1: Add Soul Document types and event-sourced reducer** - `c0c8dcc` (feat)
 2. **Task 2: Create DocumentWriter, CRUD, API routes, wire Express** - `a6e1da7` (feat)
 
-**Plan metadata:** [pending] (docs: complete plan)
+**Plan metadata:** `a197da5` (docs: complete plan)
 
 ## Files Created/Modified
 - `shared/types/events.ts` - Added 4 soul_document.* event types to union and array
