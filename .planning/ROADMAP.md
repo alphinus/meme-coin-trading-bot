@@ -75,12 +75,12 @@ Plans:
   3. User can click an abort button during streaming and the agent session stops within seconds, freeing resources
   4. If the SSE connection drops (network blip), the client automatically reconnects and resumes from the last received event
   5. Agent output renders with proper markdown formatting including code blocks, headers, and lists
-**Plans**: TBD
+**Plans**: 3 plans
 
 Plans:
-- [ ] 13-01: TBD
-- [ ] 13-02: TBD
-- [ ] 13-03: TBD
+- [ ] 13-01-PLAN.md — Server hardening: per-project session enforcement, SSE event IDs, reconnection replay, buffer increase
+- [ ] 13-02-PLAN.md — Client hardening: EventSource reconnection fix, reconnecting status, syntax highlighting
+- [ ] 13-03-PLAN.md — GSD action button integration in ProjectDetail, i18n keys, human verification
 
 ### Phase 14: GitHub Analysis
 **Goal**: Users can paste a GitHub URL and get instant AI-powered repository analysis with an auto-generated idea in the pool
@@ -169,7 +169,7 @@ Note: Phase 14 and Phase 15 have no mutual dependency and could be parallelized.
 | 10. Client i18n Coverage | v1.1 | 4/4 | Complete | 2026-02-09 |
 | 11. Telegram Bot i18n | v1.1 | 4/4 | Complete | 2026-02-09 |
 | 12. Infrastructure & Safety | v1.2 | 3/3 | Complete | 2026-02-10 |
-| 13. Agent Session Manager & SSE Streaming | v1.2 | 0/TBD | Not started | - |
+| 13. Agent Session Manager & SSE Streaming | v1.2 | 0/3 | Planned | - |
 | 14. GitHub Analysis | v1.2 | 0/TBD | Not started | - |
 | 15. Simple/Expert Mode | v1.2 | 0/TBD | Not started | - |
 | 16. GSD Command Registry | v1.2 | 0/TBD | Not started | - |
