@@ -56,7 +56,16 @@ No project dies without a documented decision, and every thought trail is fully 
 
 ### Active
 
-(None — define with `/gsd:new-milestone`)
+## Current Milestone: v1.2 Guided UX
+
+**Goal:** Transform Eluma from an expert-only tool into a guided platform with Simple/Expert toggle, wizard-driven flows, GitHub URL auto-analysis, and Claude Code as backend execution engine with dynamic GSD buttons.
+
+**Target features:**
+- Simple/Expert mode toggle with reduced feature set in Simple mode (only Ideas + Projects)
+- Guided onboarding wizard and step-by-step flows for Idea → Project → Execution
+- GitHub URL paste → AI auto-analyzes repo → Idea created in pool → both members verify
+- Claude Code as backend engine (server spawns processes, streams output to UI)
+- Dynamic GSD command buttons that auto-adapt when plugin updates
 
 ### Out of Scope
 
@@ -127,4 +136,4 @@ Tech stack: Express + Vite + React monorepo, JSONL event store, AI SDK v6, gramm
 | Per-recipient language in emitter | loadUser().language with "de" fallback | ✓ Good — each user gets their language |
 
 ---
-*Last updated: 2026-02-09 after v1.1 milestone completion*
+*Last updated: 2026-02-09 after v1.2 milestone start*

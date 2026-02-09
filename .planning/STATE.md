@@ -5,17 +5,17 @@
 See: .planning/PROJECT.md (updated 2026-02-09)
 
 **Core value:** No project dies without a documented decision, and every thought trail is fully reconstructable.
-**Current focus:** Planning next milestone
+**Current focus:** v1.2 Guided UX — Defining requirements
 
 ## Current Position
 
-Milestone: v1.1 i18n Quality — SHIPPED
-Phase: 11 of 11 (Telegram Bot i18n)
-Plan: Complete
-Status: Milestone Archived
-Last activity: 2026-02-09 — v1.1 milestone archived
+Milestone: v1.2 Guided UX
+Phase: Not started (defining requirements)
+Plan: —
+Status: Defining requirements
+Last activity: 2026-02-09 — Milestone v1.2 started
 
-Progress: [██████████] 100% (v1.0: 43/43 plans, v1.1: 9/9 plans — all milestones shipped)
+Progress: [░░░░░░░░░░] 0%
 
 ## Performance Metrics
 
@@ -52,5 +52,5 @@ None.
 ## Session Continuity
 
 Last session: 2026-02-09
-Stopped at: v1.1 milestone archived
-Next step: `/gsd:new-milestone` to define next version
+Stopped at: v1.2 milestone started, defining requirements
+Next step: Define requirements → create roadmap
