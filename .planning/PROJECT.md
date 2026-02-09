@@ -52,7 +52,14 @@ No project dies without a documented decision, and every thought trail is fully 
 
 ### Active
 
-(None — start next milestone to define new requirements)
+## Current Milestone: v1.1 i18n Quality
+
+**Goal:** Ensure 100% correct German/English i18n coverage with proper Unicode characters — no ASCII approximations, no hardcoded strings, no mixed languages.
+
+**Target features:**
+- Fix all umlaut issues (ä/ö/ü instead of ae/oe/ue) across codebase
+- Complete i18n coverage for all user-facing strings (client + server + Telegram bot)
+- Language switcher must cover 100% of UI in both DE and EN
 
 ### Out of Scope
 
@@ -113,4 +120,8 @@ Tech stack: Express + Vite + React monorepo, JSONL event store, AI SDK v6, gramm
 | GSD as execution engine | Proven workflow for non-techies | ✓ Good — button-driven UI works |
 
 ---
-*Last updated: 2026-02-09 after v1.0 milestone*
+| Unicode umlauts mandatory | ASCII approximations are unacceptable in German UI | — Pending (v1.1) |
+| CLAUDE.md encoding rules | Prevent future umlaut/i18n regressions | ✓ Good — added to CLAUDE.md |
+
+---
+*Last updated: 2026-02-09 after v1.1 milestone start*
