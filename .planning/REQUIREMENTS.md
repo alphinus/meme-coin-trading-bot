@@ -46,6 +46,13 @@ Requirements for Guided UX milestone. Each maps to roadmap phases.
 - [ ] **WIZ-04**: GSD workflow steps display as guided cards with single action button, explanation text, and progress indicator
 - [ ] **WIZ-05**: Wizards work in both DE and EN (i18n keys for all wizard text)
 
+### Quality Gates
+
+- [ ] **GATE-01**: User cannot convert an idea to a project until all mandatory GSD deep-questions are answered — system blocks the action with explanation of what's missing
+- [ ] **GATE-02**: User cannot create a project directly without completing the GSD questioning phase — the "create project" flow always routes through questioning first
+- [ ] **GATE-03**: Quality gates apply identically in Simple mode and Expert mode — no bypass possible in either mode
+- [ ] **GATE-04**: System displays clear progress indicator showing which questions are answered and which remain before project creation is unlocked
+
 ### GSD Commands
 
 - [ ] **GSD-01**: Server reads available GSD commands from plugin directory and exposes a command registry API
@@ -75,43 +82,47 @@ Requirements for Guided UX milestone. Each maps to roadmap phases.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| INFRA-01 | TBD | Pending |
-| INFRA-02 | TBD | Pending |
-| INFRA-03 | TBD | Pending |
-| INFRA-04 | TBD | Pending |
-| INFRA-05 | TBD | Pending |
-| AGENT-01 | TBD | Pending |
-| AGENT-02 | TBD | Pending |
-| AGENT-03 | TBD | Pending |
-| AGENT-04 | TBD | Pending |
-| AGENT-05 | TBD | Pending |
-| GH-01 | TBD | Pending |
-| GH-02 | TBD | Pending |
-| GH-03 | TBD | Pending |
-| GH-04 | TBD | Pending |
-| MODE-01 | TBD | Pending |
-| MODE-02 | TBD | Pending |
-| MODE-03 | TBD | Pending |
-| MODE-04 | TBD | Pending |
-| MODE-05 | TBD | Pending |
-| WIZ-01 | TBD | Pending |
-| WIZ-02 | TBD | Pending |
-| WIZ-03 | TBD | Pending |
-| WIZ-04 | TBD | Pending |
-| WIZ-05 | TBD | Pending |
-| GSD-01 | TBD | Pending |
-| GSD-02 | TBD | Pending |
-| GSD-03 | TBD | Pending |
-| GSD-04 | TBD | Pending |
-| GSD-05 | TBD | Pending |
-| GSD-06 | TBD | Pending |
-| GSD-07 | TBD | Pending |
+| INFRA-01 | Phase 12 | Pending |
+| INFRA-02 | Phase 12 | Pending |
+| INFRA-03 | Phase 12 | Pending |
+| INFRA-04 | Phase 12 | Pending |
+| INFRA-05 | Phase 12 | Pending |
+| AGENT-01 | Phase 13 | Pending |
+| AGENT-02 | Phase 13 | Pending |
+| AGENT-03 | Phase 13 | Pending |
+| AGENT-04 | Phase 13 | Pending |
+| AGENT-05 | Phase 13 | Pending |
+| GH-01 | Phase 14 | Pending |
+| GH-02 | Phase 14 | Pending |
+| GH-03 | Phase 14 | Pending |
+| GH-04 | Phase 14 | Pending |
+| MODE-01 | Phase 15 | Pending |
+| MODE-02 | Phase 15 | Pending |
+| MODE-03 | Phase 15 | Pending |
+| MODE-04 | Phase 15 | Pending |
+| MODE-05 | Phase 15 | Pending |
+| WIZ-01 | Phase 17 | Pending |
+| WIZ-02 | Phase 17 | Pending |
+| WIZ-03 | Phase 17 | Pending |
+| WIZ-04 | Phase 17 | Pending |
+| WIZ-05 | Phase 17 | Pending |
+| GATE-01 | Phase 17 | Pending |
+| GATE-02 | Phase 17 | Pending |
+| GATE-03 | Phase 17 | Pending |
+| GATE-04 | Phase 17 | Pending |
+| GSD-01 | Phase 16 | Pending |
+| GSD-02 | Phase 16 | Pending |
+| GSD-03 | Phase 16 | Pending |
+| GSD-04 | Phase 16 | Pending |
+| GSD-05 | Phase 16 | Pending |
+| GSD-06 | Phase 16 | Pending |
+| GSD-07 | Phase 16 | Pending |
 
 **Coverage:**
-- v1.2 requirements: 31 total
-- Mapped to phases: 0 (pending roadmap)
-- Unmapped: 31
+- v1.2 requirements: 35 total
+- Mapped to phases: 35
+- Unmapped: 0
 
 ---
 *Requirements defined: 2026-02-09*
-*Last updated: 2026-02-09 after initial definition*
+*Last updated: 2026-02-09 after roadmap creation*
