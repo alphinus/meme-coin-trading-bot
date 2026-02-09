@@ -9,8 +9,8 @@ Requirements for i18n quality release. Each maps to roadmap phases.
 
 ### Umlaute
 
-- [ ] **UMLAUT-01**: Alle deutschen Übersetzungen in `de.json` verwenden korrekte Unicode-Umlaute (ä, ö, ü, Ä, Ö, Ü, ß) — keine ASCII-Approximationen
-- [ ] **UMLAUT-02**: Alle deutschen Strings in `server/src/i18n/server.ts` verwenden korrekte Unicode-Umlaute
+- [x] **UMLAUT-01**: Alle deutschen Übersetzungen in `de.json` verwenden korrekte Unicode-Umlaute (ä, ö, ü, Ä, Ö, Ü, ß) — keine ASCII-Approximationen
+- [x] **UMLAUT-02**: Alle deutschen Strings in `server/src/i18n/server.ts` verwenden korrekte Unicode-Umlaute
 
 ### i18n Abdeckung
 
@@ -36,8 +36,8 @@ Requirements for i18n quality release. Each maps to roadmap phases.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| UMLAUT-01 | Phase 9 | Pending |
-| UMLAUT-02 | Phase 9 | Pending |
+| UMLAUT-01 | Phase 9 | Complete |
+| UMLAUT-02 | Phase 9 | Complete |
 | I18N-01 | Phase 10 | Pending |
 | I18N-02 | Phase 10 | Pending |
 | I18N-03 | Phase 10 | Pending |
