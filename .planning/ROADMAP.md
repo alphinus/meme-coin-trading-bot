@@ -42,7 +42,7 @@ Full details: `.planning/milestones/v1.1-ROADMAP.md`
 - [x] **Phase 12: Infrastructure & Safety** — Agent SDK installation, PM2 tuning, SSE compression fix, graceful shutdown (completed 2026-02-10)
 - [x] **Phase 13: Agent Session Manager & SSE Streaming** — Server-side session lifecycle and real-time browser output (completed 2026-02-10)
 - [x] **Phase 14: GitHub Analysis** — Read-only repo analysis via Octokit with auto-idea creation (completed 2026-02-10)
-- [ ] **Phase 15: Simple/Expert Mode** — Mode toggle, persistence, and conditional UI rendering
+- [x] **Phase 15: Simple/Expert Mode** — Mode toggle, persistence, and conditional UI rendering (completed 2026-02-10)
 - [ ] **Phase 16: GSD Command Registry** — Dynamic command discovery, context-dependent buttons, pause/resume
 - [ ] **Phase 17: Guided Wizards** — Onboarding, idea creation, idea-to-project, and GSD step wizards with i18n
 
@@ -110,8 +110,8 @@ Plans:
 **Plans**: 2 plans
 
 Plans:
-- [ ] 15-01-PLAN.md — Mode infrastructure: useMode hook, ModeToggle, ExpertRoute, App.tsx integration with conditional nav and route guards
-- [ ] 15-02-PLAN.md — Page-level rendering: Dashboard section hiding, ProjectDetail collapsible sections and KPI sidebar
+- [x] 15-01-PLAN.md — Mode infrastructure: useMode hook, ModeToggle, ExpertRoute, App.tsx integration with conditional nav and route guards
+- [x] 15-02-PLAN.md — Page-level rendering: Dashboard section hiding, ProjectDetail collapsible sections and KPI sidebar
 
 ### Phase 16: GSD Command Registry
 **Goal**: GSD action buttons auto-discover available commands and adapt to project state, with pause/resume for multi-project workflows
@@ -171,6 +171,6 @@ Note: Phase 14 and Phase 15 have no mutual dependency and could be parallelized.
 | 12. Infrastructure & Safety | v1.2 | 3/3 | Complete | 2026-02-10 |
 | 13. Agent Session Manager & SSE Streaming | v1.2 | 3/3 | Complete | 2026-02-10 |
 | 14. GitHub Analysis | v1.2 | 2/2 | Complete | 2026-02-10 |
-| 15. Simple/Expert Mode | v1.2 | 0/2 | Not started | - |
+| 15. Simple/Expert Mode | v1.2 | 2/2 | Complete | 2026-02-10 |
 | 16. GSD Command Registry | v1.2 | 0/TBD | Not started | - |
 | 17. Guided Wizards | v1.2 | 0/TBD | Not started | - |
