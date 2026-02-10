@@ -143,12 +143,12 @@ Plans:
   5. All wizard text uses i18n keys and renders correctly in both German and English
   6. User cannot convert an idea to a project or create a project without completing all mandatory GSD questions — blocked in both Simple and Expert mode
   7. Clear progress indicator shows which questions are answered and which remain before project creation unlocks
-**Plans**: TBD
+**Plans**: 3 plans
 
 Plans:
-- [ ] 17-01: TBD
-- [ ] 17-02: TBD
-- [ ] 17-03: TBD
+- [ ] 17-01-PLAN.md -- WizardShell + StepIndicator + GSD mandatory questions + quality gate server middleware
+- [ ] 17-02-PLAN.md -- Onboarding wizard + Idea creation wizard + Dashboard/IdeaPool integration
+- [ ] 17-03-PLAN.md -- Idea-to-project wizard + quality gate UI enforcement + graduation flow integration
 
 ## Progress
 
