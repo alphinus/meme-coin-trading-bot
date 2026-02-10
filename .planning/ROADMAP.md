@@ -83,12 +83,12 @@ Plans:
 **Plans**: 6 plans
 
 Plans:
-- [ ] 19-01-PLAN.md -- Warm Agent Session Singleton (create warm-session.ts, integrate into app.ts startup)
-- [ ] 19-02-PLAN.md -- Gateway Function Migration (rewrite generateAiResponse, runAiTools, tool definitions)
-- [ ] 19-03-PLAN.md -- Search Tool Reimplementation (rewrite aiSearch, search tools as plain functions)
-- [ ] 19-04-PLAN.md -- Voice Transcription Migration (rewrite transcribeAudio to use local whisper.cpp)
-- [ ] 19-05-PLAN.md -- API Key Removal & Package Cleanup (delete providers.ts, uninstall AI SDK packages, remove API keys)
-- [ ] 19-06-PLAN.md -- Cost Dashboard Update (rewrite tracker/dashboard for subscription usage model)
+- [x] 19-01-PLAN.md -- Warm Agent Session Singleton (create warm-session.ts, integrate into app.ts startup)
+- [x] 19-02-PLAN.md -- Gateway Function Migration (rewrite generateAiResponse, runAiTools, tool definitions)
+- [x] 19-03-PLAN.md -- Search Tool Reimplementation (rewrite aiSearch, search tools as plain functions)
+- [x] 19-04-PLAN.md -- Voice Transcription Migration (rewrite transcribeAudio to use local whisper.cpp)
+- [x] 19-05-PLAN.md -- API Key Removal & Package Cleanup (delete providers.ts, uninstall AI SDK packages, remove API keys)
+- [x] 19-06-PLAN.md -- Cost Dashboard Update (rewrite tracker/dashboard for subscription usage model)
 
 #### Phase 20: SDK Feature Adoption
 **Goal**: Agent sessions surface richer information -- users see why sessions ended, sessions survive server restarts, and session IDs are predictable
@@ -147,6 +147,6 @@ Phases execute in numeric order: 18 → 19 → 20 → 21
 | 16. GSD Command Registry | v1.2 | 4/4 | Complete | 2026-02-10 |
 | 17. Guided Wizards | v1.2 | 5/5 | Complete | 2026-02-10 |
 | 18. SDK Auth & Cleanup | v1.3 | 2/2 | Complete | 2026-02-10 |
-| 19. AI Function Migration | v1.3 | 0/6 | Not started | - |
+| 19. AI Function Migration | v1.3 | 6/6 | Complete | 2026-02-10 |
 | 20. SDK Feature Adoption | v1.3 | 0/TBD | Not started | - |
 | 21. Stabilization | v1.3 | 0/TBD | Not started | - |
