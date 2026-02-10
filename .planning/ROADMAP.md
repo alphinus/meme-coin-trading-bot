@@ -123,12 +123,12 @@ Plans:
   3. Each GSD button displays a label and a brief description underneath explaining what it does
   4. In Expert mode, Cmd+K opens a command palette where user can search and execute any GSD command with fuzzy matching
   5. User can pause active GSD work on one project and resume it later, independently of other projects' GSD sessions
-**Plans**: TBD
+**Plans**: 3 plans
 
 Plans:
-- [ ] 16-01: TBD
-- [ ] 16-02: TBD
-- [ ] 16-03: TBD
+- [ ] 16-01-PLAN.md -- Server-side GSD command registry, plugin files, state filter, API route
+- [ ] 16-02-PLAN.md -- Client-side GSD button bar, command palette (cmdk), ProjectDetail integration
+- [ ] 16-03-PLAN.md -- Pause/resume agent sessions (server + client)
 
 ### Phase 17: Guided Wizards
 **Goal**: New and non-technical users are guided through every major workflow with step-by-step wizards in both languages
