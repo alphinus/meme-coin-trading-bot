@@ -64,11 +64,11 @@ Full details: `.planning/milestones/v1.2-ROADMAP.md`
   3. Server emits a visible warning at startup when both ANTHROPIC_API_KEY and CLAUDE_CODE_OAUTH_TOKEN are set, preventing silent billing surprises
   4. SDK version is 0.2.38 and `npm run build` completes with zero TypeScript errors
   5. The persistSession option is gone from session-manager.ts -- sessions start and resume without passing deprecated options
-**Plans**: TBD
+**Plans**: 2 plans
 
 Plans:
-- [ ] 18-01: TBD
-- [ ] 18-02: TBD
+- [ ] 18-01-PLAN.md -- Remove persistSession from resume() and bump SDK to v0.2.38
+- [ ] 18-02-PLAN.md -- Add startup auth detection/logging, capture apiKeySource, update .env.example
 
 #### Phase 19: AI Function Migration
 **Goal**: Every AI-powered feature in the application uses the Agent SDK warm session pattern instead of AI SDK v6 direct API calls -- no API keys remain in the codebase, no per-token billing occurs
@@ -143,7 +143,7 @@ Phases execute in numeric order: 18 → 19 → 20 → 21
 | 15. Simple/Expert Mode | v1.2 | 2/2 | Complete | 2026-02-10 |
 | 16. GSD Command Registry | v1.2 | 4/4 | Complete | 2026-02-10 |
 | 17. Guided Wizards | v1.2 | 5/5 | Complete | 2026-02-10 |
-| 18. SDK Auth & Cleanup | v1.3 | 0/TBD | Not started | - |
+| 18. SDK Auth & Cleanup | v1.3 | 0/2 | Planned | - |
 | 19. AI Function Migration | v1.3 | 0/TBD | Not started | - |
 | 20. SDK Feature Adoption | v1.3 | 0/TBD | Not started | - |
 | 21. Stabilization | v1.3 | 0/TBD | Not started | - |
