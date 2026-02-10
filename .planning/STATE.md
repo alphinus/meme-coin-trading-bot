@@ -5,22 +5,22 @@
 See: .planning/PROJECT.md (updated 2026-02-10)
 
 **Core value:** No project dies without a documented decision, and every thought trail is fully reconstructable.
-**Current focus:** Phase 19 complete — AI Function Migration done. Ready for Phase 20.
+**Current focus:** Phase 19 fully complete (including gap closure) — AI Function Migration done. Ready for Phase 20.
 
 ## Current Position
 
 Milestone: v1.3 SDK Migration & Stabilization
-Phase: 19 of 21 (AI Function Migration) — COMPLETE (gaps_found: 1 doc issue)
-Plan: 6 of 6 in phase 19 (all plans complete)
-Status: Phase 19 verified — 4/5 truths verified, 1 partial (API key ambiguity, not functional)
-Last activity: 2026-02-10 — Phase 19 executed (6 plans, 4 waves, 15 commits) and verified
+Phase: 19 of 21 (AI Function Migration) — COMPLETE (all gaps closed)
+Plan: 7 of 7 in phase 19 (all plans complete, including gap closure)
+Status: Phase 19 fully verified — 5/5 truths verified, credential hygiene and dead code removed
+Last activity: 2026-02-10 — Phase 19 executed (7 plans, 4 waves, 18 commits) including gap closure
 
 Progress: [█████░░░░░] 50% (v1.3: 2/4 phases)
 
 ## Performance Metrics
 
 **Velocity (cumulative):**
-- Total plans completed: 80
+- Total plans completed: 81
 - Milestones shipped: 3 (v1.0, v1.1, v1.2)
 - Total codebase: ~47,000 LOC TypeScript
 
@@ -59,6 +59,8 @@ Recent decisions affecting current work:
 - Usage tracking replaces cost tracking: recordAiUsage() records task type, no per-token pricing (19-05)
 - UsageSummary replaces CostSummary with totalRequests, byTaskType, byMonth, subscriptionStatus (19-06)
 - Dashboard uses i18n for all user-facing strings (aiUsage namespace in EN/DE) (19-06)
+- .env.local pattern for credential separation with Node v22 --env-file multi-file loading (19-07)
+- Complete claudeApiKey dead code removal: subscription-only auth is the only path (19-07)
 
 ### Pending Todos
 
@@ -71,10 +73,10 @@ None.
 - 23 human verification tests pending from v1.2 (addressed in Phase 21)
 - OAuth token expiration: CLAUDE_CODE_OAUTH_TOKEN has limited lifetime, re-auth procedure needed
 - Pre-existing TypeScript errors resolved (was 19, now 0 after recent fixes)
-- Phase 19 verification gap: .env contains integration API keys (GITHUB_TOKEN, GOOGLE, TELEGRAM) which are not AI generation keys — documentation ambiguity, not functional defect
+- Phase 19 verification gap: RESOLVED in 19-07 — credentials moved to .env.local, .env contains only placeholders
 
 ## Session Continuity
 
 Last session: 2026-02-10
-Stopped at: Phase 19 execution complete, verification done (gaps_found: 4/5)
-Next step: `/gsd:plan-phase 20` or `/gsd:plan-phase 19 --gaps` for API key documentation fix
+Stopped at: Completed 19-07-PLAN.md (gap closure — credential hygiene + dead code removal)
+Next step: `/gsd:plan-phase 20` — Phase 19 fully complete with all gaps closed
