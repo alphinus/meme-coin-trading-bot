@@ -11,16 +11,16 @@ See: .planning/PROJECT.md (updated 2026-02-10)
 
 Milestone: v1.3 SDK Migration & Stabilization
 Phase: 19 of 21 (AI Function Migration) — IN PROGRESS
-Plan: 4 of 6 in current phase (plan 04 complete)
-Status: Executing phase 19, plan 04 (voice transcription) complete
-Last activity: 2026-02-10 — Plan 19-04 executed (1 task, voice transcription migrated to local whisper.cpp)
+Plan: 2 of 6 in current phase (plans 01, 04 complete)
+Status: Executing phase 19, plan 01 (warm session singleton) complete
+Last activity: 2026-02-10 — Plan 19-01 executed (2 tasks, WarmAgentSession singleton with FIFO queue)
 
 Progress: [██░░░░░░░░] 25% (v1.3: 1/4 phases)
 
 ## Performance Metrics
 
 **Velocity (cumulative):**
-- Total plans completed: 71
+- Total plans completed: 72
 - Milestones shipped: 3 (v1.0, v1.1, v1.2)
 - Total codebase: 46,922 LOC TypeScript
 
@@ -48,6 +48,8 @@ Recent decisions affecting current work:
 - SDK install requires --legacy-peer-deps until project migrates to zod@4
 - auth-check.ts created for startup auth detection/logging (18-02)
 - apiKeySource captured from SDK init messages for runtime auth verification (18-02)
+- WarmAgentSession uses streamInput() primary path with cold query() fallback for resilience (19-01)
+- plan permission mode with empty tools for lightweight text-only generation (19-01)
 
 ### Pending Todos
 
@@ -60,10 +62,10 @@ None.
 - 23 human verification tests pending from v1.2 (addressed in Phase 21)
 - OAuth token expiration: CLAUDE_CODE_OAUTH_TOKEN has limited lifetime, re-auth procedure needed
 - Phase 19 is the largest phase: 15 generateText/streamText call sites across 17 server files must be migrated
-- 19 pre-existing TypeScript errors in unrelated files (calendar, gmail, telegram, notifications, search, gsd routes)
+- Pre-existing TypeScript errors resolved (was 19, now 0 after recent fixes)
 
 ## Session Continuity
 
 Last session: 2026-02-10
-Stopped at: Completed 19-04-PLAN.md (voice transcription migration)
-Next step: Continue Phase 19 execution (plans 01-03, 05-06 remaining)
+Stopped at: Completed 19-01-PLAN.md (warm session singleton)
+Next step: Continue Phase 19 execution (plans 02-03, 05-06 remaining)
