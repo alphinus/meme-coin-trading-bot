@@ -225,6 +225,10 @@ Recent decisions affecting current work:
 - [17-05]: QualityGateIndicator as primary progress indicator (7 labeled dots too cramped for WizardStepIndicator)
 - [17-05]: IdeaToProjectWizard manages own step navigation (custom per-question props, not WizardShell)
 - [17-05]: Quality gate enforced identically in Simple and Expert mode (GATE-03, no mode bypass)
+- [17-04]: OnboardingWizard uses early-return pattern in Dashboard (full-page overlay, not modal)
+- [17-04]: IdeaCreationWizard shows for all modes (simple + expert) with Guided Create button in header
+- [17-04]: Voice input embeds existing VoiceRecorder component; GitHub input calls /api/github/analyze
+- [17-04]: No onCancel for onboarding (users must complete once); cancel available for idea wizard
 
 ### Pending Todos
 
@@ -240,6 +244,6 @@ None.
 ## Session Continuity
 
 Last session: 2026-02-10
-Stopped at: Completed 17-05-PLAN.md (Idea-to-Project Wizard & Quality Gate)
-Next step: Execute remaining Phase 17 plans (02, 03) if not already completed by parallel agents
+Stopped at: Completed 17-04-PLAN.md (OnboardingWizard + IdeaCreationWizard)
+Next step: Plans 02, 03 superseded by gap closure plans 04, 05. Phase 17 nearing completion (3/5 plans done).
 Note: User wants to replace Agent SDK with Claude Code SDK (@anthropic-ai/claude-code) to use local subscription instead of API key
