@@ -230,6 +230,6 @@ None.
 ## Session Continuity
 
 Last session: 2026-02-10
-Stopped at: Completed 16-04-PLAN.md (Cmd+K command palette gap closure) -- Phase 16 fully complete with all gaps closed
-Next step: Phase 16 complete. Move to Phase 17 or begin v1.2 release preparation.
+Stopped at: Phase 16 verified (PASSED 5/5) and marked complete in ROADMAP.md
+Next step: Phase 17 (Guided Wizards) or v1.2 release preparation.
 Note: User wants to replace Agent SDK with Claude Code SDK (@anthropic-ai/claude-code) to use local subscription instead of API key

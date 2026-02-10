@@ -43,7 +43,7 @@ Full details: `.planning/milestones/v1.1-ROADMAP.md`
 - [x] **Phase 13: Agent Session Manager & SSE Streaming** — Server-side session lifecycle and real-time browser output (completed 2026-02-10)
 - [x] **Phase 14: GitHub Analysis** — Read-only repo analysis via Octokit with auto-idea creation (completed 2026-02-10)
 - [x] **Phase 15: Simple/Expert Mode** — Mode toggle, persistence, and conditional UI rendering (completed 2026-02-10)
-- [ ] **Phase 16: GSD Command Registry** — Dynamic command discovery, context-dependent buttons, pause/resume
+- [x] **Phase 16: GSD Command Registry** — Dynamic command discovery, context-dependent buttons, pause/resume (completed 2026-02-10)
 - [ ] **Phase 17: Guided Wizards** — Onboarding, idea creation, idea-to-project, and GSD step wizards with i18n
 
 ## Phase Details
@@ -129,7 +129,7 @@ Plans:
 - [x] 16-01-PLAN.md -- Server-side GSD command registry, plugin files, state filter, API route
 - [x] 16-02-PLAN.md -- Client-side GSD button bar, ProjectDetail integration
 - [x] 16-03-PLAN.md -- Pause/resume agent sessions (server + client)
-- [ ] 16-04-PLAN.md -- Gap closure: Cmd+K command palette (cmdk) for Expert mode
+- [x] 16-04-PLAN.md -- Gap closure: Cmd+K command palette (cmdk) for Expert mode
 
 ### Phase 17: Guided Wizards
 **Goal**: New and non-technical users are guided through every major workflow with step-by-step wizards in both languages
@@ -173,5 +173,5 @@ Note: Phase 14 and Phase 15 have no mutual dependency and could be parallelized.
 | 13. Agent Session Manager & SSE Streaming | v1.2 | 3/3 | Complete | 2026-02-10 |
 | 14. GitHub Analysis | v1.2 | 2/2 | Complete | 2026-02-10 |
 | 15. Simple/Expert Mode | v1.2 | 2/2 | Complete | 2026-02-10 |
-| 16. GSD Command Registry | v1.2 | 3/4 | Gap closure | - |
+| 16. GSD Command Registry | v1.2 | 4/4 | Complete | 2026-02-10 |
 | 17. Guided Wizards | v1.2 | 0/TBD | Not started | - |
