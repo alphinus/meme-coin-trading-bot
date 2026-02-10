@@ -1,320 +1,332 @@
-# Stack Research
+# Stack Research: Claude Code SDK Migration
 
-**Domain:** Collaborative Project Intelligence Web App (real-time, AI-integrated, Telegram bot, event-driven)
-**Researched:** 2026-02-07
-**Confidence:** HIGH
-
----
-
-## Recommended Stack
-
-### Core Technologies
-
-| Technology | Version | Purpose | Why Recommended | Confidence |
-|------------|---------|---------|-----------------|------------|
-| **Next.js** | 16.1 | Full-stack framework (SSR, API routes, App Router) | Current stable release (Dec 2025). Unified frontend + backend. App Router with React Server Components reduces client bundle. Server Actions eliminate separate API boilerplate for mutations. Turbopack stable for fast dev. React 19.2 support. | HIGH |
-| **TypeScript** | 5.7+ | Type safety across entire stack | Non-negotiable for a multi-developer project with AI integrations, Telegram bot, and shared types between web + bot. Catches integration errors at compile time. | HIGH |
-| **PostgreSQL** | 16+ | Primary database + event store | ACID-compliant, JSONB for flexible event payloads, LISTEN/NOTIFY for real-time triggers, identity columns (modern standard), row-level security, proven at scale. Append-only event tables with JSONB payloads are a natural fit. | HIGH |
-| **Drizzle ORM** | 1.0-beta / 0.45 | TypeScript ORM + query builder | SQL-first, schema-as-code in TypeScript. Zero runtime dependencies (~7.4kb). Excellent for serverless/edge. Direct control over queries. Native PostgreSQL identity column support. Outperforms Prisma on cold starts. | HIGH |
-| **Redis** | 7+ | Caching, job queues, session store, pub/sub | Required by BullMQ for background jobs. Also handles rate limiting for AI API calls, caching AI responses, and real-time pub/sub for WebSocket fan-out. | HIGH |
-| **Vercel AI SDK** | 6.x (latest: 6.0.69) | Multi-provider AI orchestration | Unified API across OpenAI, Anthropic, Google, and 15+ providers. Switch providers with one line. Built-in streaming, tool calling, agentic loops. Agent abstraction for reusable AI agents. Framework-native React hooks. From same team as Next.js. | HIGH |
-
-### Authentication & Authorization
-
-| Technology | Version | Purpose | Why Recommended | Confidence |
-|------------|---------|---------|-----------------|------------|
-| **Auth.js (NextAuth v5)** | 5.x (beta, production-stable) | Google OAuth + session management | First-party Next.js auth solution. Native Google OAuth provider. Drizzle adapter available. Universal `auth()` function for App Router. JWT + database sessions. Role-based access via middleware. | MEDIUM |
-
-> **Note on Auth.js v5:** Still technically beta but widely used in production (Dec 2025 guides confirm stability). The `next-auth@beta` npm tag is the install path. If Auth.js v5 stability becomes a concern during development, **Better Auth** is the fallback -- it has gained significant traction in 2025 as a more modern alternative.
-
-### Real-Time Layer
-
-| Technology | Version | Purpose | Why Recommended | Confidence |
-|------------|---------|---------|-----------------|------------|
-| **Socket.IO** | 4.x | WebSocket server for real-time updates | Proven, self-hosted, no vendor lock-in. Built-in rooms (map to projects), namespaces, reconnection, fallback to long-polling. Pairs with Redis adapter for horizontal scaling. Unlike Supabase Realtime, gives full control over event types and doesn't require Supabase ecosystem buy-in. | HIGH |
-
-> **Why not Supabase Realtime:** Ties you to Supabase ecosystem. Self-hosted Supabase Realtime (Elixir/Phoenix) is operationally heavy. For custom event-driven architecture with append-only storage, Socket.IO + Redis pub/sub gives more control.
->
-> **Why not Liveblocks:** Hosted SaaS, no self-hosting option, per-MAU pricing scales poorly for an internal tool, vendor lock-in.
-
-### Telegram Bot
-
-| Technology | Version | Purpose | Why Recommended | Confidence |
-|------------|---------|---------|-----------------|------------|
-| **grammY** | 1.38+ | Telegram Bot Framework | Modern TypeScript-first design with excellent type safety. Rich plugin ecosystem: `conversations` (multi-step flows), `menu` (inline keyboard menus), `session` (state management). Cleaner DX than Telegraf. Active maintenance, keeps pace with Telegram Bot API updates. Lighter than Telegraf, better for serverless. | HIGH |
-| **@grammyjs/conversations** | latest | Multi-step conversation flows | Essential for mirroring web app workflows (project creation, task management) as sequential bot interactions. | HIGH |
-| **@grammyjs/menu** | latest | Interactive inline keyboard menus | Button-based UI for navigating projects, tasks, and settings without typing commands. | HIGH |
-
-> **Why not Telegraf:** Telegraf v4 TypeScript types are overly complex and hard to work with. grammY was built from the ground up with TypeScript and has surpassed Telegraf in DX. grammY's plugin system is more composable.
-
-### Background Processing
-
-| Technology | Version | Purpose | Why Recommended | Confidence |
-|------------|---------|---------|-----------------|------------|
-| **BullMQ** | 5.x | Job queue for background tasks | AI inference jobs, email sending, voice transcription, event consolidation (50k token merges), GitHub/Gmail API sync. Built on Redis Streams. Supports scheduled jobs (cron), retries, rate limiting, priority queues. Proven at scale. | HIGH |
-
-### Voice I/O
-
-| Technology | Version | Purpose | Why Recommended | Confidence |
-|------------|---------|---------|-----------------|------------|
-| **OpenAI gpt-4o-transcribe** | API | Speech-to-text transcription | Best accuracy across languages (German + English critical). Successor to Whisper with lower word error rate. Available via Vercel AI SDK. | HIGH |
-| **OpenAI gpt-4o-mini-tts** | API | Text-to-speech output | Instructable TTS ("speak like a friendly assistant"). Multiple voices. Low latency. Cost-effective via mini model. | MEDIUM |
-| **Web Audio API / MediaRecorder** | Browser native | In-app voice recording | No library needed. MediaRecorder captures audio in browser, sends to API route for transcription. Works on all modern browsers. | HIGH |
-
-> **Why OpenAI over Deepgram/AssemblyAI for STT:** OpenAI gpt-4o-transcribe leads on accuracy for both German and English. Single vendor for both STT and TTS simplifies billing and integration. All accessible through Vercel AI SDK.
-
-### UI & Styling
-
-| Technology | Version | Purpose | Why Recommended | Confidence |
-|------------|---------|---------|-----------------|------------|
-| **Tailwind CSS** | 4.x | Utility-first CSS | New `@theme` directive, OKLCH colors, faster build times. Industry standard for component-based UIs. | HIGH |
-| **shadcn/ui** | latest | Component library (copy-paste, not npm) | Built on Radix UI primitives (accessibility). Full Tailwind v4 + React 19 support. You own the code -- no version lock-in. `data-slot` attributes for styling. | HIGH |
-| **tw-animate-css** | latest | Animation utilities | Replaced deprecated `tailwindcss-animate`. Default for new shadcn/ui projects. | HIGH |
-
-### Internationalization
-
-| Technology | Version | Purpose | Why Recommended | Confidence |
-|------------|---------|---------|-----------------|------------|
-| **next-intl** | latest | i18n for Next.js (German + English) | Next.js-native. App Router + Server Components support. ICU message syntax (plurals, interpolation, rich text). Date/time/number formatting with timezone handling. Internationalized routing with per-language pathnames. TypeScript support for message keys. | HIGH |
-
-### Validation & Type Safety
-
-| Technology | Version | Purpose | Why Recommended | Confidence |
-|------------|---------|---------|-----------------|------------|
-| **Zod** | 4.3+ | Runtime schema validation | 14x faster string parsing vs Zod 3. Tree-shakable Zod Mini variant. Used by Vercel AI SDK for tool schemas, next-safe-action for server action validation, Drizzle for schema validation. Single validation library across entire stack. | HIGH |
-| **next-safe-action** | 8.x | Type-safe Server Actions | Wraps Next.js Server Actions with Zod validation, error handling, middleware (auth checks). Zero dependencies. End-to-end type safety between server and client. | HIGH |
-
-### Data Fetching & Client State
-
-| Technology | Version | Purpose | Why Recommended | Confidence |
-|------------|---------|---------|-----------------|------------|
-| **TanStack Query** | 5.90+ | Server state management + data fetching | Caching, background refetching, optimistic updates, infinite queries. Essential for dynamic pages (project dashboards, task lists) where Server Components alone aren't enough. Suspense support. | HIGH |
-| **Zustand** | 5.x | Client state management | Lightweight (~1kb), simple API, no boilerplate. For UI state: active project, sidebar state, modal state, theme. Not for server data (that's TanStack Query). | HIGH |
-
-### Email
-
-| Technology | Version | Purpose | Why Recommended | Confidence |
-|------------|---------|---------|-----------------|------------|
-| **Resend** | API | Transactional email delivery | Developer-first API. Native Next.js integration via Server Actions. React Email for templating. Webhooks for delivery tracking. Free tier sufficient for internal tool. | MEDIUM |
-| **React Email** | latest | Email templates as React components | Build email templates with the same React/TypeScript skills. No separate templating language. Maintained by Resend team. | MEDIUM |
-
-### External API Integrations
-
-| Technology | Purpose | Notes | Confidence |
-|------------|---------|-------|------------|
-| **googleapis** (npm) | Gmail + Google Calendar API | Official Google client library. OAuth2 token management. Batch API support. | HIGH |
-| **@octokit/rest** | GitHub API (including fork operations) | Official GitHub REST API client. Handles pagination, rate limiting. Fork, PR, and repo operations. | HIGH |
-
-### Development Tools
-
-| Tool | Purpose | Notes | Confidence |
-|------|---------|-------|------------|
-| **pnpm** | Package manager | Strict dependency resolution, disk-efficient, workspace support for monorepo. Faster than npm/yarn. | HIGH |
-| **Turborepo** | Monorepo build orchestration | Incremental builds, remote caching, parallel task execution. Made by Vercel, excellent Next.js integration. | HIGH |
-| **Vitest** | Unit + component testing | 10-20x faster than Jest. Native ESM. Browser mode. Next.js official recommendation. | HIGH |
-| **Playwright** | E2E testing | Cross-browser. Next.js official recommendation. Use for 3-5 critical flows in CI. | HIGH |
-| **React Testing Library** | Component testing | User-centric testing approach. Pairs with Vitest. | HIGH |
-| **Biome** | Linting + formatting | Rust-based, replaces ESLint + Prettier. 100x faster. Single tool for lint + format. | MEDIUM |
-| **Docker** | Containerization | Multi-stage builds with Next.js standalone output. Required for self-hosted deployment. | HIGH |
-
-### Deployment & Infrastructure
-
-| Technology | Purpose | Why Recommended | Confidence |
-|------------|---------|-----------------|------------|
-| **Hetzner VPS** | Server hosting (EU) | European data residency (Swiss company requirement). CAX21 (~10 EUR/month) or CAX31 (~20 EUR/month). ARM-based, excellent price/performance. GDPR-friendly. | HIGH |
-| **Coolify** | Deployment platform (self-hosted) | Open-source Vercel/Heroku alternative. Git push deploy, preview URLs, auto SSL, one-click databases. Runs on Hetzner VPS. No vendor lock-in. | MEDIUM |
-| **Docker Compose** | Service orchestration | Compose file for Next.js app, PostgreSQL, Redis, bot process, BullMQ workers. Simple, proven, no K8s complexity needed at 2-5 user scale. | HIGH |
-
-> **Why not Vercel:** Cost scales unpredictably with serverless. WebSocket support limited (Socket.IO needs persistent server). Background workers (BullMQ) can't run on Vercel. Self-hosting on Hetzner gives full control at fixed cost.
->
-> **Why not Railway/Fly.io:** Good alternatives if Coolify+Hetzner proves too much ops work. Railway is the easier fallback. But for a Swiss company wanting EU data residency and cost control, Hetzner+Coolify is the better starting point.
+**Project:** Eluma -- Claude Agent SDK stabilization and authentication migration
+**Researched:** 2026-02-10
+**Confidence:** HIGH (official Anthropic docs + installed codebase inspection)
+**Scope:** Migration from current `@anthropic-ai/claude-agent-sdk` v0.2.37 to support subscription-based authentication. Evaluation of whether `@anthropic-ai/claude-code` package is appropriate, or whether the current SDK should be retained.
 
 ---
 
-## Monorepo Structure
+## Critical Finding: Package Naming Clarification
 
-```
-apps/
-  web/          # Next.js 16.1 web application
-  bot/          # grammY Telegram bot (standalone Node.js process)
-  workers/      # BullMQ worker processes
+The user's request references `@anthropic-ai/claude-code` as the target package. Research reveals this is **not the correct package** for programmatic SDK usage:
 
-packages/
-  db/           # Drizzle schema, migrations, queries
-  ai/           # AI orchestration layer (Vercel AI SDK wrappers)
-  shared/       # Shared types, constants, Zod schemas
-  events/       # Event store logic, consolidation engine
-  integrations/ # Gmail, Calendar, GitHub API clients
-  ui/           # shadcn/ui components (shared across web)
-  i18n/         # next-intl message files + utilities
+| Package | Purpose | Status |
+|---------|---------|--------|
+| `@anthropic-ai/claude-code` | CLI tool (terminal application) | `sdk.mjs` entry point broken since v2.0.5. SDK export deprecated. |
+| `@anthropic-ai/claude-agent-sdk` | Programmatic TypeScript SDK with `query()` | **Active, v0.2.38 latest.** Official replacement for SDK functionality. |
+| `@anthropic-ai/sdk` | Direct Anthropic API client (messages, completions) | Separate concern -- already using `@ai-sdk/anthropic` via AI SDK v6. |
+
+**The project already uses the correct package** (`@anthropic-ai/claude-agent-sdk` v0.2.37). The `@anthropic-ai/claude-code` package's `query` entrypoint was migrated to `@anthropic-ai/claude-agent-sdk` and the old package has a broken `sdk.mjs` entry point (GitHub issue #10191).
+
+**Recommendation: Do NOT switch packages.** Stay on `@anthropic-ai/claude-agent-sdk`. Bump from v0.2.37 to v0.2.38 for latest parity.
+
+---
+
+## Recommended Stack Changes
+
+### 1. Version Bump: `@anthropic-ai/claude-agent-sdk`
+
+| Property | Current | Target | Why |
+|----------|---------|--------|-----|
+| Version | ^0.2.37 | ^0.2.38 | Latest release (2026-02-10). Parity with Claude Code v2.1.38. No breaking changes. |
+
+**What changed between v0.2.37 and v0.2.38:**
+- Parity update with Claude Code v2.1.38 (no new API surface changes)
+
+**Recent additions available in current version (v0.2.37) that the codebase may not yet use:**
+- `sessionId` option (v0.2.33): Specify custom UUID for sessions instead of auto-generated
+- `debug` / `debugFile` options (v0.2.30): Programmatic debug logging
+- `listSessions()` function (v0.2.27): Discover resumable sessions
+- `stop_reason` field on `SDKResultSuccess` / `SDKResultError` (v0.2.31)
+- V2 preview interface: `unstable_v2_createSession()`, `unstable_v2_prompt()` (available but unstable)
+
+**Installation:**
+```bash
+npm install @anthropic-ai/claude-agent-sdk@^0.2.38 -w server
 ```
 
-**Why monorepo:** The Telegram bot and web app share the same database, AI layer, event system, and business logic. A monorepo with shared packages avoids duplication and ensures type consistency across all entry points.
+**Confidence: HIGH** -- Verified via official GitHub releases and npm registry.
 
 ---
 
-## Installation
+### 2. Authentication: API Key vs. Subscription (The Core Question)
+
+The user wants to "use local Claude subscription instead of API key." This is the central architectural question.
+
+#### Option A: ANTHROPIC_API_KEY (Current, Officially Supported)
 
 ```bash
-# Initialize monorepo
-pnpm dlx create-turbo@latest
-
-# Core framework
-pnpm add next@latest react@latest react-dom@latest
-
-# Database
-pnpm add drizzle-orm postgres
-pnpm add -D drizzle-kit
-
-# Authentication
-pnpm add next-auth@beta @auth/drizzle-adapter
-
-# AI
-pnpm add ai @ai-sdk/openai @ai-sdk/anthropic @ai-sdk/google
-
-# Real-time
-pnpm add socket.io socket.io-client @socket.io/redis-adapter
-
-# Telegram Bot
-pnpm add grammy @grammyjs/conversations @grammyjs/menu @grammyjs/runner
-
-# Background Jobs
-pnpm add bullmq ioredis
-
-# Validation
-pnpm add zod next-safe-action
-
-# UI
-pnpm add tailwindcss@latest
-pnpm dlx shadcn@latest init
-
-# i18n
-pnpm add next-intl
-
-# Data Fetching & State
-pnpm add @tanstack/react-query zustand
-
-# External APIs
-pnpm add googleapis @octokit/rest
-
-# Email
-pnpm add resend @react-email/components
-
-# Dev dependencies
-pnpm add -D typescript @types/node @types/react vitest @vitejs/plugin-react
-pnpm add -D playwright @playwright/test @testing-library/react
-pnpm add -D @biomejs/biome
+export ANTHROPIC_API_KEY=sk-ant-...
 ```
 
+- **Billing:** Pay-per-token from Anthropic Console
+- **Support:** Fully supported by Anthropic for SDK usage
+- **Policy:** Explicitly allowed for third-party applications
+- **Reliability:** Stable, no policy risk
+
+#### Option B: CLAUDE_CODE_OAUTH_TOKEN (Subscription Auth)
+
+```bash
+# Generate token from CLI
+claude setup-token
+export CLAUDE_CODE_OAUTH_TOKEN=<generated-token>
+# Remove ANTHROPIC_API_KEY to force subscription fallback
+unset ANTHROPIC_API_KEY
+```
+
+- **Billing:** Uses Claude Pro/Max subscription quota (fixed monthly cost)
+- **Support:** Works technically but sits in a POLICY GRAY AREA
+- **Policy:** Anthropic explicitly states: "Unless previously approved, Anthropic does not allow third party developers to offer claude.ai login or rate limits for their products, including agents built on the Claude Agent SDK."
+- **Risk:** Anthropic tightened enforcement in January 2026. Could break without notice.
+- **Reliability:** Token may expire, requiring re-authentication via `claude setup-token`
+
+#### Option C: Dual-Mode Auth (Recommended)
+
+Support both authentication methods. Let the environment decide:
+
+```typescript
+// The SDK already handles this internally:
+// 1. If ANTHROPIC_API_KEY is set -> uses API key billing
+// 2. If only CLAUDE_CODE_OAUTH_TOKEN is set -> uses subscription
+// 3. If neither -> errors
+//
+// No code changes needed in session-manager.ts.
+// The query() function reads env vars automatically.
+```
+
+**Why Dual-Mode:**
+- No code changes required -- the SDK's subprocess already checks environment variables in priority order
+- For the Eluma developer (personal use), OAuth token works fine
+- For any future deployment or sharing, API key provides the officially supported path
+- Removes hard dependency on either authentication method
+
+**What must change for subscription auth:**
+1. Ensure `ANTHROPIC_API_KEY` is NOT set when subscription auth is desired
+2. Run `claude setup-token` once on the server machine to generate the OAuth token
+3. Set `CLAUDE_CODE_OAUTH_TOKEN` in the server's environment (NOT in `.env` alongside `ANTHROPIC_API_KEY`)
+4. The SDK subprocess picks up the token automatically
+
+**Confidence: MEDIUM** -- OAuth token auth works per community demonstrations and issue discussions, but Anthropic's official policy discourages third-party use. For personal/internal tooling, LOW risk. For commercial distribution, HIGH risk.
+
 ---
 
-## Alternatives Considered
+### 3. Existing API Surface Audit (No Changes Needed)
 
-| Category | Recommended | Alternative | When to Use Alternative |
-|----------|-------------|-------------|-------------------------|
-| Framework | Next.js 16.1 | Remix / SvelteKit | If you need nested route loaders (Remix) or prefer Svelte's reactivity model. Not recommended here: Next.js ecosystem alignment with Vercel AI SDK is too strong. |
-| ORM | Drizzle ORM | Prisma 6 | If team prefers schema-first with `.prisma` files and generated client. Prisma is now Rust-free (Nov 2025) and has better tooling (Studio, Migrate). Trade-off: heavier runtime, slower cold starts. |
-| Auth | Auth.js v5 | Better Auth / Clerk | Better Auth if Auth.js v5 beta instability becomes a blocker. Clerk if you want zero auth code and don't mind SaaS dependency + cost. |
-| Telegram Bot | grammY | Telegraf 4.x | Only if team already has deep Telegraf experience. Telegraf has larger community but worse TypeScript DX. |
-| State Mgmt | Zustand | Jotai | If you need fine-grained atomic state with complex interdependencies. For this project, Zustand's simplicity is sufficient. |
-| Real-time | Socket.IO | Supabase Realtime | If you adopt full Supabase stack (managed PostgreSQL + Auth + Realtime). Not recommended here: too much vendor lock-in for a custom event-driven system. |
-| Job Queue | BullMQ | Trigger.dev | If you want a hosted job infrastructure with built-in dashboard. BullMQ is self-hosted and more flexible for custom consolidation logic. |
-| Hosting | Hetzner + Coolify | Railway | If self-hosting ops is too burdensome. Railway offers PostgreSQL + Redis + Docker with great DX at ~$20-50/month. Good intermediate option before scaling. |
-| Email | Resend | Postmark / SendGrid | If you need higher volume or specific deliverability guarantees. Resend is simpler for developer-focused internal tools. |
-| Linting | Biome | ESLint + Prettier | If you need specific ESLint plugins not yet supported by Biome (e.g., some a11y rules). Biome covers 90%+ of use cases and is dramatically faster. |
-| Testing | Vitest | Jest 30 | Only if existing Jest config/plugins are a hard requirement. Vitest is faster and ESM-native. |
+The current `session-manager.ts` implementation is well-structured and uses the SDK correctly. Here is the audit of SDK features currently in use:
 
----
+| Feature | Status | Code Location |
+|---------|--------|---------------|
+| `query()` async generator | In use | `session-manager.ts:59-72, 258-272` |
+| `includePartialMessages: true` | In use | Both `start()` and `resume()` |
+| `abortController` | In use | Passed to every `query()` call |
+| `canUseTool` callback | In use | `tool-permissions.ts` (10-tool allowlist + bash filtering) |
+| `permissionMode: 'default'` | In use | Correct -- allows canUseTool to function |
+| `maxTurns` / `maxBudgetUsd` | In use | Configurable per session |
+| `settingSources: []` | In use | Correct for SDK isolation |
+| `resume` (session resume) | In use | `resume()` method uses SDK session ID |
+| `Query.close()` | In use | Called during abort and pause |
+| SDK session ID capture | In use | Extracted from `system.init` message |
+| `SDKMessage` type | In use | `sse-adapter.ts` handles full union |
+| `SDKPartialAssistantMessage` (stream_event) | In use | Handles text_delta, content_block_start/stop |
+| `SDKResultMessage` | In use | Handles success and error subtypes |
+| `SDKSystemMessage` | In use | Handles init and compacting |
 
-## What NOT to Use
+**One issue found:** The current code passes `persistSession: false` and `persistSession: true` in the options. This property does NOT appear in the official v0.1.0+ API reference (Options type). It may be silently ignored or may have been removed. The SDK's session persistence is now controlled differently:
+- Sessions are automatically persisted by the SDK subprocess
+- `resume` option with a session ID handles resumption
+- `forkSession` option creates a fork instead of continuing
 
-| Avoid | Why | Use Instead |
-|-------|-----|-------------|
-| **Prisma (as default choice)** | Heavier runtime, slower cold starts on serverless, generated client adds build step. Schema-as-code in Drizzle is more transparent. | Drizzle ORM |
-| **Express.js (standalone)** | Unnecessary with Next.js API routes + Server Actions. Adding Express creates two servers to maintain. | Next.js API routes + custom server for Socket.IO only |
-| **Redux / Redux Toolkit** | Massive boilerplate for a 2-5 person team project. Overkill for this scale. | Zustand (client state) + TanStack Query (server state) |
-| **Mongoose / MongoDB** | Document DB loses ACID guarantees needed for financial tracking (cost tracking) and event ordering. No LISTEN/NOTIFY for real-time. | PostgreSQL + Drizzle |
-| **Firebase** | Google lock-in, no self-hosting, limited PostgreSQL, poor for custom event-driven architecture. | Self-hosted PostgreSQL + Auth.js |
-| **Tailwind CSS v3** | v4 is stable with better performance and new `@theme` directive. shadcn/ui has migrated. | Tailwind CSS v4 |
-| **tailwindcss-animate** | Deprecated by shadcn/ui. | tw-animate-css |
-| **node-telegram-bot-api** | Low-level, no middleware system, poor TypeScript support, unmaintained. | grammY |
-| **Vercel (for hosting)** | WebSocket limitations, no persistent workers for BullMQ, unpredictable serverless costs, US-based. | Hetzner + Coolify (EU, fixed cost) |
-| **Supabase (full platform)** | Vendor lock-in for a project needing custom event-driven architecture. Self-hosted Supabase is operationally heavy (Elixir stack). | PostgreSQL + Drizzle + Socket.IO + Auth.js (pick your own components) |
-| **GraphQL (Apollo/Yoga)** | Unnecessary complexity for a single-client web app + bot. REST/RPC is simpler. Server Actions + TanStack Query cover the web. Bot calls same service layer directly. | Server Actions + next-safe-action + TanStack Query |
-| **Webpack** | Turbopack is stable in Next.js 16.1, significantly faster. | Turbopack (built into Next.js) |
+**Action needed:** Remove `persistSession` from both `start()` and `resume()` calls. It is not in the current API surface and may generate TypeScript errors on upgrade.
 
 ---
 
-## Stack Patterns by Variant
+### 4. Identified Missing SDK Features (Not Yet Used)
 
-**If you adopt Supabase managed (instead of self-hosted PostgreSQL):**
-- Replace: Drizzle direct PostgreSQL connection with Supabase client
-- Replace: Socket.IO with Supabase Realtime
-- Replace: Auth.js with Supabase Auth
-- Benefit: Less ops work, faster start
-- Cost: Vendor lock-in, less control over event store, monthly Supabase bill
+These SDK features are available but not used in the current codebase. They are relevant for the stabilization milestone:
 
-**If real-time requirements are minimal (just notifications, no collaborative editing):**
-- Replace: Socket.IO with Server-Sent Events (SSE)
-- Benefit: Simpler, no WebSocket server needed
-- Cost: No bidirectional communication, harder to scale
+| Feature | SDK API | Value for Eluma |
+|---------|---------|-----------------|
+| `listSessions()` | Top-level function | Could replace manual paused-session tracking. Discover all resumable sessions per working directory. |
+| `sessionId` option | `options.sessionId` (v0.2.33) | Could use deterministic session IDs (e.g., `project-${projectId}`) instead of random UUIDs for cleaner pause/resume. |
+| `stop_reason` field | `SDKResultMessage.stop_reason` | Better error categorization in SSE adapter (distinguish max_turns vs budget vs natural stop). |
+| `accountInfo()` | `query.accountInfo()` | Display billing info / subscription status in UI. |
+| `supportedModels()` | `query.supportedModels()` | Show available models in settings. |
+| `systemPrompt` option | `options.systemPrompt` | Could provide project-specific context to the agent. Currently uses SDK default (minimal prompt). |
+| V2 Session API | `unstable_v2_createSession()` | Simpler multi-turn pattern. NOT recommended yet -- marked unstable, missing features like `forkSession`. |
+| Hooks | `options.hooks` | Could add logging, audit trail, or custom validation at hook points. |
+| Subagents | `options.agents` | Could create specialized sub-agents for different GSD commands. |
 
-**If team prefers Railway over self-hosting:**
-- Replace: Hetzner + Coolify + Docker Compose with Railway
-- Benefit: Zero ops, git push deploy, managed PostgreSQL + Redis
-- Cost: Higher monthly cost (~$20-50+), US-based infra (EU available but limited)
+---
+
+## What NOT to Change
+
+| Temptation | Why NOT |
+|------------|---------|
+| Switch to `@anthropic-ai/claude-code` | SDK entry point is broken (missing `sdk.mjs`). Package is CLI-only. Deprecated for SDK use. |
+| Switch to V2 SDK interface | Marked "unstable preview". Missing features (`forkSession`). APIs may change. |
+| Add WebSocket for streaming | SSE is already working, correct for unidirectional streaming. No reason to change. |
+| Add `@anthropic-ai/sdk` for API calls | Already using AI SDK v6 with `@ai-sdk/anthropic` provider for direct API calls. Separate concern from agent sessions. |
+| Remove `canUseTool` for `allowedTools` only | `canUseTool` provides runtime Bash command filtering that `allowedTools` cannot. Keep both. |
+| Add `better-sse` or `express-sse` | Native SSE is already working with ~15 lines. No value in a library. |
+| Add state management library | Existing Context + localStorage pattern is sufficient. |
+| Replace EventEmitter with RxJS | EventEmitter works. RxJS would add significant complexity for zero user-facing benefit. |
+
+---
+
+## What to Install
+
+```bash
+# Bump existing dependency to latest
+npm install @anthropic-ai/claude-agent-sdk@^0.2.38 -w server
+```
+
+**That is it.** No new dependencies required. The migration is about:
+1. Removing the `persistSession` option (no longer in API)
+2. Configuring authentication environment variables
+3. Optionally adopting new SDK features (`listSessions`, `sessionId`, `stop_reason`)
+
+---
+
+## Environment Variable Configuration
+
+### For API Key Auth (Production / Commercial)
+
+```bash
+# .env
+ANTHROPIC_API_KEY=sk-ant-...
+```
+
+### For Subscription Auth (Personal / Development)
+
+```bash
+# Generate token (run once on server machine)
+claude setup-token
+
+# .env (do NOT set ANTHROPIC_API_KEY alongside this)
+CLAUDE_CODE_OAUTH_TOKEN=<token-from-setup>
+```
+
+### For Dual-Mode (Recommended)
+
+```bash
+# .env.example -- document both options
+# Choose ONE authentication method:
+
+# Option 1: API Key (pay-per-token, officially supported)
+# ANTHROPIC_API_KEY=sk-ant-...
+
+# Option 2: Subscription (uses Claude Pro/Max quota)
+# Run `claude setup-token` first, then set:
+# CLAUDE_CODE_OAUTH_TOKEN=<your-token>
+```
+
+**Prerequisite for subscription auth:** Claude Code CLI must be installed globally (`npm install -g @anthropic-ai/claude-code@latest`) and the user must be authenticated via `claude login` or `claude setup-token`.
+
+---
+
+## Integration Points with Existing Stack (Unchanged)
+
+The existing integration architecture is sound and needs no structural changes:
+
+| Integration | How It Works | Changes Needed |
+|-------------|-------------|----------------|
+| Express SSE routes | `GET /api/agent/stream/:sessionId` with `text/event-stream` | None |
+| React client | `EventSource` + custom `useAgentStream()` hook | None |
+| SSE adapter | `adaptMessage()` transforms SDKMessage to flat events | Minor: add `stop_reason` handling |
+| Tool permissions | `canUseTool` callback with allowlist + bash filtering | None |
+| Session manager | In-memory Map, per-project enforcement, pause/resume | Remove `persistSession`, optionally adopt `listSessions` |
+| Compression middleware | `res.flush()` after every SSE write | None (already handled) |
+| JSONL event store | `agent.session_started`, `agent.session_completed` events | None |
+| PM2 process manager | 1536MB memory limit, 2048MB V8 heap | None |
 
 ---
 
 ## Version Compatibility
 
-| Package A | Compatible With | Notes |
-|-----------|-----------------|-------|
-| Next.js 16.1 | React 19.2 | React 19.2 required for Cache Components |
-| Next.js 16.1 | Auth.js v5 (next-auth@beta) | v5 requires Next.js 14+, tested with 16 |
-| Drizzle ORM 0.45+ | PostgreSQL 16+ | Use identity columns (not serial) |
-| Vercel AI SDK 6.x | @ai-sdk/openai, @ai-sdk/anthropic | Provider packages version-locked to SDK major |
-| shadcn/ui (latest) | Tailwind CSS 4.x | Uses `@theme` directive, OKLCH colors |
-| shadcn/ui (latest) | React 19 | Uses `data-slot` attributes |
-| BullMQ 5.x | Redis 7+ / ioredis | Requires Redis Streams support |
-| Socket.IO 4.x | @socket.io/redis-adapter | For multi-process scaling |
-| Zod 4.x | next-safe-action 8.x | Standard Schema support |
-| TanStack Query 5.x | React 19 | Suspense hooks available |
-| next-intl (latest) | Next.js 16.x App Router | Server Components + internationalized routing |
+| Package | Compatible With | Notes |
+|---------|-----------------|-------|
+| `@anthropic-ai/claude-agent-sdk@0.2.38` | Node.js 18+ | Requires `claude` CLI on PATH for subprocess |
+| `@anthropic-ai/claude-agent-sdk@0.2.38` | TypeScript 5.0+ | Full type exports. `await using` needs TS 5.2+ (only for V2 API, not needed). |
+| `@anthropic-ai/claude-agent-sdk@0.2.38` | `ai@6.x` / `@ai-sdk/anthropic@3.x` | No conflict -- different packages, different concerns |
+| `@anthropic-ai/claude-agent-sdk@0.2.38` | Express 4.x | SDK is transport-agnostic. SSE forwarding is our code. |
+| Subscription auth (OAuth) | Claude Code CLI v2.1.x+ | CLI must be installed and authenticated |
 
 ---
 
-## Critical Security Note
+## Alternatives Considered
 
-All Next.js 13.x-16.x versions have had critical vulnerabilities disclosed (CVE-2025-66478: CVSS 10.0 RCE in React Server Components). **Always run the latest patched version.** Pin to exact versions in production and monitor Next.js security advisories.
+| Category | Recommended | Alternative | Why Not Alternative |
+|----------|-------------|-------------|---------------------|
+| SDK package | `@anthropic-ai/claude-agent-sdk` (keep current) | `@anthropic-ai/claude-code` | Broken SDK entry point. Deprecated for programmatic use. |
+| SDK API | V1 `query()` async generator | V2 `unstable_v2_createSession()` | Marked unstable. Missing `forkSession`. APIs may change before stable release. |
+| Auth (personal) | `CLAUDE_CODE_OAUTH_TOKEN` | `ANTHROPIC_API_KEY` only | User explicitly wants subscription auth for development use. |
+| Auth (commercial) | `ANTHROPIC_API_KEY` | `CLAUDE_CODE_OAUTH_TOKEN` | Anthropic policy prohibits subscription auth in third-party products. |
+| Session tracking | Keep in-memory Map + EventEmitter | Replace with `listSessions()` entirely | `listSessions()` is filesystem-based, not real-time. In-memory tracking needed for SSE streaming. Can supplement, not replace. |
+
+---
+
+## Migration Checklist (Code Changes)
+
+Specific file changes needed for this milestone:
+
+### 1. `server/src/agent/session-manager.ts`
+
+- [ ] Remove `persistSession: false` from `start()` options (line ~69)
+- [ ] Remove `persistSession: true` from `resume()` options (line ~269)
+- [ ] Optionally: Use `sessionId` option for deterministic session IDs
+- [ ] Optionally: Use `listSessions()` to discover resumable sessions on startup
+
+### 2. `server/src/agent/sse-adapter.ts`
+
+- [ ] Add handling for `stop_reason` field in result messages (available since v0.2.31)
+- [ ] Consider handling `compact_boundary` system message for UI feedback
+
+### 3. Environment configuration
+
+- [ ] Update `.env.example` to document both auth methods
+- [ ] Document `claude setup-token` procedure for subscription auth
+- [ ] Ensure server startup logs which auth method is active (check for `ANTHROPIC_API_KEY` vs `CLAUDE_CODE_OAUTH_TOKEN`)
+
+### 4. `server/package.json`
+
+- [ ] Bump `@anthropic-ai/claude-agent-sdk` from `^0.2.37` to `^0.2.38`
 
 ---
 
 ## Sources
 
-- [Next.js 16.1 Blog](https://nextjs.org/blog/next-16-1) -- Next.js version, features (HIGH confidence)
-- [Vercel AI SDK 6 Blog](https://vercel.com/blog/ai-sdk-6) -- AI SDK features, Agent abstraction (HIGH confidence)
-- [AI SDK GitHub Releases](https://github.com/vercel/ai/releases) -- Latest version 6.0.69 (HIGH confidence)
-- [grammY Official Site](https://grammy.dev/) -- Telegram bot framework features, plugins (HIGH confidence)
-- [grammY npm](https://www.npmjs.com/package/grammy) -- Version 1.38.3 (HIGH confidence)
-- [grammY Comparison Page](https://grammy.dev/resources/comparison) -- grammY vs Telegraf analysis (HIGH confidence)
-- [Drizzle ORM Official](https://orm.drizzle.team/) -- ORM features, version info (HIGH confidence)
-- [Drizzle ORM npm](https://www.npmjs.com/package/drizzle-orm) -- Version 0.45.1 (HIGH confidence)
-- [Zod Official v4](https://v3.zod.dev/) -- Zod 4 features, performance improvements (HIGH confidence)
-- [next-intl Official](https://next-intl.dev/) -- i18n for Next.js (HIGH confidence)
-- [Auth.js Migration Guide](https://authjs.dev/getting-started/migrating-to-v5) -- Auth.js v5 changes (HIGH confidence)
-- [shadcn/ui Tailwind v4](https://ui.shadcn.com/docs/tailwind-v4) -- Component library updates (HIGH confidence)
-- [next-safe-action Official](https://next-safe-action.dev/) -- Server Action type safety (HIGH confidence)
-- [BullMQ Official](https://bullmq.io/) -- Job queue features (HIGH confidence)
-- [OpenAI Audio Models](https://openai.com/index/introducing-our-next-generation-audio-models/) -- gpt-4o-transcribe, TTS models (HIGH confidence)
-- [TanStack Query npm](https://www.npmjs.com/package/@tanstack/react-query) -- Version 5.90.20 (HIGH confidence)
-- [Hetzner Coolify Docs](https://docs.hetzner.com/cloud/apps/list/coolify/) -- Deployment setup (MEDIUM confidence)
-- [Coolify Official](https://coolify.io/) -- Self-hosting platform features (MEDIUM confidence)
-- [Socket.IO vs Supabase Realtime (Ably)](https://ably.com/compare/socketio-vs-supabase) -- Real-time comparison (MEDIUM confidence)
-- [Turborepo + pnpm Guide](https://medium.com/@TheblogStacker/2025-monorepo-that-actually-scales-turborepo-pnpm-for-next-js-ab4492fbde2a) -- Monorepo best practices (MEDIUM confidence)
-- [tRPC vs Server Actions (Documenso)](https://documenso.com/blog/removing-server-actions) -- API layer decision (MEDIUM confidence)
-- [Resend Official](https://resend.com) -- Email service (MEDIUM confidence)
+### Official Documentation (HIGH confidence)
+
+- [Agent SDK Overview](https://platform.claude.com/docs/en/agent-sdk/overview) -- Capabilities, installation, auth setup
+- [Agent SDK TypeScript Reference](https://platform.claude.com/docs/en/agent-sdk/typescript) -- Complete `query()` API, all types, all options
+- [Agent SDK Streaming Output](https://platform.claude.com/docs/en/agent-sdk/streaming-output) -- `includePartialMessages`, StreamEvent flow
+- [Agent SDK Migration Guide](https://platform.claude.com/docs/en/agent-sdk/migration-guide) -- `@anthropic-ai/claude-code` to `@anthropic-ai/claude-agent-sdk`
+- [Agent SDK TypeScript V2 Preview](https://platform.claude.com/docs/en/agent-sdk/typescript-v2-preview) -- `unstable_v2_createSession()`, NOT recommended for production
+- [TypeScript SDK Changelog](https://github.com/anthropics/claude-agent-sdk-typescript/blob/main/CHANGELOG.md) -- Version history, v0.2.38 is latest
+- [TypeScript SDK Releases](https://github.com/anthropics/claude-agent-sdk-typescript/releases) -- Release dates and notes
+
+### GitHub Issues (MEDIUM confidence)
+
+- [#10191: @anthropic-ai/claude-code missing sdk.mjs](https://github.com/anthropics/claude-code/issues/10191) -- Confirms SDK entry point broken, migration to new package
+- [#11: Claude Max Usage](https://github.com/anthropics/claude-agent-sdk-typescript/issues/11) -- Subscription auth works via `CLAUDE_CODE_OAUTH_TOKEN`
+- [#6536: SDK CLAUDE_CODE_OAUTH_TOKEN](https://github.com/anthropics/claude-code/issues/6536) -- OAuth token discussion and workarounds
+- [#5891: SDK requires API key vs CLI uses subscription](https://github.com/anthropics/claude-code/issues/5891) -- Documents the auth dichotomy
+
+### Community Sources (LOW-MEDIUM confidence)
+
+- [claude_agent_sdk_oauth_demo](https://github.com/weidwonder/claude_agent_sdk_oauth_demo) -- Working example of OAuth token auth with Agent SDK
+- [Claude Code Cripples Third-Party Agents from OAuth](https://jpcaparas.medium.com/claude-code-cripples-third-party-coding-agents-from-using-oauth-6548e9b49df3) -- January 2026 policy enforcement tightening
+
+### Direct Codebase Inspection (HIGH confidence)
+
+- `server/package.json` -- Current `@anthropic-ai/claude-agent-sdk@^0.2.37`
+- `server/src/agent/session-manager.ts` -- Full session lifecycle, `query()` usage, pause/resume
+- `server/src/agent/sse-adapter.ts` -- SDKMessage to SSE event transformation
+- `server/src/agent/tool-permissions.ts` -- canUseTool callback with allowlist + bash filtering
+- `server/src/agent/types.ts` -- Session types, imports `Query` from SDK
 
 ---
-*Stack research for: Collaborative Project Intelligence Web App*
-*Researched: 2026-02-07*
+
+*Stack research for: Claude Agent SDK migration and subscription authentication*
+*Researched: 2026-02-10*
