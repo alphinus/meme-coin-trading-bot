@@ -5,24 +5,24 @@
 See: .planning/PROJECT.md (updated 2026-02-07)
 
 **Core value:** No project dies without a documented decision, and every thought trail is fully reconstructable.
-**Current focus:** v1.2 Guided UX — Phase 15 complete
+**Current focus:** v1.2 Guided UX — Phase 16 in progress
 
 ## Current Position
 
 Milestone: v1.2 Guided UX
-Phase: 15 of 17 (Simple/Expert Mode) — COMPLETE
-Plan: 2/2 complete
-Status: Phase 15 complete, ready for Phase 16
-Last activity: 2026-02-10 — Completed 15-02-PLAN.md (mode page-level rendering)
+Phase: 16 of 17 (GSD Command Registry)
+Plan: 1/3 complete
+Status: Plan 16-01 complete, ready for Plan 16-02
+Last activity: 2026-02-10 — Completed 16-01-PLAN.md (GSD command registry backend)
 
-Progress: [█████████░] 90%
+Progress: [█████████░] 93%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 45
+- Total plans completed: 46
 - Average duration: 7min
-- Total execution time: ~4.3 hours
+- Total execution time: ~4.4 hours
 
 **By Phase:**
 
@@ -42,10 +42,11 @@ Progress: [█████████░] 90%
 | 12. Infrastructure & Safety | 2/N | ~20min | ~10min |
 | 14. GitHub Analysis | 2/2 | 8min | 4min |
 | 15. Simple/Expert Mode | 2/2 | 5min | 2.5min |
+| 16. GSD Command Registry | 1/3 | 4min | 4min |
 
 **Recent Trend:**
-- Last 5 plans: 10min, 3min, 5min, 3min, 2min
-- Trend: Phase 15 very fast -- conditional rendering is minimal-change work on established infrastructure
+- Last 5 plans: 3min, 5min, 3min, 2min, 4min
+- Trend: Phase 16 plan 01 clean execution -- backend registry with markdown parsing and API wiring
 
 *Updated after each plan completion*
 
@@ -199,6 +200,10 @@ Recent decisions affecting current work:
 - [15-02]: CollapsibleSection auto-expands via useEffect when switching to Expert mode (prevents stale collapsed state)
 - [15-02]: Simple mode ProjectDetail uses undefined style instead of custom single-column style for layout simplicity
 - [15-02]: PhaseManagement panel kept visible in both modes (workflow action, not expert metadata)
+- [16-01]: Simple frontmatter parser (no YAML library) for flat key-value pairs with nested when/agentOptions objects
+- [16-01]: Module-level singleton pattern for registry caching with chokidar file watcher (500ms debounce)
+- [16-01]: hasRunningSession() added to AgentSessionManager for GSD route session check
+- [16-01]: initGsd() called as fire-and-forget in app.ts startup (matches Telegram bot pattern)
 
 ### Pending Todos
 
@@ -214,6 +219,6 @@ None.
 ## Session Continuity
 
 Last session: 2026-02-10
-Stopped at: Phase 15 executed and verified (5/5 must-haves passed)
-Next step: Phase 15 verified. Begin Phase 16 research/planning.
+Stopped at: Completed 16-01-PLAN.md (GSD command registry backend)
+Next step: Execute 16-02-PLAN.md (client-side GSD command panel)
 Note: User wants to replace Agent SDK with Claude Code SDK (@anthropic-ai/claude-code) to use local subscription instead of API key
