@@ -11,16 +11,16 @@ See: .planning/PROJECT.md (updated 2026-02-10)
 
 Milestone: v1.3 SDK Migration & Stabilization
 Phase: 19 of 21 (AI Function Migration) — IN PROGRESS
-Plan: 3 of 6 in current phase (plans 01, 03, 04 complete)
-Status: Executing phase 19, plan 03 (search engine migration) complete
-Last activity: 2026-02-10 — Plan 19-03 executed (2 tasks, search subsystem migrated to warm session)
+Plan: 4 of 6 in current phase (plans 01, 02, 03, 04 complete)
+Status: Executing phase 19, plan 02 (gateway function migration) complete
+Last activity: 2026-02-10 — Plan 19-02 executed (2 tasks, generateAiResponse + runAiTools migrated to warm session)
 
 Progress: [██░░░░░░░░] 25% (v1.3: 1/4 phases)
 
 ## Performance Metrics
 
 **Velocity (cumulative):**
-- Total plans completed: 73
+- Total plans completed: 74
 - Milestones shipped: 3 (v1.0, v1.1, v1.2)
 - Total codebase: 46,922 LOC TypeScript
 
@@ -52,6 +52,9 @@ Recent decisions affecting current work:
 - plan permission mode with empty tools for lightweight text-only generation (19-01)
 - Prompt-based tool orchestration for search: model responds with JSON tool calls, engine executes plain functions (19-03)
 - Search tools as plain TypeScript functions without AI SDK tool() wrappers (19-03)
+- Zero-token usage tracking preserves audit trail shape under subscription model (19-02)
+- Prompt-based tool orchestration over MCP tools for simplicity with internal data queries (19-02)
+- PlainTool interface for AI tool definitions without SDK dependency (19-02)
 
 ### Pending Todos
 
@@ -69,5 +72,5 @@ None.
 ## Session Continuity
 
 Last session: 2026-02-10
-Stopped at: Completed 19-03-PLAN.md (search engine migration)
-Next step: Continue Phase 19 execution (plans 02, 05, 06 remaining)
+Stopped at: Completed 19-02-PLAN.md (gateway function migration)
+Next step: Continue Phase 19 execution (plans 05, 06 remaining)
