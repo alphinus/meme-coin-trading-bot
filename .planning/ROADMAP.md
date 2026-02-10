@@ -41,7 +41,7 @@ Full details: `.planning/milestones/v1.1-ROADMAP.md`
 
 - [x] **Phase 12: Infrastructure & Safety** — Agent SDK installation, PM2 tuning, SSE compression fix, graceful shutdown (completed 2026-02-10)
 - [x] **Phase 13: Agent Session Manager & SSE Streaming** — Server-side session lifecycle and real-time browser output (completed 2026-02-10)
-- [ ] **Phase 14: GitHub Analysis** — Read-only repo analysis via Octokit with auto-idea creation
+- [x] **Phase 14: GitHub Analysis** — Read-only repo analysis via Octokit with auto-idea creation (completed 2026-02-10)
 - [ ] **Phase 15: Simple/Expert Mode** — Mode toggle, persistence, and conditional UI rendering
 - [ ] **Phase 16: GSD Command Registry** — Dynamic command discovery, context-dependent buttons, pause/resume
 - [ ] **Phase 17: Guided Wizards** — Onboarding, idea creation, idea-to-project, and GSD step wizards with i18n
@@ -94,8 +94,8 @@ Plans:
 **Plans**: 2 plans
 
 Plans:
-- [ ] 14-01-PLAN.md — Backend analyzer module, event type, route (read-only Octokit + AI analysis + auto-idea creation)
-- [ ] 14-02-PLAN.md — Web UI component, Telegram URL detection, i18n translations
+- [x] 14-01-PLAN.md — Backend analyzer module, event type, route (read-only Octokit + AI analysis + auto-idea creation)
+- [x] 14-02-PLAN.md — Web UI component, Telegram URL detection, i18n translations
 
 ### Phase 15: Simple/Expert Mode
 **Goal**: Non-technical users see a clean, reduced interface while power users retain full feature access
@@ -107,11 +107,11 @@ Plans:
   3. Simple mode shows only Ideas, Projects, and current GSD action -- Soul Documents, KPI dashboard, AI config, and notification settings are hidden
   4. In Simple mode, detail sections (project metadata, event history) are collapsed by default but can be expanded by clicking
   5. Expert mode displays every feature exactly as it works today with zero behavior changes
-**Plans**: TBD
+**Plans**: 2 plans
 
 Plans:
-- [ ] 15-01: TBD
-- [ ] 15-02: TBD
+- [ ] 15-01-PLAN.md — Mode infrastructure: useMode hook, ModeToggle, ExpertRoute, App.tsx integration with conditional nav and route guards
+- [ ] 15-02-PLAN.md — Page-level rendering: Dashboard section hiding, ProjectDetail collapsible sections and KPI sidebar
 
 ### Phase 16: GSD Command Registry
 **Goal**: GSD action buttons auto-discover available commands and adapt to project state, with pause/resume for multi-project workflows
@@ -170,7 +170,7 @@ Note: Phase 14 and Phase 15 have no mutual dependency and could be parallelized.
 | 11. Telegram Bot i18n | v1.1 | 4/4 | Complete | 2026-02-09 |
 | 12. Infrastructure & Safety | v1.2 | 3/3 | Complete | 2026-02-10 |
 | 13. Agent Session Manager & SSE Streaming | v1.2 | 3/3 | Complete | 2026-02-10 |
-| 14. GitHub Analysis | v1.2 | 0/TBD | Not started | - |
-| 15. Simple/Expert Mode | v1.2 | 0/TBD | Not started | - |
+| 14. GitHub Analysis | v1.2 | 2/2 | Complete | 2026-02-10 |
+| 15. Simple/Expert Mode | v1.2 | 0/2 | Not started | - |
 | 16. GSD Command Registry | v1.2 | 0/TBD | Not started | - |
 | 17. Guided Wizards | v1.2 | 0/TBD | Not started | - |
