@@ -5,17 +5,17 @@
 See: .planning/PROJECT.md (updated 2026-02-07)
 
 **Core value:** No project dies without a documented decision, and every thought trail is fully reconstructable.
-**Current focus:** v1.2 Guided UX — Phase 16 in progress
+**Current focus:** v1.2 Guided UX — Phase 17 in progress
 
 ## Current Position
 
 Milestone: v1.2 Guided UX
-Phase: 16 of 17 (GSD Command Registry)
-Plan: 4/4 complete
-Status: Phase 16 complete (including gap closure), all plans executed
-Last activity: 2026-02-10 — Completed 16-04-PLAN.md (Cmd+K command palette gap closure)
+Phase: 17 of 17 (Guided Wizards)
+Plan: 1/3 complete
+Status: Executing Phase 17 — Plan 01 (Wizard Foundation) complete
+Last activity: 2026-02-10 — Completed 17-01-PLAN.md (WizardShell + quality gate foundation)
 
-Progress: [██████████] 100%
+Progress: [█████████░] 93%
 
 ## Performance Metrics
 
@@ -43,10 +43,11 @@ Progress: [██████████] 100%
 | 14. GitHub Analysis | 2/2 | 8min | 4min |
 | 15. Simple/Expert Mode | 2/2 | 5min | 2.5min |
 | 16. GSD Command Registry | 4/4 | 17min | 4.25min |
+| 17. Guided Wizards | 1/3 | 4min | 4min |
 
 **Recent Trend:**
-- Last 5 plans: 2min, 4min, 4min, 4min, 5min
-- Trend: Phase 16 all 4 plans at 4-5min each -- registry backend, client UI, pause/resume, Cmd+K palette
+- Last 5 plans: 4min, 4min, 4min, 5min, 4min
+- Trend: Phase 17 Plan 01 at 4min -- wizard foundation + quality gate
 
 *Updated after each plan completion*
 
@@ -215,6 +216,11 @@ Recent decisions affecting current work:
 - [16-03]: Resume banner shows Resume and Start New buttons (not separate discard endpoint)
 - [16-04]: cmdk data-attribute style tag inside component (accepted exception to inline-only for cmdk selectors)
 - [16-04]: GsdCommandPalette renders as Radix Dialog portal so DOM placement is flexible
+- [17-01]: shared/types/wizard.ts uses `any` for WizardStep.component (no React in shared/)
+- [17-01]: Quality gate uses pragmatic gsdAnswers Record<string, string> approach (not event-based lookup)
+- [17-01]: 6 mandatory questions from phases 1-3: idea_describe, idea_problem, idea_target, feas_technical, feas_resources, effort_scope
+- [17-01]: Quality gate returns 400 with full QualityGateResult for rich UI feedback
+- [17-01]: WizardShell uses useLanguage() hook (Setup.tsx, IdeaPool, Dashboard pattern)
 
 ### Pending Todos
 
@@ -230,6 +236,6 @@ None.
 ## Session Continuity
 
 Last session: 2026-02-10
-Stopped at: Phase 16 verified (PASSED 5/5) and marked complete in ROADMAP.md
-Next step: Phase 17 (Guided Wizards) or v1.2 release preparation.
+Stopped at: Completed 17-01-PLAN.md (Wizard Foundation — WizardShell + quality gate)
+Next step: Execute 17-02-PLAN.md (Onboarding Wizard) then 17-03-PLAN.md (Idea-to-Project Wizard)
 Note: User wants to replace Agent SDK with Claude Code SDK (@anthropic-ai/claude-code) to use local subscription instead of API key
