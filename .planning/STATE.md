@@ -5,22 +5,22 @@
 See: .planning/PROJECT.md (updated 2026-02-07)
 
 **Core value:** No project dies without a documented decision, and every thought trail is fully reconstructable.
-**Current focus:** v1.2 Guided UX — Phase 15 executing, Plan 01 complete
+**Current focus:** v1.2 Guided UX — Phase 15 complete
 
 ## Current Position
 
 Milestone: v1.2 Guided UX
-Phase: 15 of 17 (Simple/Expert Mode) — IN PROGRESS
-Plan: 1/2 complete
-Status: Plan 01 complete, Plan 02 next
-Last activity: 2026-02-10 — Completed 15-01-PLAN.md (mode infrastructure)
+Phase: 15 of 17 (Simple/Expert Mode) — COMPLETE
+Plan: 2/2 complete
+Status: Phase 15 complete, ready for Phase 16
+Last activity: 2026-02-10 — Completed 15-02-PLAN.md (mode page-level rendering)
 
 Progress: [█████████░] 90%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 44
+- Total plans completed: 45
 - Average duration: 7min
 - Total execution time: ~4.3 hours
 
@@ -41,11 +41,11 @@ Progress: [█████████░] 90%
 | 11. Telegram Bot i18n | 4/4 | ~20min | ~5min |
 | 12. Infrastructure & Safety | 2/N | ~20min | ~10min |
 | 14. GitHub Analysis | 2/2 | 8min | 4min |
-| 15. Simple/Expert Mode | 1/2 | 3min | 3min |
+| 15. Simple/Expert Mode | 2/2 | 5min | 2.5min |
 
 **Recent Trend:**
-- Last 5 plans: 10min, 10min, 3min, 5min, 3min
-- Trend: Phase 15 fast -- mode infrastructure follows established context/provider patterns
+- Last 5 plans: 10min, 3min, 5min, 3min, 2min
+- Trend: Phase 15 very fast -- conditional rendering is minimal-change work on established infrastructure
 
 *Updated after each plan completion*
 
@@ -196,6 +196,9 @@ Recent decisions affecting current work:
 - [15-01]: Default mode is "simple" when no localStorage value exists (non-technical user first experience)
 - [15-01]: ModeProvider placed inside AuthProvider but outside Routes (all routes and AppLayout have access)
 - [15-01]: ModeToggle placed as first element in headerRight (before NotificationBell) for visibility
+- [15-02]: CollapsibleSection auto-expands via useEffect when switching to Expert mode (prevents stale collapsed state)
+- [15-02]: Simple mode ProjectDetail uses undefined style instead of custom single-column style for layout simplicity
+- [15-02]: PhaseManagement panel kept visible in both modes (workflow action, not expert metadata)
 
 ### Pending Todos
 
@@ -211,6 +214,6 @@ None.
 ## Session Continuity
 
 Last session: 2026-02-10
-Stopped at: Completed 15-01-PLAN.md (Simple/Expert mode infrastructure)
-Next step: Execute 15-02-PLAN.md (Simple mode page-level conditional rendering)
+Stopped at: Completed 15-02-PLAN.md (Simple/Expert mode page-level rendering)
+Next step: Phase 15 complete. Begin Phase 16 planning.
 Note: User wants to replace Agent SDK with Claude Code SDK (@anthropic-ai/claude-code) to use local subscription instead of API key
