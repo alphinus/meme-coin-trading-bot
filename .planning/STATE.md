@@ -5,22 +5,22 @@
 See: .planning/PROJECT.md (updated 2026-02-07)
 
 **Core value:** No project dies without a documented decision, and every thought trail is fully reconstructable.
-**Current focus:** v1.2 Guided UX — Phase 15 planned, ready for execution
+**Current focus:** v1.2 Guided UX — Phase 15 executing, Plan 01 complete
 
 ## Current Position
 
 Milestone: v1.2 Guided UX
-Phase: 15 of 17 (Simple/Expert Mode) — PLANNED
-Plan: 0/2 complete
-Status: Planning Complete — 2 plans in 2 waves, verified
-Last activity: 2026-02-10 — Phase 14 verified and closed
+Phase: 15 of 17 (Simple/Expert Mode) — IN PROGRESS
+Plan: 1/2 complete
+Status: Plan 01 complete, Plan 02 next
+Last activity: 2026-02-10 — Completed 15-01-PLAN.md (mode infrastructure)
 
 Progress: [█████████░] 90%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 43
+- Total plans completed: 44
 - Average duration: 7min
 - Total execution time: ~4.3 hours
 
@@ -41,10 +41,11 @@ Progress: [█████████░] 90%
 | 11. Telegram Bot i18n | 4/4 | ~20min | ~5min |
 | 12. Infrastructure & Safety | 2/N | ~20min | ~10min |
 | 14. GitHub Analysis | 2/2 | 8min | 4min |
+| 15. Simple/Expert Mode | 1/2 | 3min | 3min |
 
 **Recent Trend:**
-- Last 5 plans: 5min, 10min, 10min, 3min, 5min
-- Trend: Phase 14 fast due to composition of existing modules + patterns
+- Last 5 plans: 10min, 10min, 3min, 5min, 3min
+- Trend: Phase 15 fast -- mode infrastructure follows established context/provider patterns
 
 *Updated after each plan completion*
 
@@ -192,6 +193,9 @@ Recent decisions affecting current work:
 - [14-02]: GitHubAnalyze component created as standalone with githubAnalyze.* i18n keys, reusing RepoAnalysis display from Plan 01
 - [14-02]: GITHUB_URL_REGEX uses negative lookahead to skip non-repo URLs (issues, PRs, blobs, trees, commits) in Telegram
 - [14-02]: User language for Telegram analysis derived from user.language profile field (consistent with grammyjs locale negotiator)
+- [15-01]: Default mode is "simple" when no localStorage value exists (non-technical user first experience)
+- [15-01]: ModeProvider placed inside AuthProvider but outside Routes (all routes and AppLayout have access)
+- [15-01]: ModeToggle placed as first element in headerRight (before NotificationBell) for visibility
 
 ### Pending Todos
 
@@ -207,6 +211,6 @@ None.
 ## Session Continuity
 
 Last session: 2026-02-10
-Stopped at: Completed 14-02-PLAN.md (GitHub analysis UI + Telegram)
-Next step: Phase 14 complete. Begin Phase 15 research/planning.
+Stopped at: Completed 15-01-PLAN.md (Simple/Expert mode infrastructure)
+Next step: Execute 15-02-PLAN.md (Simple mode page-level conditional rendering)
 Note: User wants to replace Agent SDK with Claude Code SDK (@anthropic-ai/claude-code) to use local subscription instead of API key
