@@ -11,18 +11,18 @@ See: .planning/PROJECT.md (updated 2026-02-07)
 
 Milestone: v1.2 Guided UX
 Phase: 16 of 17 (GSD Command Registry)
-Plan: 1/3 complete
-Status: Plan 16-01 complete, ready for Plan 16-02
-Last activity: 2026-02-10 — Completed 16-01-PLAN.md (GSD command registry backend)
+Plan: 4/4 complete
+Status: Phase 16 complete (including gap closure), all plans executed
+Last activity: 2026-02-10 — Completed 16-04-PLAN.md (Cmd+K command palette gap closure)
 
-Progress: [█████████░] 93%
+Progress: [██████████] 100%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 46
+- Total plans completed: 49
 - Average duration: 7min
-- Total execution time: ~4.4 hours
+- Total execution time: ~4.5 hours
 
 **By Phase:**
 
@@ -42,11 +42,11 @@ Progress: [█████████░] 93%
 | 12. Infrastructure & Safety | 2/N | ~20min | ~10min |
 | 14. GitHub Analysis | 2/2 | 8min | 4min |
 | 15. Simple/Expert Mode | 2/2 | 5min | 2.5min |
-| 16. GSD Command Registry | 1/3 | 4min | 4min |
+| 16. GSD Command Registry | 4/4 | 17min | 4.25min |
 
 **Recent Trend:**
-- Last 5 plans: 3min, 5min, 3min, 2min, 4min
-- Trend: Phase 16 plan 01 clean execution -- backend registry with markdown parsing and API wiring
+- Last 5 plans: 2min, 4min, 4min, 4min, 5min
+- Trend: Phase 16 all 4 plans at 4-5min each -- registry backend, client UI, pause/resume, Cmd+K palette
 
 *Updated after each plan completion*
 
@@ -204,6 +204,17 @@ Recent decisions affecting current work:
 - [16-01]: Module-level singleton pattern for registry caching with chokidar file watcher (500ms debounce)
 - [16-01]: hasRunningSession() added to AgentSessionManager for GSD route session check
 - [16-01]: initGsd() called as fire-and-forget in app.ts startup (matches Telegram bot pattern)
+- [16-02]: GsdCommandMenu uses horizontal flex-wrap button bar with i18n labels/descriptions
+- [16-02]: useGsdCommands hook fetches filtered commands with mode-aware refetching and buildPrompt() for template substitution
+- [16-02]: AgentPanel extended with initialPrompt/agentOptions/onStatusChange props for command-to-agent prompt injection
+- [16-02]: ProjectDetail coordinates GsdCommandMenu -> AgentPanel via activeCommand state and handleCommandExecute
+- [16-03]: SDK session ID captured from init message (type=system, subtype=init) for pause/resume
+- [16-03]: Auto-discard paused sessions on new session start (no 409 conflict, simpler UX)
+- [16-03]: Buffer snapshot of last 50 events stored for context replay on resume
+- [16-03]: Pause button shown only during streaming (not starting) since SDK session ID may not be captured yet
+- [16-03]: Resume banner shows Resume and Start New buttons (not separate discard endpoint)
+- [16-04]: cmdk data-attribute style tag inside component (accepted exception to inline-only for cmdk selectors)
+- [16-04]: GsdCommandPalette renders as Radix Dialog portal so DOM placement is flexible
 
 ### Pending Todos
 
@@ -219,6 +230,6 @@ None.
 ## Session Continuity
 
 Last session: 2026-02-10
-Stopped at: Completed 16-01-PLAN.md (GSD command registry backend)
-Next step: Execute 16-02-PLAN.md (client-side GSD command panel)
+Stopped at: Completed 16-04-PLAN.md (Cmd+K command palette gap closure) -- Phase 16 fully complete with all gaps closed
+Next step: Phase 16 complete. Move to Phase 17 or begin v1.2 release preparation.
 Note: User wants to replace Agent SDK with Claude Code SDK (@anthropic-ai/claude-code) to use local subscription instead of API key
