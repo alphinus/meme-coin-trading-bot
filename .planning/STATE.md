@@ -11,9 +11,9 @@ See: .planning/PROJECT.md (updated 2026-02-07)
 
 Milestone: v1.2 Guided UX
 Phase: 17 of 17 (Guided Wizards)
-Plan: 1/3 complete
-Status: Executing Phase 17 — Plan 01 (Wizard Foundation) complete
-Last activity: 2026-02-10 — Completed 17-01-PLAN.md (WizardShell + quality gate foundation)
+Plan: 3/5 complete
+Status: Executing Phase 17 — Plan 05 (Idea-to-Project Wizard & Quality Gate) complete
+Last activity: 2026-02-10 — Completed 17-05-PLAN.md (IdeaToProjectWizard + quality gate enforcement)
 
 Progress: [█████████░] 93%
 
@@ -43,11 +43,11 @@ Progress: [█████████░] 93%
 | 14. GitHub Analysis | 2/2 | 8min | 4min |
 | 15. Simple/Expert Mode | 2/2 | 5min | 2.5min |
 | 16. GSD Command Registry | 4/4 | 17min | 4.25min |
-| 17. Guided Wizards | 1/3 | 4min | 4min |
+| 17. Guided Wizards | 3/5 | 13min | 4.3min |
 
 **Recent Trend:**
-- Last 5 plans: 4min, 4min, 4min, 5min, 4min
-- Trend: Phase 17 Plan 01 at 4min -- wizard foundation + quality gate
+- Last 5 plans: 4min, 4min, 4min, 4min, 5min
+- Trend: Phase 17 Plan 05 at 5min -- idea-to-project wizard + quality gate enforcement
 
 *Updated after each plan completion*
 
@@ -221,6 +221,10 @@ Recent decisions affecting current work:
 - [17-01]: 6 mandatory questions from phases 1-3: idea_describe, idea_problem, idea_target, feas_technical, feas_resources, effort_scope
 - [17-01]: Quality gate returns 400 with full QualityGateResult for rich UI feedback
 - [17-01]: WizardShell uses useLanguage() hook (Setup.tsx, IdeaPool, Dashboard pattern)
+- [17-05]: Client-side question mirror in useQualityGate.ts (server remains validation source of truth)
+- [17-05]: QualityGateIndicator as primary progress indicator (7 labeled dots too cramped for WizardStepIndicator)
+- [17-05]: IdeaToProjectWizard manages own step navigation (custom per-question props, not WizardShell)
+- [17-05]: Quality gate enforced identically in Simple and Expert mode (GATE-03, no mode bypass)
 
 ### Pending Todos
 
@@ -236,6 +240,6 @@ None.
 ## Session Continuity
 
 Last session: 2026-02-10
-Stopped at: Completed 17-01-PLAN.md (Wizard Foundation — WizardShell + quality gate)
-Next step: Execute 17-02-PLAN.md (Onboarding Wizard) then 17-03-PLAN.md (Idea-to-Project Wizard)
+Stopped at: Completed 17-05-PLAN.md (Idea-to-Project Wizard & Quality Gate)
+Next step: Execute remaining Phase 17 plans (02, 03) if not already completed by parallel agents
 Note: User wants to replace Agent SDK with Claude Code SDK (@anthropic-ai/claude-code) to use local subscription instead of API key
