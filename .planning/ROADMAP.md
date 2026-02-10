@@ -91,11 +91,11 @@ Plans:
   2. AI automatically generates a project idea from the analysis and it appears in the Idea Pool
   3. User pastes a GitHub URL in Telegram and receives the same analysis results plus idea auto-creation
   4. No write operations occur against GitHub -- all API calls are read-only (no forks, no commits, no PRs)
-**Plans**: TBD
+**Plans**: 2 plans
 
 Plans:
-- [ ] 14-01: TBD
-- [ ] 14-02: TBD
+- [ ] 14-01-PLAN.md — Backend analyzer module, event type, route (read-only Octokit + AI analysis + auto-idea creation)
+- [ ] 14-02-PLAN.md — Web UI component, Telegram URL detection, i18n translations
 
 ### Phase 15: Simple/Expert Mode
 **Goal**: Non-technical users see a clean, reduced interface while power users retain full feature access
