@@ -15,6 +15,14 @@ Requirements for v1.3 SDK Migration & Stabilization. Each maps to roadmap phases
 - [ ] **SDKA-04**: Agent SDK bumped to v0.2.38 with clean TypeScript compilation
 - [ ] **SDKA-05**: Deprecated `persistSession` option removed from session lifecycle
 
+### AI Function Migration
+
+- [ ] **AIMIG-01**: Warm Agent SDK session pattern handles all lightweight AI calls without cold start per call
+- [ ] **AIMIG-02**: All 15 AI SDK v6 generateText/streamText calls replaced with Agent SDK via warm session
+- [ ] **AIMIG-03**: Voice transcription uses local whisper.cpp instead of OpenAI Whisper API
+- [ ] **AIMIG-04**: ANTHROPIC_API_KEY and OPENAI_API_KEY removed entirely from codebase and .env
+- [ ] **AIMIG-05**: AI cost dashboard updated to reflect subscription model (no per-token billing)
+
 ### SDK Feature Adoption
 
 - [ ] **SDKF-01**: User can see stop reason (task complete / budget exceeded / max turns) in agent session UI
@@ -53,6 +61,7 @@ Explicitly excluded. Documented to prevent scope creep.
 | WebSocket replacement for SSE | SSE is correct for unidirectional streaming, already working |
 | Multi-user concurrent sessions | Not needed for 2-person team, adds significant complexity |
 | SDK sandbox/container mode | Overkill for controlled self-hosted environment |
+| Cloud-based transcription | Local whisper.cpp replaces OpenAI Whisper API |
 
 ## Traceability
 
@@ -60,26 +69,31 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| SDKA-01 | — | Pending |
-| SDKA-02 | — | Pending |
-| SDKA-03 | — | Pending |
-| SDKA-04 | — | Pending |
-| SDKA-05 | — | Pending |
-| SDKF-01 | — | Pending |
-| SDKF-02 | — | Pending |
-| SDKF-03 | — | Pending |
-| SDKF-04 | — | Pending |
-| STAB-01 | — | Pending |
-| STAB-02 | — | Pending |
-| STAB-03 | — | Pending |
-| STAB-04 | — | Pending |
-| STAB-05 | — | Pending |
+| SDKA-01 | Phase 18 | Pending |
+| SDKA-02 | Phase 18 | Pending |
+| SDKA-03 | Phase 18 | Pending |
+| SDKA-04 | Phase 18 | Pending |
+| SDKA-05 | Phase 18 | Pending |
+| AIMIG-01 | Phase 19 | Pending |
+| AIMIG-02 | Phase 19 | Pending |
+| AIMIG-03 | Phase 19 | Pending |
+| AIMIG-04 | Phase 19 | Pending |
+| AIMIG-05 | Phase 19 | Pending |
+| SDKF-01 | Phase 20 | Pending |
+| SDKF-02 | Phase 20 | Pending |
+| SDKF-03 | Phase 20 | Pending |
+| SDKF-04 | Phase 20 | Pending |
+| STAB-01 | Phase 21 | Pending |
+| STAB-02 | Phase 21 | Pending |
+| STAB-03 | Phase 21 | Pending |
+| STAB-04 | Phase 21 | Pending |
+| STAB-05 | Phase 21 | Pending |
 
 **Coverage:**
-- v1.3 requirements: 14 total
-- Mapped to phases: 0
-- Unmapped: 14 (pending roadmap creation)
+- v1.3 requirements: 19 total
+- Mapped to phases: 19
+- Unmapped: 0
 
 ---
 *Requirements defined: 2026-02-10*
-*Last updated: 2026-02-10 after initial definition*
+*Last updated: 2026-02-10 after scope expansion (full AI migration)*
