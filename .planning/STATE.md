@@ -5,24 +5,24 @@
 See: .planning/PROJECT.md (updated 2026-02-07)
 
 **Core value:** No project dies without a documented decision, and every thought trail is fully reconstructable.
-**Current focus:** v1.2 Guided UX — Phase 14 in progress (Plan 01 complete)
+**Current focus:** v1.2 Guided UX — Phase 15 planned, ready for execution
 
 ## Current Position
 
 Milestone: v1.2 Guided UX
-Phase: 14 of 17 (GitHub Analysis)
-Plan: 1 of 2 in current phase
-Status: Executing
-Last activity: 2026-02-10 — Completed 14-01-PLAN.md (GitHub analysis backend)
+Phase: 15 of 17 (Simple/Expert Mode) — PLANNED
+Plan: 0/2 complete
+Status: Planning Complete — 2 plans in 2 waves, verified
+Last activity: 2026-02-10 — Phase 14 verified and closed
 
 Progress: [█████████░] 90%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 42
+- Total plans completed: 43
 - Average duration: 7min
-- Total execution time: ~4.25 hours
+- Total execution time: ~4.3 hours
 
 **By Phase:**
 
@@ -40,11 +40,11 @@ Progress: [█████████░] 90%
 | 10. Client i18n Coverage | 4/4 | ~20min | ~5min |
 | 11. Telegram Bot i18n | 4/4 | ~20min | ~5min |
 | 12. Infrastructure & Safety | 2/N | ~20min | ~10min |
-| 14. GitHub Analysis | 1/2 | 3min | 3min |
+| 14. GitHub Analysis | 2/2 | 8min | 4min |
 
 **Recent Trend:**
-- Last 5 plans: 4min, 5min, 10min, 10min, 3min
-- Trend: Phase 14 Plan 01 fast due to pure composition of existing modules
+- Last 5 plans: 5min, 10min, 10min, 3min, 5min
+- Trend: Phase 14 fast due to composition of existing modules + patterns
 
 *Updated after each plan completion*
 
@@ -189,6 +189,9 @@ Recent decisions affecting current work:
 - [14-01]: Promise.allSettled instead of Promise.all for parallel Octokit calls so one failure does not abort others
 - [14-01]: Synchronous 200 response for /analyze route (not 202 fire-and-forget) since read-only analysis completes in 2-5s
 - [14-01]: New integration.github_repo_analyzed event type instead of reusing integration.github_code_analyzed for clarity
+- [14-02]: GitHubAnalyze component created as standalone with githubAnalyze.* i18n keys, reusing RepoAnalysis display from Plan 01
+- [14-02]: GITHUB_URL_REGEX uses negative lookahead to skip non-repo URLs (issues, PRs, blobs, trees, commits) in Telegram
+- [14-02]: User language for Telegram analysis derived from user.language profile field (consistent with grammyjs locale negotiator)
 
 ### Pending Todos
 
@@ -204,6 +207,6 @@ None.
 ## Session Continuity
 
 Last session: 2026-02-10
-Stopped at: Completed 14-01-PLAN.md (GitHub analysis backend)
-Next step: Execute 14-02-PLAN.md (GitHub analysis UI + Telegram integration)
+Stopped at: Completed 14-02-PLAN.md (GitHub analysis UI + Telegram)
+Next step: Phase 14 complete. Begin Phase 15 research/planning.
 Note: User wants to replace Agent SDK with Claude Code SDK (@anthropic-ai/claude-code) to use local subscription instead of API key
