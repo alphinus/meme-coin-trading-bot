@@ -67,8 +67,8 @@ Full details: `.planning/milestones/v1.2-ROADMAP.md`
 **Plans**: 2 plans
 
 Plans:
-- [ ] 18-01-PLAN.md -- Remove persistSession from resume() and bump SDK to v0.2.38
-- [ ] 18-02-PLAN.md -- Add startup auth detection/logging, capture apiKeySource, update .env.example
+- [x] 18-01-PLAN.md -- Remove persistSession from resume() and bump SDK to v0.2.38
+- [x] 18-02-PLAN.md -- Add startup auth detection/logging, capture apiKeySource, update .env.example
 
 #### Phase 19: AI Function Migration
 **Goal**: Every AI-powered feature in the application uses the Agent SDK warm session pattern instead of AI SDK v6 direct API calls -- no API keys remain in the codebase, no per-token billing occurs
@@ -80,12 +80,15 @@ Plans:
   3. Voice transcription (web upload and Telegram voice messages) produces text output using local whisper.cpp -- no network call to OpenAI Whisper API occurs, and OPENAI_API_KEY is not required
   4. The .env file and codebase contain zero references to ANTHROPIC_API_KEY or OPENAI_API_KEY -- `grep -r "ANTHROPIC_API_KEY\|OPENAI_API_KEY" server/` returns only documentation/comments explaining the removal
   5. The AI cost dashboard reflects the subscription model -- it no longer displays per-token cost breakdowns and instead shows session count, duration, and subscription status
-**Plans**: TBD
+**Plans**: 6 plans
 
 Plans:
-- [ ] 19-01: TBD
-- [ ] 19-02: TBD
-- [ ] 19-03: TBD
+- [ ] 19-01-PLAN.md -- Warm Agent Session Singleton (create warm-session.ts, integrate into app.ts startup)
+- [ ] 19-02-PLAN.md -- Gateway Function Migration (rewrite generateAiResponse, runAiTools, tool definitions)
+- [ ] 19-03-PLAN.md -- Search Tool Reimplementation (rewrite aiSearch, search tools as plain functions)
+- [ ] 19-04-PLAN.md -- Voice Transcription Migration (rewrite transcribeAudio to use local whisper.cpp)
+- [ ] 19-05-PLAN.md -- API Key Removal & Package Cleanup (delete providers.ts, uninstall AI SDK packages, remove API keys)
+- [ ] 19-06-PLAN.md -- Cost Dashboard Update (rewrite tracker/dashboard for subscription usage model)
 
 #### Phase 20: SDK Feature Adoption
 **Goal**: Agent sessions surface richer information -- users see why sessions ended, sessions survive server restarts, and session IDs are predictable
@@ -143,7 +146,7 @@ Phases execute in numeric order: 18 → 19 → 20 → 21
 | 15. Simple/Expert Mode | v1.2 | 2/2 | Complete | 2026-02-10 |
 | 16. GSD Command Registry | v1.2 | 4/4 | Complete | 2026-02-10 |
 | 17. Guided Wizards | v1.2 | 5/5 | Complete | 2026-02-10 |
-| 18. SDK Auth & Cleanup | v1.3 | 0/2 | Planned | - |
-| 19. AI Function Migration | v1.3 | 0/TBD | Not started | - |
+| 18. SDK Auth & Cleanup | v1.3 | 2/2 | Complete | 2026-02-10 |
+| 19. AI Function Migration | v1.3 | 0/6 | Not started | - |
 | 20. SDK Feature Adoption | v1.3 | 0/TBD | Not started | - |
 | 21. Stabilization | v1.3 | 0/TBD | Not started | - |
