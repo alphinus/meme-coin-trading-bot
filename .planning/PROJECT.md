@@ -2,7 +2,7 @@
 
 ## What This Is
 
-A web application for structured, distance-spanning collaboration between two or more people across multiple parallel projects. It combines individual Soul Documents (persistent records of each person's thinking patterns), a team-level Meta Soul Document, event-driven append-only documentation, a rule-bound proactive AI team member, and a GSD-powered execution engine — all wrapped in a clean web UI with full German/English i18n and a fully mirrored Telegram bot with language-aware notifications. Built by and for Eluma GmbH (eluma.ch), a Swiss software consultancy run by Elvis and Mario.
+A web application for structured, distance-spanning collaboration between two or more people across multiple parallel projects. It combines individual Soul Documents (persistent records of each person's thinking patterns), a team-level Meta Soul Document, event-driven append-only documentation, a rule-bound proactive AI team member, and a GSD-powered execution engine — all wrapped in a clean web UI with Simple/Expert mode, guided wizards, full German/English i18n, and a fully mirrored Telegram bot with language-aware notifications. Built by and for Eluma GmbH (eluma.ch), a Swiss software consultancy run by Elvis and Mario.
 
 ## Core Value
 
@@ -53,19 +53,23 @@ No project dies without a documented decision, and every thought trail is fully 
 - ✓ 100% i18n coverage for web UI — all components use translation keys — v1.1
 - ✓ Telegram bot fully i18n-enabled with per-user language preference — v1.1
 - ✓ Per-recipient language resolution in notifications — v1.1
+- ✓ Agent SDK sessions with real-time SSE streaming to browser — v1.2
+- ✓ Per-project session enforcement with abort, reconnect, and pause/resume — v1.2
+- ✓ Read-only GitHub repo analysis with auto-idea creation (web + Telegram) — v1.2
+- ✓ Simple/Expert mode toggle with conditional UI rendering — v1.2
+- ✓ Dynamic GSD command registry with context-dependent buttons and Cmd+K palette — v1.2
+- ✓ Guided wizards for onboarding, idea creation, and idea-to-project with quality gates — v1.2
+- ✓ Quality gates enforce mandatory GSD questions before project creation — v1.2
 
 ### Active
 
-## Current Milestone: v1.2 Guided UX
+**Current Milestone: v1.3 SDK Migration & Stabilization**
 
-**Goal:** Transform Eluma from an expert-only tool into a guided platform with Simple/Expert toggle, wizard-driven flows, GitHub URL auto-analysis, and Claude Code as backend execution engine with dynamic GSD buttons.
-
-**Target features:**
-- Simple/Expert mode toggle with reduced feature set in Simple mode (only Ideas + Projects)
-- Guided onboarding wizard and step-by-step flows for Idea → Project → Execution
-- GitHub URL paste → AI auto-analyzes repo → Idea created in pool → both members verify
-- Claude Code as backend engine (server spawns processes, streams output to UI)
-- Dynamic GSD command buttons that auto-adapt when plugin updates
+- [ ] Replace Agent SDK with Claude Code SDK (@anthropic-ai/claude-code) — use local subscription instead of API key
+- [ ] Maintain same UX: SSE streaming, per-project session controls, abort/reconnect, pause/resume
+- [ ] Run all 23 pending v1.2 verification tests and fix failures
+- [ ] Fix bugs discovered during verification
+- [ ] Polish UX rough edges in wizards, modes, and navigation
 
 ### Out of Scope
 
@@ -75,23 +79,25 @@ No project dies without a documented decision, and every thought trail is fully 
 - Blackbox AI — every AI action must be transparent and auditable
 - Auto-deletion or compression of thoughts — append-only philosophy
 - Native mobile app — Telegram handles all mobile workflows
-- Role-based permissions — v1 has open visibility, expand later
+- Role-based permissions — open visibility sufficient for 2-person team, expand later
 - External workflow tools (n8n etc.) — self-contained system
 - 50k token consolidation rule — deferred, not needed at current scale
 - LLM temperature tuning per context/task type — deferred, presets sufficient
 - Auto model selection — deferred, manual override covers use cases
-- Real-time collaboration (WebSockets) — deferred, polling sufficient for 2-person team
+- Real-time collaboration (WebSockets) — SSE sufficient for streaming, polling for 2-person team
 - Google Login for authentication — deferred, passkey/password auth works
-- Context management (/clear) invisible handling — deferred, not applicable to web UI
 - Additional languages beyond DE/EN — two languages sufficient for Eluma team
 - Automated i18n testing/linting — deferred to future milestone
+- xterm.js terminal emulator in browser — anti-feature for non-technical users
+- Multiple concurrent agent sessions per project — resource constraints on self-hosted hardware
 
 ## Context
 
 Shipped v1.0 MVP with 39,396 LOC TypeScript across 235 files.
 Shipped v1.1 i18n Quality with 210+ client translation keys, 140-key Fluent files for Telegram bot, 9 plans over ~45 minutes.
-Tech stack: Express + Vite + React monorepo, JSONL event store, AI SDK v6, grammY Telegram bot with @grammyjs/i18n + Fluent.
-11 phases, 52 plans total across v1.0 + v1.1.
+Shipped v1.2 Guided UX with 6 phases, 19 plans, 46,922 LOC TypeScript. Added SSE streaming, GitHub analysis, Simple/Expert mode, GSD command registry, and guided wizards.
+Tech stack: Express + Vite + React monorepo, JSONL event store, AI SDK v6, grammY Telegram bot with @grammyjs/i18n + Fluent, Agent SDK with SSE streaming, cmdk command palette.
+17 phases, 68 plans total across v1.0 + v1.1 + v1.2.
 
 **Team:** Elvis and Mario at Eluma GmbH (eluma.ch), a Swiss software consultancy based in Winterthur and Schaffhausen.
 
@@ -129,11 +135,18 @@ Tech stack: Express + Vite + React monorepo, JSONL event store, AI SDK v6, gramm
 | GSD as execution engine | Proven workflow for non-techies | ✓ Good — button-driven UI works |
 | Unicode umlauts mandatory | ASCII approximations unacceptable in German UI | ✓ Good — v1.1 fixed all 129 instances |
 | CLAUDE.md encoding rules | Prevent future umlaut/i18n regressions | ✓ Good — added to CLAUDE.md |
-| Manual umlaut review over regex | Avoid false positives (Dauer, Neue, Aktuelle) | ✓ Good — zero false positives |
-| useTranslation over useLanguage | CLAUDE.md convention, react-i18next directly | ✓ Good — consistent across all components |
 | Fluent .ftl for Telegram i18n | grammY i18n plugin standard, variable interpolation | ✓ Good — 140 keys, clean separation |
-| TranslateFunc parameter pattern | Formatter functions accept t for i18n labels | ✓ Good — clean separation of concerns |
 | Per-recipient language in emitter | loadUser().language with "de" fallback | ✓ Good — each user gets their language |
+| SSE over WebSockets | Unidirectional streaming sufficient, simpler | ✓ Good — agent output streams cleanly |
+| EventEmitter + buffer for SSE | Session manager emits live, buffers for replay | ✓ Good — reconnection works seamlessly |
+| permissionMode default with canUseTool | Security-first agent sessions, explicit allowlist | ✓ Good — 10-tool allowlist, no bypass |
+| Simple mode as default | Non-technical users see clean UI first | ✓ Good — progressive disclosure works |
+| chokidar for GSD command registry | Auto-update on plugin file changes | ✓ Good — 500ms debounce, no restart needed |
+| cmdk for command palette | Lightweight, Radix-based, fuzzy matching | ✓ Good — Expert mode Cmd+K works well |
+| Quality gate with mandatory questions | 6 questions from GSD phases 1-3 | ✓ Good — blocks project creation without answers |
+| WizardShell as reusable container | Shared wizard UI with step indicator | ✓ Good — used across all wizard types |
+
+| Claude Code SDK over Agent SDK | Local subscription vs API key, cost savings, same UX | — Pending |
 
 ---
-*Last updated: 2026-02-09 after v1.2 milestone start*
+*Last updated: 2026-02-10 after v1.3 milestone started*
