@@ -40,7 +40,7 @@ Full details: `.planning/milestones/v1.1-ROADMAP.md`
 **Milestone Goal:** Transform Eluma from an expert-only tool into a guided platform with Simple/Expert toggle, wizard-driven flows, GitHub URL auto-analysis, and Claude Code as backend execution engine with dynamic GSD buttons.
 
 - [x] **Phase 12: Infrastructure & Safety** — Agent SDK installation, PM2 tuning, SSE compression fix, graceful shutdown (completed 2026-02-10)
-- [ ] **Phase 13: Agent Session Manager & SSE Streaming** — Server-side session lifecycle and real-time browser output
+- [x] **Phase 13: Agent Session Manager & SSE Streaming** — Server-side session lifecycle and real-time browser output (completed 2026-02-10)
 - [ ] **Phase 14: GitHub Analysis** — Read-only repo analysis via Octokit with auto-idea creation
 - [ ] **Phase 15: Simple/Expert Mode** — Mode toggle, persistence, and conditional UI rendering
 - [ ] **Phase 16: GSD Command Registry** — Dynamic command discovery, context-dependent buttons, pause/resume
@@ -78,9 +78,9 @@ Plans:
 **Plans**: 3 plans
 
 Plans:
-- [ ] 13-01-PLAN.md — Server hardening: per-project session enforcement, SSE event IDs, reconnection replay, buffer increase
-- [ ] 13-02-PLAN.md — Client hardening: EventSource reconnection fix, reconnecting status, syntax highlighting
-- [ ] 13-03-PLAN.md — GSD action button integration in ProjectDetail, i18n keys, human verification
+- [x] 13-01-PLAN.md — Server hardening: per-project session enforcement, SSE event IDs, reconnection replay, buffer increase
+- [x] 13-02-PLAN.md — Client hardening: EventSource reconnection fix, reconnecting status, syntax highlighting
+- [x] 13-03-PLAN.md — GSD action button integration in ProjectDetail, i18n keys, human verification
 
 ### Phase 14: GitHub Analysis
 **Goal**: Users can paste a GitHub URL and get instant AI-powered repository analysis with an auto-generated idea in the pool
@@ -169,7 +169,7 @@ Note: Phase 14 and Phase 15 have no mutual dependency and could be parallelized.
 | 10. Client i18n Coverage | v1.1 | 4/4 | Complete | 2026-02-09 |
 | 11. Telegram Bot i18n | v1.1 | 4/4 | Complete | 2026-02-09 |
 | 12. Infrastructure & Safety | v1.2 | 3/3 | Complete | 2026-02-10 |
-| 13. Agent Session Manager & SSE Streaming | v1.2 | 0/3 | Planned | - |
+| 13. Agent Session Manager & SSE Streaming | v1.2 | 3/3 | Complete | 2026-02-10 |
 | 14. GitHub Analysis | v1.2 | 0/TBD | Not started | - |
 | 15. Simple/Expert Mode | v1.2 | 0/TBD | Not started | - |
 | 16. GSD Command Registry | v1.2 | 0/TBD | Not started | - |
