@@ -4,7 +4,8 @@
 
 - ✅ **v1.0 MVP** — Phases 1-8 (shipped 2026-02-09)
 - ✅ **v1.1 i18n Quality** — Phases 9-11 (shipped 2026-02-09)
-- 🚧 **v1.2 Guided UX** — Phases 12-17 (in progress)
+- ✅ **v1.2 Guided UX** — Phases 12-17 (shipped 2026-02-10)
+- 🚧 **v1.3 SDK Migration & Stabilization** — Phases 18-21 (in progress)
 
 ## Phases
 
@@ -35,128 +36,93 @@ Full details: `.planning/milestones/v1.1-ROADMAP.md`
 
 </details>
 
-### 🚧 v1.2 Guided UX (In Progress)
+<details>
+<summary>✅ v1.2 Guided UX (Phases 12-17) — SHIPPED 2026-02-10</summary>
 
-**Milestone Goal:** Transform Eluma from an expert-only tool into a guided platform with Simple/Expert toggle, wizard-driven flows, GitHub URL auto-analysis, and Claude Code as backend execution engine with dynamic GSD buttons.
+- [x] Phase 12: Infrastructure & Safety (3/3 plans) — completed 2026-02-10
+- [x] Phase 13: Agent Session Manager & SSE Streaming (3/3 plans) — completed 2026-02-10
+- [x] Phase 14: GitHub Analysis (2/2 plans) — completed 2026-02-10
+- [x] Phase 15: Simple/Expert Mode (2/2 plans) — completed 2026-02-10
+- [x] Phase 16: GSD Command Registry (4/4 plans) — completed 2026-02-10
+- [x] Phase 17: Guided Wizards (5/5 plans) — completed 2026-02-10
 
-- [x] **Phase 12: Infrastructure & Safety** — Agent SDK installation, PM2 tuning, SSE compression fix, graceful shutdown (completed 2026-02-10)
-- [x] **Phase 13: Agent Session Manager & SSE Streaming** — Server-side session lifecycle and real-time browser output (completed 2026-02-10)
-- [x] **Phase 14: GitHub Analysis** — Read-only repo analysis via Octokit with auto-idea creation (completed 2026-02-10)
-- [x] **Phase 15: Simple/Expert Mode** — Mode toggle, persistence, and conditional UI rendering (completed 2026-02-10)
-- [x] **Phase 16: GSD Command Registry** — Dynamic command discovery, context-dependent buttons, pause/resume (completed 2026-02-10)
-- [ ] **Phase 17: Guided Wizards** — Onboarding, idea creation, idea-to-project, and GSD step wizards with i18n
+Full details: `.planning/milestones/v1.2-ROADMAP.md`
 
-## Phase Details
+</details>
 
-### Phase 12: Infrastructure & Safety
-**Goal**: Server can run Claude Agent SDK sessions safely without crashes, memory limits, or SSE buffering
-**Depends on**: Phase 11 (v1.1 complete)
-**Requirements**: INFRA-01, INFRA-02, INFRA-03, INFRA-04, INFRA-05
+### 🚧 v1.3 SDK Migration & Stabilization (In Progress)
+
+**Milestone Goal:** Migrate all AI calls from API-key-based AI SDK v6 to subscription-based Agent SDK, replace cloud transcription with local whisper.cpp, adopt new SDK features for better session UX, and stabilize all v1.2 features through systematic verification and polish. End state: zero API keys, zero per-token costs, everything runs on Claude Max subscription.
+
+#### Phase 18: SDK Auth & Cleanup
+**Goal**: Agent sessions run on Claude subscription auth with a clean, up-to-date SDK and no deprecated options
+**Depends on**: Phase 17 (v1.2 complete)
+**Requirements**: SDKA-01, SDKA-02, SDKA-03, SDKA-04, SDKA-05
 **Success Criteria** (what must be TRUE):
-  1. Server starts with @anthropic-ai/claude-agent-sdk installed and can instantiate an Agent SDK session that calls query()
-  2. PM2 does not restart the server during an agent session due to memory limits
-  3. SSE responses stream to the browser incrementally without compression middleware buffering (flush-on-write verified)
-  4. Agent sessions only have access to explicitly allowlisted tools (canUseTool handler rejects unlisted tools)
-  5. Stopping the server with SIGTERM cleans up any active agent sessions before exit
-**Plans**: 3 plans
+  1. User can start an agent session with CLAUDE_CODE_OAUTH_TOKEN set and no ANTHROPIC_API_KEY -- session completes successfully using subscription quota
+  2. Server startup logs display which auth method is active (subscription vs API key) so the operator knows what billing path is in use
+  3. Server emits a visible warning at startup when both ANTHROPIC_API_KEY and CLAUDE_CODE_OAUTH_TOKEN are set, preventing silent billing surprises
+  4. SDK version is 0.2.38 and `npm run build` completes with zero TypeScript errors
+  5. The persistSession option is gone from session-manager.ts -- sessions start and resume without passing deprecated options
+**Plans**: TBD
 
 Plans:
-- [x] 12-01-PLAN.md — Agent SDK install, types, tool permissions, PM2 config
-- [x] 12-02-PLAN.md — SSE writer, session manager, graceful shutdown, test endpoint
-- [x] 12-03-PLAN.md — Gap closure: emit SSE 'status' event during graceful shutdown cleanup
+- [ ] 18-01: TBD
+- [ ] 18-02: TBD
 
-### Phase 13: Agent Session Manager & SSE Streaming
-**Goal**: Users see real-time Claude Code output streaming in their browser and can control (abort) running sessions
-**Depends on**: Phase 12
-**Requirements**: AGENT-01, AGENT-02, AGENT-03, AGENT-04, AGENT-05
+#### Phase 19: AI Function Migration
+**Goal**: Every AI-powered feature in the application uses the Agent SDK warm session pattern instead of AI SDK v6 direct API calls -- no API keys remain in the codebase, no per-token billing occurs
+**Depends on**: Phase 18 (subscription auth validated)
+**Requirements**: AIMIG-01, AIMIG-02, AIMIG-03, AIMIG-04, AIMIG-05
 **Success Criteria** (what must be TRUE):
-  1. User clicks a GSD action button and sees streaming text output appear token-by-token in the browser
-  2. Server tracks active agent sessions in memory and enforces one session per project at a time
-  3. User can click an abort button during streaming and the agent session stops within seconds, freeing resources
-  4. If the SSE connection drops (network blip), the client automatically reconnects and resumes from the last received event
-  5. Agent output renders with proper markdown formatting including code blocks, headers, and lists
-**Plans**: 3 plans
+  1. A warm Agent SDK session stays open and handles lightweight AI calls (search routing, email drafting, soul reflections, etc.) without a ~12s cold start per call -- response latency for simple AI tasks is under 3 seconds
+  2. All 15 generateText/streamText call sites across 17 server files are replaced -- `grep -r "generateText\|streamText" server/src/` returns zero matches, and `grep -r "@ai-sdk/anthropic\|@ai-sdk/openai" server/src/` returns zero matches
+  3. Voice transcription (web upload and Telegram voice messages) produces text output using local whisper.cpp -- no network call to OpenAI Whisper API occurs, and OPENAI_API_KEY is not required
+  4. The .env file and codebase contain zero references to ANTHROPIC_API_KEY or OPENAI_API_KEY -- `grep -r "ANTHROPIC_API_KEY\|OPENAI_API_KEY" server/` returns only documentation/comments explaining the removal
+  5. The AI cost dashboard reflects the subscription model -- it no longer displays per-token cost breakdowns and instead shows session count, duration, and subscription status
+**Plans**: TBD
 
 Plans:
-- [x] 13-01-PLAN.md — Server hardening: per-project session enforcement, SSE event IDs, reconnection replay, buffer increase
-- [x] 13-02-PLAN.md — Client hardening: EventSource reconnection fix, reconnecting status, syntax highlighting
-- [x] 13-03-PLAN.md — GSD action button integration in ProjectDetail, i18n keys, human verification
+- [ ] 19-01: TBD
+- [ ] 19-02: TBD
+- [ ] 19-03: TBD
 
-### Phase 14: GitHub Analysis
-**Goal**: Users can paste a GitHub URL and get instant AI-powered repository analysis with an auto-generated idea in the pool
-**Depends on**: Phase 12 (uses Agent SDK for AI analysis), existing Octokit integration from Phase 8
-**Requirements**: GH-01, GH-02, GH-03, GH-04
+#### Phase 20: SDK Feature Adoption
+**Goal**: Agent sessions surface richer information -- users see why sessions ended, sessions survive server restarts, and session IDs are predictable
+**Depends on**: Phase 19 (all AI calls on Agent SDK)
+**Requirements**: SDKF-01, SDKF-02, SDKF-03, SDKF-04
 **Success Criteria** (what must be TRUE):
-  1. User pastes a GitHub repo URL in the web UI and sees README summary, tech stack, and file structure within seconds
-  2. AI automatically generates a project idea from the analysis and it appears in the Idea Pool
-  3. User pastes a GitHub URL in Telegram and receives the same analysis results plus idea auto-creation
-  4. No write operations occur against GitHub -- all API calls are read-only (no forks, no commits, no PRs)
-**Plans**: 2 plans
+  1. When an agent session ends, the UI displays the stop reason (task complete, budget exceeded, or max turns) so the user knows what happened without guessing
+  2. After a server restart, previously active sessions are discovered via listSessions() and surfaced in the UI as resumable -- not silently lost
+  3. Agent sessions use deterministic IDs based on project ID, so pause/resume targets the correct session without fragile in-memory lookups
+  4. At server startup, auth health check calls accountInfo() or equivalent and logs whether the configured token is valid -- invalid tokens are caught before any user triggers a session
+**Plans**: TBD
 
 Plans:
-- [x] 14-01-PLAN.md — Backend analyzer module, event type, route (read-only Octokit + AI analysis + auto-idea creation)
-- [x] 14-02-PLAN.md — Web UI component, Telegram URL detection, i18n translations
+- [ ] 20-01: TBD
+- [ ] 20-02: TBD
 
-### Phase 15: Simple/Expert Mode
-**Goal**: Non-technical users see a clean, reduced interface while power users retain full feature access
-**Depends on**: Nothing (standalone UI concern, can parallelize with Phase 14)
-**Requirements**: MODE-01, MODE-02, MODE-03, MODE-04, MODE-05
+#### Phase 21: Stabilization
+**Goal**: All v1.2 features are verified working end-to-end, bugs are fixed, and UX rough edges are polished across wizards, modes, and navigation
+**Depends on**: Phase 20 (SDK features adopted)
+**Requirements**: STAB-01, STAB-02, STAB-03, STAB-04, STAB-05
 **Success Criteria** (what must be TRUE):
-  1. User can toggle between Simple and Expert mode via a switch in the app header
-  2. Mode preference survives page reload and new browser sessions (persisted in localStorage)
-  3. Simple mode shows only Ideas, Projects, and current GSD action -- Soul Documents, KPI dashboard, AI config, and notification settings are hidden
-  4. In Simple mode, detail sections (project metadata, event history) are collapsed by default but can be expanded by clicking
-  5. Expert mode displays every feature exactly as it works today with zero behavior changes
-**Plans**: 2 plans
+  1. All 23 pending v1.2 verification tests have been executed and results documented -- every test has a pass/fail outcome recorded
+  2. All failures identified in the verification pass are fixed -- re-running those tests produces passing results
+  3. Guided wizards (onboarding, idea creation, idea-to-project) work smoothly without confusing transitions, broken steps, or missing translations
+  4. Simple/Expert mode toggle works correctly -- switching modes updates the UI immediately without page reload, and mode-specific elements appear/disappear as expected
+  5. Navigation and command palette (Cmd+K) work reliably -- commands execute, search filters correctly, and no dead-end states exist
+**Plans**: TBD
 
 Plans:
-- [x] 15-01-PLAN.md — Mode infrastructure: useMode hook, ModeToggle, ExpertRoute, App.tsx integration with conditional nav and route guards
-- [x] 15-02-PLAN.md — Page-level rendering: Dashboard section hiding, ProjectDetail collapsible sections and KPI sidebar
-
-### Phase 16: GSD Command Registry
-**Goal**: GSD action buttons auto-discover available commands and adapt to project state, with pause/resume for multi-project workflows
-**Depends on**: Phase 13 (buttons trigger agent sessions)
-**Requirements**: GSD-01, GSD-02, GSD-03, GSD-04, GSD-05, GSD-06, GSD-07
-**Success Criteria** (what must be TRUE):
-  1. Server reads GSD commands from the plugin directory and serves a registry API that lists all available commands with labels and descriptions
-  2. UI shows only GSD buttons relevant to the current project's state (e.g., no "plan phase" if phase is already planned)
-  3. Each GSD button displays a label and a brief description underneath explaining what it does
-  4. In Expert mode, Cmd+K opens a command palette where user can search and execute any GSD command with fuzzy matching
-  5. User can pause active GSD work on one project and resume it later, independently of other projects' GSD sessions
-**Plans**: 4 plans
-
-Plans:
-- [x] 16-01-PLAN.md -- Server-side GSD command registry, plugin files, state filter, API route
-- [x] 16-02-PLAN.md -- Client-side GSD button bar, ProjectDetail integration
-- [x] 16-03-PLAN.md -- Pause/resume agent sessions (server + client)
-- [x] 16-04-PLAN.md -- Gap closure: Cmd+K command palette (cmdk) for Expert mode
-
-### Phase 17: Guided Wizards
-**Goal**: New and non-technical users are guided through every major workflow with step-by-step wizards in both languages
-**Depends on**: Phase 13 (streaming output display), Phase 14 (GitHub analysis), Phase 15 (mode context), Phase 16 (GSD command buttons)
-**Requirements**: WIZ-01, WIZ-02, WIZ-03, WIZ-04, WIZ-05, GATE-01, GATE-02, GATE-03, GATE-04
-**Success Criteria** (what must be TRUE):
-  1. First-time user sees an onboarding wizard that explains the Idea-to-Project-to-Execution flow with clear visual steps
-  2. Idea creation wizard walks user through choosing input type (text, voice, or GitHub link), providing input, and seeing the idea land in the pool
-  3. Idea-to-project wizard presents GSD deep questions one per screen with clear action buttons, guiding the user through the full questioning phase
-  4. GSD workflow steps display as guided cards with a single action button, explanation text, and a progress indicator
-  5. All wizard text uses i18n keys and renders correctly in both German and English
-  6. User cannot convert an idea to a project or create a project without completing all mandatory GSD questions — blocked in both Simple and Expert mode
-  7. Clear progress indicator shows which questions are answered and which remain before project creation unlocks
-**Plans**: 5 plans
-
-Plans:
-- [x] 17-01-PLAN.md -- WizardShell + StepIndicator + GSD mandatory questions + quality gate server middleware
-- [ ] 17-02-PLAN.md -- (original scope, superseded by 17-04)
-- [ ] 17-03-PLAN.md -- (original scope, superseded by 17-05)
-- [ ] 17-04-PLAN.md -- Gap closure: Onboarding wizard + Idea creation wizard + Dashboard/IdeaPool integration
-- [ ] 17-05-PLAN.md -- Gap closure: Idea-to-project wizard + quality gate UI + graduation flow integration
+- [ ] 21-01: TBD
+- [ ] 21-02: TBD
+- [ ] 21-03: TBD
 
 ## Progress
 
 **Execution Order:**
-Phases execute in numeric order: 12 -> 13 -> 14 -> 15 -> 16 -> 17
-Note: Phase 14 and Phase 15 have no mutual dependency and could be parallelized.
+Phases execute in numeric order: 18 → 19 → 20 → 21
 
 | Phase | Milestone | Plans Complete | Status | Completed |
 |-------|-----------|----------------|--------|-----------|
@@ -176,4 +142,8 @@ Note: Phase 14 and Phase 15 have no mutual dependency and could be parallelized.
 | 14. GitHub Analysis | v1.2 | 2/2 | Complete | 2026-02-10 |
 | 15. Simple/Expert Mode | v1.2 | 2/2 | Complete | 2026-02-10 |
 | 16. GSD Command Registry | v1.2 | 4/4 | Complete | 2026-02-10 |
-| 17. Guided Wizards | v1.2 | 1/5 | In progress | - |
+| 17. Guided Wizards | v1.2 | 5/5 | Complete | 2026-02-10 |
+| 18. SDK Auth & Cleanup | v1.3 | 0/TBD | Not started | - |
+| 19. AI Function Migration | v1.3 | 0/TBD | Not started | - |
+| 20. SDK Feature Adoption | v1.3 | 0/TBD | Not started | - |
+| 21. Stabilization | v1.3 | 0/TBD | Not started | - |

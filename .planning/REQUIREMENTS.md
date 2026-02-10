@@ -96,4 +96,4 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 ---
 *Requirements defined: 2026-02-10*
-*Last updated: 2026-02-10 after scope expansion (full AI migration)*
+*Last updated: 2026-02-10 after scope expansion (4 phases, 19 requirements)*
