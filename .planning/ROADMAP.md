@@ -80,7 +80,7 @@ Plans:
   3. Voice transcription (web upload and Telegram voice messages) produces text output using local whisper.cpp -- no network call to OpenAI Whisper API occurs, and OPENAI_API_KEY is not required
   4. The .env file and codebase contain zero references to ANTHROPIC_API_KEY or OPENAI_API_KEY -- `grep -r "ANTHROPIC_API_KEY\|OPENAI_API_KEY" server/` returns only documentation/comments explaining the removal
   5. The AI cost dashboard reflects the subscription model -- it no longer displays per-token cost breakdowns and instead shows session count, duration, and subscription status
-**Plans**: 6 plans
+**Plans**: 7 plans (6 original + 1 gap closure)
 
 Plans:
 - [x] 19-01-PLAN.md -- Warm Agent Session Singleton (create warm-session.ts, integrate into app.ts startup)
@@ -89,6 +89,7 @@ Plans:
 - [x] 19-04-PLAN.md -- Voice Transcription Migration (rewrite transcribeAudio to use local whisper.cpp)
 - [x] 19-05-PLAN.md -- API Key Removal & Package Cleanup (delete providers.ts, uninstall AI SDK packages, remove API keys)
 - [x] 19-06-PLAN.md -- Cost Dashboard Update (rewrite tracker/dashboard for subscription usage model)
+- [x] 19-07-PLAN.md -- Gap Closure: API Key Documentation & Credential Hygiene (gap_closure)
 
 #### Phase 20: SDK Feature Adoption
 **Goal**: Agent sessions surface richer information -- users see why sessions ended, sessions survive server restarts, and session IDs are predictable
@@ -99,11 +100,11 @@ Plans:
   2. After a server restart, previously active sessions are discovered via listSessions() and surfaced in the UI as resumable -- not silently lost
   3. Agent sessions use deterministic IDs based on project ID, so pause/resume targets the correct session without fragile in-memory lookups
   4. At server startup, auth health check calls accountInfo() or equivalent and logs whether the configured token is valid -- invalid tokens are caught before any user triggers a session
-**Plans**: TBD
+**Plans**: 2 plans
 
 Plans:
-- [ ] 20-01: TBD
-- [ ] 20-02: TBD
+- [ ] 20-01-PLAN.md -- Stop reason surfacing in UI + deterministic session IDs from project ID
+- [ ] 20-02-PLAN.md -- Session recovery after server restart + auth health check via accountInfo()
 
 #### Phase 21: Stabilization
 **Goal**: All v1.2 features are verified working end-to-end, bugs are fixed, and UX rough edges are polished across wizards, modes, and navigation
@@ -147,6 +148,6 @@ Phases execute in numeric order: 18 → 19 → 20 → 21
 | 16. GSD Command Registry | v1.2 | 4/4 | Complete | 2026-02-10 |
 | 17. Guided Wizards | v1.2 | 5/5 | Complete | 2026-02-10 |
 | 18. SDK Auth & Cleanup | v1.3 | 2/2 | Complete | 2026-02-10 |
-| 19. AI Function Migration | v1.3 | 6/6 | Complete | 2026-02-10 |
-| 20. SDK Feature Adoption | v1.3 | 0/TBD | Not started | - |
+| 19. AI Function Migration | v1.3 | 7/7 | Complete | 2026-02-10 |
+| 20. SDK Feature Adoption | v1.3 | 0/2 | Planned | - |
 | 21. Stabilization | v1.3 | 0/TBD | Not started | - |
