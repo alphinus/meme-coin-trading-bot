@@ -5,17 +5,17 @@
 See: .planning/PROJECT.md (updated 2026-02-10)
 
 **Core value:** No project dies without a documented decision, and every thought trail is fully reconstructable.
-**Current focus:** Phase 20 in progress — SDK Feature Adoption (stop reasons, deterministic IDs, session recovery, auth health).
+**Current focus:** Phase 20 complete — SDK Feature Adoption fully wired (stop reasons, deterministic IDs, session recovery, auth health check).
 
 ## Current Position
 
 Milestone: v1.3 SDK Migration & Stabilization
 Phase: 20 of 21 (SDK Feature Adoption)
-Plan: 1 of 2 in phase 20 (plan 01 complete)
-Status: Plan 20-01 complete -- stop reasons + deterministic session IDs wired end-to-end
-Last activity: 2026-02-11 — Phase 20-01 executed (2 tasks, 2 commits)
+Plan: 2 of 2 in phase 20 (phase complete)
+Status: Phase 20 complete -- all 4 SDK features adopted (stop reasons, deterministic IDs, session recovery, auth health check)
+Last activity: 2026-02-11 — Phase 20-02 executed (2 tasks, 2 commits)
 
-Progress: [██████░░░░] 62% (v1.3: 2.5/4 phases)
+Progress: [███████░░░] 75% (v1.3: 3/4 phases)
 
 ## Performance Metrics
 
@@ -64,6 +64,10 @@ Recent decisions affecting current work:
 - Deterministic session IDs via SHA-256(prefix + projectId) formatted as UUID v4 (20-01)
 - persistSession: true for interactive sessions enabling SDK JSONL file persistence (20-01)
 - Error paths surface stopReason + cost/duration in AgentResult for unified UI display (20-01)
+- Custom JSON metadata file (data/agent-sessions.json) for session recovery over parsing SDK JSONL files (20-02)
+- Fire-and-forget auth verification: verifyAuthToken() logs but never throws, server always starts (20-02)
+- Running sessions converted to recoverable entries during graceful shutdown before abort (20-02)
+- accountInfo() called via warm session query instance (streaming input mode) for auth health check (20-02)
 
 ### Pending Todos
 
@@ -81,5 +85,5 @@ None.
 ## Session Continuity
 
 Last session: 2026-02-11
-Stopped at: Completed 20-01-PLAN.md (stop reasons + deterministic session IDs)
-Next step: Execute 20-02-PLAN.md (session recovery + auth health check)
+Stopped at: Completed 20-02-PLAN.md (session recovery + auth health check)
+Next step: Begin Phase 21 (polish/testing) -- run 23 pending verification tests
