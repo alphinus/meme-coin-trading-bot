@@ -5,22 +5,22 @@
 See: .planning/PROJECT.md (updated 2026-02-10)
 
 **Core value:** No project dies without a documented decision, and every thought trail is fully reconstructable.
-**Current focus:** Phase 20 complete — SDK Feature Adoption fully wired (stop reasons, deterministic IDs, session recovery, auth health check).
+**Current focus:** Phase 21 in progress -- Stabilization: bug fix, i18n polish, verification, remediation.
 
 ## Current Position
 
 Milestone: v1.3 SDK Migration & Stabilization
-Phase: 20 of 21 (SDK Feature Adoption)
-Plan: 2 of 2 in phase 20 (phase complete)
-Status: Phase 20 complete -- all 4 SDK features adopted (stop reasons, deterministic IDs, session recovery, auth health check)
-Last activity: 2026-02-11 — Phase 20-02 executed (2 tasks, 2 commits)
+Phase: 21 of 21 (Stabilization)
+Plan: 1 of 3 in phase 21 (plan 01 complete)
+Status: Phase 21-01 complete -- gsd.ts import fix, nav/tool/IdeaPool i18n (6 files, 2 commits)
+Last activity: 2026-02-11 -- Phase 21-01 executed (2 tasks, 2 commits)
 
-Progress: [███████░░░] 75% (v1.3: 3/4 phases)
+Progress: [████████░░] 80% (v1.3: 3.3/4 phases)
 
 ## Performance Metrics
 
 **Velocity (cumulative):**
-- Total plans completed: 84
+- Total plans completed: 85
 - Milestones shipped: 3 (v1.0, v1.1, v1.2)
 - Total codebase: ~47,000 LOC TypeScript
 
@@ -68,6 +68,8 @@ Recent decisions affecting current work:
 - Fire-and-forget auth verification: verifyAuthToken() logs but never throws, server always starts (20-02)
 - Running sessions converted to recoverable entries during graceful shutdown before abort (20-02)
 - accountInfo() called via warm session query instance (streaming input mode) for auth health check (20-02)
+- Used existing ideaPool camelCase namespace for new IdeaPool keys to maintain locale file consistency (21-01)
+- TOOL_LABEL_KEYS i18n key map pattern for static label lookups with t() at render time (21-01)
 
 ### Pending Todos
 
@@ -85,5 +87,5 @@ None.
 ## Session Continuity
 
 Last session: 2026-02-11
-Stopped at: Completed 20-02-PLAN.md (session recovery + auth health check)
-Next step: Begin Phase 21 (polish/testing) -- run 23 pending verification tests
+Stopped at: Completed 21-01-PLAN.md (gsd.ts import fix + nav/tool/IdeaPool i18n)
+Next step: Execute 21-02-PLAN.md (verification testing)
