@@ -103,8 +103,8 @@ Plans:
 **Plans**: 2 plans
 
 Plans:
-- [ ] 20-01-PLAN.md -- Stop reason surfacing in UI + deterministic session IDs from project ID
-- [ ] 20-02-PLAN.md -- Session recovery after server restart + auth health check via accountInfo()
+- [x] 20-01-PLAN.md -- Stop reason surfacing in UI + deterministic session IDs from project ID
+- [x] 20-02-PLAN.md -- Session recovery after server restart + auth health check via accountInfo()
 
 #### Phase 21: Stabilization
 **Goal**: All v1.2 features are verified working end-to-end, bugs are fixed, and UX rough edges are polished across wizards, modes, and navigation
@@ -149,5 +149,5 @@ Phases execute in numeric order: 18 → 19 → 20 → 21
 | 17. Guided Wizards | v1.2 | 5/5 | Complete | 2026-02-10 |
 | 18. SDK Auth & Cleanup | v1.3 | 2/2 | Complete | 2026-02-10 |
 | 19. AI Function Migration | v1.3 | 7/7 | Complete | 2026-02-10 |
-| 20. SDK Feature Adoption | v1.3 | 0/2 | Planned | - |
+| 20. SDK Feature Adoption | v1.3 | 2/2 | Complete | 2026-02-11 |
 | 21. Stabilization | v1.3 | 0/TBD | Not started | - |
