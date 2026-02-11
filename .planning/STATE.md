@@ -5,22 +5,22 @@
 See: .planning/PROJECT.md (updated 2026-02-10)
 
 **Core value:** No project dies without a documented decision, and every thought trail is fully reconstructable.
-**Current focus:** Phase 19 fully complete (including gap closure) — AI Function Migration done. Ready for Phase 20.
+**Current focus:** Phase 20 in progress — SDK Feature Adoption (stop reasons, deterministic IDs, session recovery, auth health).
 
 ## Current Position
 
 Milestone: v1.3 SDK Migration & Stabilization
-Phase: 19 of 21 (AI Function Migration) — COMPLETE (all gaps closed)
-Plan: 7 of 7 in phase 19 (all plans complete, including gap closure)
-Status: Phase 19 fully verified — 5/5 truths verified, credential hygiene and dead code removed
-Last activity: 2026-02-10 — Phase 19 executed (7 plans, 4 waves, 18 commits) including gap closure
+Phase: 20 of 21 (SDK Feature Adoption)
+Plan: 1 of 2 in phase 20 (plan 01 complete)
+Status: Plan 20-01 complete -- stop reasons + deterministic session IDs wired end-to-end
+Last activity: 2026-02-11 — Phase 20-01 executed (2 tasks, 2 commits)
 
-Progress: [█████░░░░░] 50% (v1.3: 2/4 phases)
+Progress: [██████░░░░] 62% (v1.3: 2.5/4 phases)
 
 ## Performance Metrics
 
 **Velocity (cumulative):**
-- Total plans completed: 81
+- Total plans completed: 82
 - Milestones shipped: 3 (v1.0, v1.1, v1.2)
 - Total codebase: ~47,000 LOC TypeScript
 
@@ -44,7 +44,7 @@ Recent decisions affecting current work:
 - No package migration needed: @anthropic-ai/claude-agent-sdk upgraded from v0.2.37 to v0.2.38
 - Warm Agent SDK session pattern: Persistent query() call with Streaming Input Mode to avoid ~12s cold start per lightweight AI call
 - Local whisper.cpp replaces OpenAI Whisper API: Zero cloud transcription costs, no OPENAI_API_KEY dependency
-- persistSession removed from resume() in 18-01; only start() retains persistSession: false
+- persistSession changed to true for interactive sessions in 20-01; resume() uses deterministicSessionId
 - SDK install requires --legacy-peer-deps until project migrates to zod@4
 - auth-check.ts created for startup auth detection/logging (18-02)
 - apiKeySource captured from SDK init messages for runtime auth verification (18-02)
@@ -61,6 +61,9 @@ Recent decisions affecting current work:
 - Dashboard uses i18n for all user-facing strings (aiUsage namespace in EN/DE) (19-06)
 - .env.local pattern for credential separation with Node v22 --env-file multi-file loading (19-07)
 - Complete claudeApiKey dead code removal: subscription-only auth is the only path (19-07)
+- Deterministic session IDs via SHA-256(prefix + projectId) formatted as UUID v4 (20-01)
+- persistSession: true for interactive sessions enabling SDK JSONL file persistence (20-01)
+- Error paths surface stopReason + cost/duration in AgentResult for unified UI display (20-01)
 
 ### Pending Todos
 
@@ -72,11 +75,11 @@ None.
 - gh CLI not available on current dev machine (GitHub integration untested but code complete)
 - 23 human verification tests pending from v1.2 (addressed in Phase 21)
 - OAuth token expiration: CLAUDE_CODE_OAUTH_TOKEN has limited lifetime, re-auth procedure needed
-- Pre-existing TypeScript errors resolved (was 19, now 0 after recent fixes)
+- Pre-existing TypeScript errors: 18 in Telegram menus (TranslateFunction type issue), unrelated to active development
 - Phase 19 verification gap: RESOLVED in 19-07 — credentials moved to .env.local, .env contains only placeholders
 
 ## Session Continuity
 
-Last session: 2026-02-10
-Stopped at: Completed 19-07-PLAN.md (gap closure — credential hygiene + dead code removal)
-Next step: `/gsd:plan-phase 20` — Phase 19 fully complete with all gaps closed
+Last session: 2026-02-11
+Stopped at: Completed 20-01-PLAN.md (stop reasons + deterministic session IDs)
+Next step: Execute 20-02-PLAN.md (session recovery + auth health check)
