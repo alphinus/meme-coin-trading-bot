@@ -116,12 +116,12 @@ Plans:
   3. Guided wizards (onboarding, idea creation, idea-to-project) work smoothly without confusing transitions, broken steps, or missing translations
   4. Simple/Expert mode toggle works correctly -- switching modes updates the UI immediately without page reload, and mode-specific elements appear/disappear as expected
   5. Navigation and command palette (Cmd+K) work reliably -- commands execute, search filters correctly, and no dead-end states exist
-**Plans**: TBD
+**Plans**: 3 plans
 
 Plans:
-- [ ] 21-01: TBD
-- [ ] 21-02: TBD
-- [ ] 21-03: TBD
+- [ ] 21-01-PLAN.md -- Fix gsd.ts import bug, internationalize navigation, tool labels, and IdeaPool strings
+- [ ] 21-02-PLAN.md -- Execute all 31 human verification tests and document results
+- [ ] 21-03-PLAN.md -- Fix test failures and re-verify
 
 ## Progress
 
@@ -150,4 +150,4 @@ Phases execute in numeric order: 18 → 19 → 20 → 21
 | 18. SDK Auth & Cleanup | v1.3 | 2/2 | Complete | 2026-02-10 |
 | 19. AI Function Migration | v1.3 | 7/7 | Complete | 2026-02-10 |
 | 20. SDK Feature Adoption | v1.3 | 2/2 | Complete | 2026-02-11 |
-| 21. Stabilization | v1.3 | 0/TBD | Not started | - |
+| 21. Stabilization | v1.3 | 0/3 | Not started | - |
