@@ -1,0 +1,171 @@
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.PumpFunMonitor = void 0;
+// Pump.fun Discovery Module
+const ws_1 = __importDefault(require("ws"));
+const axios_1 = __importDefault(require("axios"));
+const events_1 = require("events");
+const config_1 = require("../config");
+class PumpFunMonitor extends events_1.EventEmitter {
+    constructor() {
+        super();
+        this.ws = null;
+        this.reconnectAttempts = 0;
+        this.maxReconnectAttempts = 10;
+        this.isConnected = false;
+        this.config = (0, config_1.getConfig)();
+    }
+    async start() {
+        if (!this.config.discovery.pumpfun.enabled) {
+            console.log('⚠ Pump.fun monitoring disabled in config');
+            return;
+        }
+        console.log('🔌 Connecting to Pump.fun WebSocket...');
+        await this.connect();
+    }
+    async connect() {
+        try {
+            const wsEndpoint = 'wss://pumpportal.fun/api/data';
+            this.ws = new ws_1.default(wsEndpoint);
+            this.ws.on('open', () => {
+                console.log('✓ Connected to Pump.fun WebSocket');
+                this.isConnected = true;
+                this.reconnectAttempts = 0;
+                // Subscribe to new token events
+                this.ws?.send(JSON.stringify({
+                    method: 'subscribeNewToken',
+                }));
+            });
+            this.ws.on('message', (data) => {
+                try {
+                    const message = JSON.parse(data.toString());
+                    this.handleMessage(message);
+                }
+                catch (error) {
+                    console.error('Error parsing Pump.fun message:', error);
+                }
+            });
+            this.ws.on('close', () => {
+                console.log('✗ Pump.fun WebSocket disconnected');
+                this.isConnected = false;
+                this.reconnect();
+            });
+            this.ws.on('error', (error) => {
+                console.error('Pump.fun WebSocket error:', error.message);
+            });
+        }
+        catch (error) {
+            console.error('Failed to connect to Pump.fun:', error);
+            this.reconnect();
+        }
+    }
+    handleMessage(message) {
+        if (message.method === 'newToken') {
+            this.processNewToken(message.data);
+        }
+    }
+    async processNewToken(data) {
+        try {
+            const tokenInfo = await this.fetchTokenInfo(data.tokenAddress);
+            if (!tokenInfo) {
+                console.log(`⚠ Could not fetch info for token: ${data.tokenAddress}`);
+                return;
+            }
+            if (!this.validateToken(tokenInfo)) {
+                console.log(`❌ Token validation failed`);
+                return;
+            }
+            console.log(`🎯 NEW TOKEN DETECTED: ${tokenInfo.token.name} (${tokenInfo.token.symbol})`);
+            console.log(`   Liquidity: $${tokenInfo.liquidity.toLocaleString()}`);
+            console.log(`   Market Cap: $${tokenInfo.marketCap.toLocaleString()}`);
+            const event = {
+                token: tokenInfo,
+                source: 'pumpfun',
+                timestamp: new Date(),
+            };
+            this.emit('newToken', event);
+        }
+        catch (error) {
+            console.error('Error processing new token:', error);
+        }
+    }
+    async fetchTokenInfo(tokenAddress) {
+        try {
+            const birdeyeUrl = 'https://public-api.birdeye.so/public/token_meta';
+            const response = await axios_1.default.get(birdeyeUrl, {
+                params: { address: tokenAddress },
+                headers: {
+                    'x-api-key': this.config.discovery.birdeye?.apiKey || '',
+                },
+                timeout: 5000,
+            });
+            const data = response.data.data;
+            return {
+                token: {
+                    address: tokenAddress,
+                    symbol: data.symbol || 'UNKNOWN',
+                    name: data.name || 'Unknown Token',
+                    decimals: data.decimals || 9,
+                    mintAuthority: data.mint_authority,
+                    freezeAuthority: data.freeze_authority,
+                    isMutable: data.is_mutable || true,
+                    supply: data.supply || 0,
+                },
+                price: data.price || 0,
+                liquidity: data.liquidity?.usd || 0,
+                marketCap: data.mc || 0,
+                volume24h: data.v24h || 0,
+                holders: data.holder || 0,
+                top10HolderPercent: 0,
+                isMintRevoked: !data.mint_authority,
+                isFreezeRevoked: !data.freeze_authority,
+                isLiquidityBurned: false,
+                createdAt: new Date(),
+            };
+        }
+        catch (error) {
+            console.error(`Error fetching token info for ${tokenAddress}:`, error);
+            return null;
+        }
+    }
+    validateToken(token) {
+        if (token.liquidity < this.config.trading.minLiquidity) {
+            return false;
+        }
+        if (token.marketCap < this.config.trading.minMarketCap) {
+            return false;
+        }
+        if (!token.isMintRevoked) {
+            console.log(`⚠ Token has mutable mint authority`);
+        }
+        return true;
+    }
+    reconnect() {
+        if (this.reconnectAttempts >= this.maxReconnectAttempts) {
+            console.error('Max reconnection attempts reached');
+            return;
+        }
+        this.reconnectAttempts++;
+        const delay = Math.min(1000 * Math.pow(2, this.reconnectAttempts), 30000);
+        console.log(`Reconnecting in ${delay / 1000}s (attempt ${this.reconnectAttempts})...`);
+        setTimeout(() => {
+            this.connect();
+        }, delay);
+    }
+    stop() {
+        if (this.ws) {
+            this.ws.close();
+            this.ws = null;
+        }
+        this.isConnected = false;
+        console.log('✓ Pump.fun monitor stopped');
+    }
+    isActive() {
+        return this.isConnected;
+    }
+}
+exports.PumpFunMonitor = PumpFunMonitor;
+//# sourceMappingURL=pumpfun.js.map
