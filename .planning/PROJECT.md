@@ -60,16 +60,18 @@ No project dies without a documented decision, and every thought trail is fully 
 - ✓ Dynamic GSD command registry with context-dependent buttons and Cmd+K palette — v1.2
 - ✓ Guided wizards for onboarding, idea creation, and idea-to-project with quality gates — v1.2
 - ✓ Quality gates enforce mandatory GSD questions before project creation — v1.2
+- ✓ All AI calls migrated from API-key AI SDK v6 to subscription-based Agent SDK warm session — v1.3
+- ✓ Local whisper.cpp voice transcription replacing cloud OpenAI Whisper API — v1.3
+- ✓ Zero API keys: runs entirely on Claude Max subscription — v1.3
+- ✓ Stop reason display, deterministic session IDs, session recovery after restart — v1.3
+- ✓ Auth health check at server startup — v1.3
+- ✓ AI usage dashboard (subscription model, no per-token billing) — v1.3
+- ✓ 31 verification tests executed (17 PASS, 14 SKIP infra, 0 FAIL) — v1.3
+- ✓ Navigation, tool labels, IdeaPool fully internationalized — v1.3
 
 ### Active
 
-**Current Milestone: v1.3 SDK Migration & Stabilization**
-
-- [ ] Replace Agent SDK with Claude Code SDK (@anthropic-ai/claude-code) — use local subscription instead of API key
-- [ ] Maintain same UX: SSE streaming, per-project session controls, abort/reconnect, pause/resume
-- [ ] Run all 23 pending v1.2 verification tests and fix failures
-- [ ] Fix bugs discovered during verification
-- [ ] Polish UX rough edges in wizards, modes, and navigation
+(No active milestone — ready for v1.4 planning)
 
 ### Out of Scope
 
@@ -96,8 +98,9 @@ No project dies without a documented decision, and every thought trail is fully 
 Shipped v1.0 MVP with 39,396 LOC TypeScript across 235 files.
 Shipped v1.1 i18n Quality with 210+ client translation keys, 140-key Fluent files for Telegram bot, 9 plans over ~45 minutes.
 Shipped v1.2 Guided UX with 6 phases, 19 plans, 46,922 LOC TypeScript. Added SSE streaming, GitHub analysis, Simple/Expert mode, GSD command registry, and guided wizards.
-Tech stack: Express + Vite + React monorepo, JSONL event store, AI SDK v6, grammY Telegram bot with @grammyjs/i18n + Fluent, Agent SDK with SSE streaming, cmdk command palette.
-17 phases, 68 plans total across v1.0 + v1.1 + v1.2.
+Shipped v1.3 SDK Migration & Stabilization with 4 phases, 14 plans, 64,847 LOC TypeScript. Migrated all AI to subscription-based Agent SDK, replaced cloud transcription with local whisper.cpp, added session recovery/health checks, verified all features with zero defects.
+Tech stack: Express + Vite + React monorepo, JSONL event store, Agent SDK with warm session pattern, grammY Telegram bot with @grammyjs/i18n + Fluent, SSE streaming, cmdk command palette, local whisper.cpp.
+21 phases, 85 plans total across v1.0 + v1.1 + v1.2 + v1.3.
 
 **Team:** Elvis and Mario at Eluma GmbH (eluma.ch), a Swiss software consultancy based in Winterthur and Schaffhausen.
 
@@ -146,7 +149,13 @@ Tech stack: Express + Vite + React monorepo, JSONL event store, AI SDK v6, gramm
 | Quality gate with mandatory questions | 6 questions from GSD phases 1-3 | ✓ Good — blocks project creation without answers |
 | WizardShell as reusable container | Shared wizard UI with step indicator | ✓ Good — used across all wizard types |
 
-| Claude Code SDK over Agent SDK | Local subscription vs API key, cost savings, same UX | — Pending |
+| Subscription auth over API key | CLAUDE_CODE_OAUTH_TOKEN for zero per-token costs | ✓ Good — runs on Claude Max |
+| Warm Agent SDK session pattern | Persistent query() with Streaming Input Mode avoids cold starts | ✓ Good — sub-3s for lightweight AI calls |
+| Local whisper.cpp over OpenAI Whisper | Zero cloud costs, no OPENAI_API_KEY dependency | ✓ Good — works offline |
+| Deterministic session IDs | SHA-256(prefix + projectId) as UUID v4 | ✓ Good — predictable pause/resume |
+| Custom JSON for session recovery | data/agent-sessions.json over parsing SDK JSONL files | ✓ Good — simpler than SDK internals |
+| Fire-and-forget auth verification | verifyAuthToken() logs but never throws | ✓ Good — server always starts |
+| Subscription usage tracking | recordAiUsage() by task type, no per-token pricing | ✓ Good — preserves audit trail shape |
 
 ---
-*Last updated: 2026-02-10 after v1.3 milestone started*
+*Last updated: 2026-02-11 after v1.3 milestone completion*

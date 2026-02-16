@@ -62,7 +62,7 @@ Each task was committed atomically:
 
 1. **Task 1: Rewrite transcribeAudio() to use local whisper-cli** - `613197c` (feat)
 
-**Plan metadata:** [pending] (docs: complete plan)
+**Plan metadata:** `9710123` (docs: complete plan)
 
 ## Files Created/Modified
 - `server/src/voice/transcribe.ts` - Rewritten from OpenAI Whisper API to local whisper.cpp binary invocation
